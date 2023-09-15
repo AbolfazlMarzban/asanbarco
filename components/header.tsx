@@ -25,7 +25,7 @@ function Header() {
         },
     ]
   return (
-    <div>
+    <div className="fixed top-0 w-full">
         <div className="w-full h-14 bg-myblue p-4 text-center">
             <label className="text-white">آسان بار</label>
         <button className="float-left mr-3 text-white " >
