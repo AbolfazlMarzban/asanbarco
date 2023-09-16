@@ -1,8 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import Select from "@/components/select";
-import Checkbox from "@/components/checkbox";
-import CustomeLink from "@/components/customelink";
+import Select from "@/components/UI/select";
+import Checkbox from "@/components/UI/checkbox";
+import CustomeLink from "@/components/UI/customelink";
+import RadioBtn from "@/components/UI/radioBtn";
 
 function NewCargo() {
   return (
@@ -81,6 +82,10 @@ function NewCargo() {
                 title={'نوع ناوگان و بارگیر'}
                 target={''}
             ></CustomeLink>
+            <RadioBtn 
+                title={'کرایه موردنظر شما:'}
+                btns={['توافقی', 'سرویسی', 'تنی']}
+            ></RadioBtn>
         </div>
       </div>
     </div>
