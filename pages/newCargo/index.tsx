@@ -86,6 +86,7 @@ function NewCargo() {
                 title={'کرایه موردنظر شما:'}
                 btns={['توافقی', 'سرویسی', 'تنی']}
             ></RadioBtn>
+            <hr  className="w-full my-3"/>
         </div>
       </div>
     </div>
