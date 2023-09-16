@@ -23,6 +23,12 @@ function NewCargo() {
       </div>
       <div className="flex flex-col items-center  justify-center h-full bg-[#f1f5f8] p-2">
             <LocationSelect
+                title={'مبدأ'}
+                data={[]}
+                getLocation={true}
+            />
+              <LocationSelect
+                title={'مقصد'}
                 data={[]}
             />
       </div>
