@@ -62,7 +62,7 @@ function Header() {
         </Link>
         </div> 
         
-<div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+<div className="text-sm font-medium text-center text-gray-500 border-b-2 border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <ul className="flex flex-wrap bg-white -mb-px">
         {menu.map((item, i) => (
 

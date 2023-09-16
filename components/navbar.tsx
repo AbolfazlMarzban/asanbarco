@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function Navbar() {
   return (
@@ -44,7 +45,8 @@ function Navbar() {
 
         <span className="text-xs">آسان</span>
       </button>
-      <button className="bg-myblue text-white px-2 rounded-lg">
+
+      <Link href={'/newcargo'} className="flex flex-col items-center justify-center bg-myblue text-white px-2 rounded-lg">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -59,7 +61,9 @@ function Navbar() {
             d="M12 4.5v15m7.5-7.5h-15"
           />
         </svg>
-      </button>
+      </Link>
+
+
       <button className="flex flex-col items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
