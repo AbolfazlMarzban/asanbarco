@@ -1,6 +1,8 @@
 import Loading from "@/components/loading";
 import { useState, useLayoutEffect } from "react";
 import Login from "@/components/login";
+import "tw-elements-react/dist/css/tw-elements-react.min.css";
+
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
