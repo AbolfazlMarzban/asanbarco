@@ -88,7 +88,9 @@ function NewCargo() {
                 btns={['توافقی', 'سرویسی', 'تنی']}
             ></RadioBtn>
             <hr  className="w-full my-3 border-1 border-neutral-300	"/>
-            <Accordion />
+            <Accordion
+                title="وارد کردن اطلاعات بیشتر (اختیاری)"
+            ></Accordion>
         </div>
       </div>
     </div>
