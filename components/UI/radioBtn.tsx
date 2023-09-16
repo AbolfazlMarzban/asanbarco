@@ -10,7 +10,7 @@ function RadioBtn({
             <div className='flex justify-between items-center mt-2'>
                 {btns.map((item:any) =>(
                     <div className='flex items-center'>
-                        <input type="radio" name={item} id={item} value={item} />
+                        <input type="radio" name='radio' id={item} value={item} />
                         <label htmlFor="" className='mr-1'>{item}</label>
                     </div>
                 ))}
