@@ -4,7 +4,8 @@ import Select from "@/components/UI/select";
 import Checkbox from "@/components/UI/checkbox";
 import CustomeLink from "@/components/UI/customelink";
 import RadioBtn from "@/components/UI/radioBtn";
-import AccordionFlush from "@/components/UI/accardion";
+import Accordion from "@/components/UI/accardion";
+
 function NewCargo() {
   return (
     <div className="bg-white h-[100vh]">
@@ -87,7 +88,7 @@ function NewCargo() {
                 btns={['توافقی', 'سرویسی', 'تنی']}
             ></RadioBtn>
             <hr  className="w-full my-3 border-1 border-neutral-300	"/>
-            <AccordionFlush/>
+            <Accordion />
         </div>
       </div>
     </div>

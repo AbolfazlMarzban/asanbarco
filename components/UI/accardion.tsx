@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { TECollapse } from "tw-elements-react";
+import React from 'react';
+import { useState } from "react";
 
-export default function AccordionFlush(){
-  const [activeElement, setActiveElement] = useState("");
-
+function Accardion() {
+      const [activeElement, setActiveElement] = useState("");
+      
   const handleClick = (value: string) => {
     if (value === activeElement) {
       setActiveElement("");
@@ -11,16 +11,16 @@ export default function AccordionFlush(){
       setActiveElement(value);
     }
   };
-  return (
-    <>
+    return (
+        <div>
       <div id="accordionExample">
-        <div className="rounded-none border border-l-0 border-r-0 border-t-0 border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
+        <div className="rounded-t-lg border border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
           <h2 className="mb-0" id="headingOne">
             <button
               className={`${
                 activeElement === "element1" &&
                 `text-primary [box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:!text-primary-400 dark:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]`
-              } group relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white`}
+              } group relative flex w-full items-center rounded-t-[15px] border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white`}
               type="button"
               onClick={() => handleClick("element1")}
               aria-expanded="true"
@@ -31,7 +31,7 @@ export default function AccordionFlush(){
                 className={`${
                   activeElement === "element1"
                     ? `rotate-[-180deg] -mr-1`
-                    : `rotate-0 fill-[#212529] dark:fill-white`
+                    : `rotate-0 fill-[#212529]  dark:fill-white`
                 } ml-auto h-5 w-5 shrink-0 fill-[#336dec] transition-transform duration-200 ease-in-out motion-reduce:transition-none dark:fill-blue-300`}
               >
                 <svg
@@ -51,10 +51,7 @@ export default function AccordionFlush(){
               </span>
             </button>
           </h2>
-          <TECollapse
-            show={activeElement === "element1"}
-            className="!mt-0 !rounded-b-none !shadow-none"
-          >
+       
             <div className="px-5 py-4">
               <strong>This is the first item's accordion body.</strong> Lorem
               ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu
@@ -64,10 +61,10 @@ export default function AccordionFlush(){
               metus. Nam nisi leo, malesuada vitae pretium et, laoreet at lorem.
               Curabitur non sollicitudin neque.
             </div>
-          </TECollapse>
         </div>
       </div>
-    
-    </>
-  );
+    </div>
+    );
 }
+
+export default Accardion;
