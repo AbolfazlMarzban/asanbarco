@@ -6,8 +6,8 @@ function DialogBtn({ title, value, open }: any) {
     open();
   }
   return (
-    <div className="bg-white border shadow flex items-center justify-between p-3 rounded-md mt-2">
-      <div className="flex items-center" onClick={()=>openDialog()}>
+    <div className="bg-white border shadow flex items-center justify-between p-3 rounded-md mt-2 cursor-pointer"  onClick={()=>openDialog()}>
+      <div className="flex items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

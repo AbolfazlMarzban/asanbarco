@@ -137,6 +137,7 @@ function NewCargo() {
       {showCarrier && (
         <Dialog
           title={'شهر مبدأ مورد نظر خود را انتخاب کنید'}
+          close={()=>setShowCarrier(false)}
         ></Dialog>
       )
       }
