@@ -1,9 +1,13 @@
 import React from "react";
 
-function DialogBtn({ title, target, value }: any) {
+function DialogBtn({ title, value, open }: any) {
+  function openDialog(){
+    console.log('boos')
+    open();
+  }
   return (
     <div className="bg-white border shadow flex items-center justify-between p-3 rounded-md mt-2">
-      <div className="flex items-center">
+      <div className="flex items-center" onClick={()=>openDialog()}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

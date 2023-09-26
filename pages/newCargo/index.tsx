@@ -6,8 +6,11 @@ import DialogBtn from "@/components/UI/dialogBtn";
 import RadioBtn from "@/components/UI/radioBtn";
 import Accordion from "@/components/UI/accardion";
 import Textbox from "@/components/UI/textbox";
+import {useState} from "react"
+import Dialog from "@/components/UI/dialog";
 
 function NewCargo() {
+  const [showCarrier, setShowCarrier] = useState(false)
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="top flex flex-row bg-white font-[vazir] p-4 justify-start gap-5 border-b-2 shadow ">
@@ -80,7 +83,7 @@ function NewCargo() {
             </svg>
           </Select>
           <Checkbox title={"صدور بارنامه از طرف آسان بار"} />
-          <DialogBtn title={"نوع ناوگان و بارگیر"} target={""}></DialogBtn>
+          <DialogBtn open={()=>setShowCarrier(true)} close={()=>setShowCarrier(false)} title={"نوع ناوگان و بارگیر"} target={""}></DialogBtn>
           <RadioBtn
             title={"کرایه موردنظر شما:"}
             btns={["توافقی", "سرویسی", "تنی"]}
@@ -131,6 +134,12 @@ function NewCargo() {
           </div>
         </div>
       </div>
+      {showCarrier && (
+        <Dialog
+          title={'شهر مبدأ مورد نظر خود را انتخاب کنید'}
+        ></Dialog>
+      )
+      }
     </div>
   );
 }
