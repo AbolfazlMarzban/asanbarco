@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import Select from "@/components/UI/select";
 import Checkbox from "@/components/UI/checkbox";
-import CustomeLink from "@/components/UI/dialogBtn";
+import DialogBtn from "@/components/UI/dialogBtn";
 import RadioBtn from "@/components/UI/radioBtn";
 import Accordion from "@/components/UI/accardion";
 import Textbox from "@/components/UI/textbox";
@@ -80,7 +80,7 @@ function NewCargo() {
             </svg>
           </Select>
           <Checkbox title={"صدور بارنامه از طرف آسان بار"} />
-          <CustomeLink title={"نوع ناوگان و بارگیر"} target={""}></CustomeLink>
+          <DialogBtn title={"نوع ناوگان و بارگیر"} target={""}></DialogBtn>
           <RadioBtn
             title={"کرایه موردنظر شما:"}
             btns={["توافقی", "سرویسی", "تنی"]}
@@ -90,14 +90,14 @@ function NewCargo() {
             title="وارد کردن اطلاعات بیشتر (اختیاری)"
             detail="با وارد کردن اطلاعات بیشتر راننده ی مناسب خود را سریعتر پیدا کنید"
           >
-            <CustomeLink title={"نوع بار"} target={""}></CustomeLink>
-            <CustomeLink title={"وزن بار"} target={""}></CustomeLink>
-            <CustomeLink title={"زمان بارگیری"} target={""}></CustomeLink>
-            <CustomeLink title={"زمان تخلیه"} target={""}></CustomeLink>
-            <CustomeLink
+            <DialogBtn title={"نوع بار"} target={""}></DialogBtn>
+            <DialogBtn title={"وزن بار"} target={""}></DialogBtn>
+            <DialogBtn title={"زمان بارگیری"} target={""}></DialogBtn>
+            <DialogBtn title={"زمان تخلیه"} target={""}></DialogBtn>
+            <DialogBtn
               title={"شماره اعلام کننده بار"}
               target={""}
-            ></CustomeLink>
+            ></DialogBtn>
             <RadioBtn
               title={"تاریخ بارگیری"}
               btns={["بار امروز", "بار فردا", "بار همه روزه"]}
