@@ -4,6 +4,7 @@ import { useState } from "react";
 function Accardion(
     {
         title,
+        detail,
         children
     }: any
 ) {
@@ -56,6 +57,9 @@ function Accardion(
               </span>
             </button>
           </h2>
+          <span className='text-xs text-slate-400'>
+              {detail}
+              </span>
                 {(activeElement == "element1") && 
                 (
                     <div>
