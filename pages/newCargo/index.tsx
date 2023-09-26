@@ -9,7 +9,7 @@ import Textbox from "@/components/UI/textbox";
 
 function NewCargo() {
   return (
-    <div className="bg-white h-[100vh]">
+    <div className="bg-[#f1f5f8] h-screen">
       <div className="top flex flex-row bg-white font-[vazir] p-4 justify-start gap-5 border-b-2 shadow ">
         <Link href={"/cargolist"}>
           <svg
@@ -26,7 +26,7 @@ function NewCargo() {
         </Link>
         <span>ثبت بار</span>
       </div>
-      <div className="flex flex-col items-center  justify-center h-full bg-[#f1f5f8] p-2">
+      <div className="flex flex-col items-center bg-[#f1f5f8] justify-start p-2">
         <div className="w-96">
           <Select
             title={"مبدأ"}
@@ -104,7 +104,7 @@ function NewCargo() {
             ></RadioBtn>
             <Textbox
               title={'توضیحات (اختیاری)'}
-              placeholder={'در این قسم میتوانید به ابعاد، بار، ارزش بار و یا هر نوع اطلاعات دیگر بپردازید'}
+              placeholder={'در این قسمت میتوانید به ابعاد، بار، ارزش بار و یا هر نوع اطلاعات دیگر بپردازید'}
             ></Textbox>
           </Accordion>
           <div className="w-full flex justify-center align-center bg-[#f1f5f8] p-4">
