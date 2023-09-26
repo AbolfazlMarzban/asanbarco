@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import Select from "@/components/UI/select";
 import Checkbox from "@/components/UI/checkbox";
-import CustomeLink from "@/components/UI/customelink";
+import CustomeLink from "@/components/UI/dialogBtn";
 import RadioBtn from "@/components/UI/radioBtn";
 import Accordion from "@/components/UI/accardion";
 import Textbox from "@/components/UI/textbox";
