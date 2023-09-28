@@ -6,11 +6,12 @@ import DialogBtn from "@/components/UI/dialogBtn";
 import RadioBtn from "@/components/UI/radioBtn";
 import Accordion from "@/components/UI/accardion";
 import Textbox from "@/components/UI/textbox";
-import {useState} from "react"
+import { useState } from "react";
 import Dialog from "@/components/UI/dialog";
+import SetOrigin from "@/components/newCargo/setOrigin";
 
 function NewCargo() {
-  const [showCarrier, setShowCarrier] = useState(false)
+  const [showOrigin, setShowOrigin] = useState(false);
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="top flex flex-row bg-white font-[vazir] p-4 justify-start gap-5 border-b-2 shadow ">
@@ -31,59 +32,106 @@ function NewCargo() {
       </div>
       <div className="flex flex-col items-center bg-[#f1f5f8] justify-start p-2">
         <div className="w-96">
-          <Select
+          <DialogBtn
+           open={() => setShowOrigin(true)}
+           close={() => setShowOrigin(false)}
             title={"مبدأ"}
-            data={[]}
-            getLocation={true}
-            placeholder={"استان و شهر موردنظر خود را وارد کنید"}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-6 h-6 text-myblue"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-              />
-            </svg>
-          </Select>
-          <Select
+            firstIcon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 text-myblue"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                />
+              </svg>
+            }
+            secondIcon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7.5 3.75H6A2.25 2.25 0 003.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0120.25 6v1.5m0 9V18A2.25 2.25 0 0118 20.25h-1.5m-9 0H6A2.25 2.25 0 013.75 18v-1.5M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+            }
+          ></DialogBtn>
+          <DialogBtn
             title={"مقصد"}
-            data={[]}
-            placeholder={"استان و شهر موردنظر خود را وارد کنید"}
-          >
-            <svg
+            firstIcon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6 text-myblue"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                />
+              </svg>
+            }
+            secondIcon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            }
+          ></DialogBtn>
+          <Checkbox title={"صدور بارنامه از طرف آسان بار"} />
+          <DialogBtn
+            title={"نوع ناوگان و بارگیر"}
+            secondIcon={<svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              className="w-6 h-6 text-myblue"
+              className="w-6 h-6"
             >
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
               />
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-              />
-            </svg>
-          </Select>
-          <Checkbox title={"صدور بارنامه از طرف آسان بار"} />
-          <DialogBtn open={()=>setShowCarrier(true)} close={()=>setShowCarrier(false)} title={"نوع ناوگان و بارگیر"} target={""}></DialogBtn>
+            </svg>}
+          ></DialogBtn>
           <RadioBtn
             title={"کرایه موردنظر شما:"}
             btns={["توافقی", "سرویسی", "تنی"]}
@@ -93,21 +141,91 @@ function NewCargo() {
             title="وارد کردن اطلاعات بیشتر (اختیاری)"
             detail="با وارد کردن اطلاعات بیشتر راننده ی مناسب خود را سریعتر پیدا کنید"
           >
-            <DialogBtn title={"نوع بار"} target={""}></DialogBtn>
-            <DialogBtn title={"وزن بار"} target={""}></DialogBtn>
-            <DialogBtn title={"زمان بارگیری"} target={""}></DialogBtn>
-            <DialogBtn title={"زمان تخلیه"} target={""}></DialogBtn>
-            <DialogBtn
-              title={"شماره اعلام کننده بار"}
-              target={""}
-            ></DialogBtn>
+            <DialogBtn title={"نوع بار"} secondIcon={<svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>}>
+              
+            </DialogBtn>
+            <DialogBtn title={"وزن بار"} secondIcon={<svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>}>
+            </DialogBtn>
+            <DialogBtn title={"زمان بارگیری"} secondIcon={<svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>}>
+            </DialogBtn>
+            <DialogBtn title={"زمان تخلیه"} secondIcon={<svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>}>
+            </DialogBtn>
+            <DialogBtn title={"شماره اعلام کننده بار"} secondIcon={<svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>}>
+            </DialogBtn>
             <RadioBtn
               title={"تاریخ بارگیری"}
               btns={["بار امروز", "بار فردا", "بار همه روزه"]}
             ></RadioBtn>
             <Textbox
-              title={'توضیحات (اختیاری)'}
-              placeholder={'در این قسمت میتوانید به ابعاد، بار، ارزش بار و یا هر نوع اطلاعات دیگر بپردازید'}
+              title={"توضیحات (اختیاری)"}
+              placeholder={
+                "در این قسمت میتوانید به ابعاد، بار، ارزش بار و یا هر نوع اطلاعات دیگر بپردازید"
+              }
             ></Textbox>
           </Accordion>
           <div className="w-full flex justify-center align-center bg-[#f1f5f8] p-4">
@@ -134,13 +252,11 @@ function NewCargo() {
           </div>
         </div>
       </div>
-      {showCarrier && (
-        <Dialog
-          title={'شهر مبدأ مورد نظر خود را انتخاب کنید'}
-          close={()=>setShowCarrier(false)}
-        ></Dialog>
-      )
-      }
+      {showOrigin && (
+        <SetOrigin
+          close={()=>setShowOrigin(false)}
+        ></SetOrigin>
+      )}
     </div>
   );
 }
