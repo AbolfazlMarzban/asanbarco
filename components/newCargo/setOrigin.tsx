@@ -1,18 +1,22 @@
 import React from "react";
 import Dialog from "../UI/dialog";
-import {useLayoutEffect} from "react";
-import axios from "axios";
+import {useLayoutEffect, useState} from "react";
+import provinces from "@/helpers/provinces.json"
+import cities from "@/helpers/cities.json"
 
 function SetOrigin({ close }: any) {
+    // const [cityList, setCityList] = useState([])
   function closeDialog() {
     close();
   }
-  useLayoutEffect( ()=>{
-    fetch('https://iran-locations-api.vercel.app/api/v1/cities?state=تهران')
-    .then(response => response.json())
-    .then(json => console.log(json));
-   
-}, [])
+  let cityList: any = cities.map(item => {
+    return{
+        id: item.id, 
+        name: item.name,
+        province: provinces.find(pr => pr.id == item.province_id)?.name
+    }
+})
+
   return (
     <>
       <Dialog
@@ -36,7 +40,14 @@ function SetOrigin({ close }: any) {
             />
           </svg>
         </div>
-
+        {cityList.map((item:any) => (
+            <div className="flex gap-2 my-1">
+                <input type="radio" name='radio' id={item.id} value={item.name} />
+                <p>
+                    <span>{item.province}</span>,<span>{item.name}</span>
+                </p>
+            </div>
+        ))}
       </Dialog>
     </>
   );
