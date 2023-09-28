@@ -5,7 +5,11 @@ import provinces from "@/helpers/provinces.json"
 import cities from "@/helpers/cities.json"
 
 function SetOrigin({ close }: any) {
-    // const [cityList, setCityList] = useState([])
+    const [city, setCity] = useState([])
+    function selectCity(ev:any){
+        setCity(ev.target.value)
+        close()
+    }
   function closeDialog() {
     close();
   }
@@ -42,7 +46,7 @@ function SetOrigin({ close }: any) {
         </div>
         {cityList.map((item:any) => (
             <div className="flex gap-2 my-1">
-                <input type="radio" name='radio' id={item.id} value={item.name} />
+                <input type="radio" name='radio' id={item.id} value={[item.name, item.province]} onClick={(ev) => selectCity(ev)}/>
                 <p>
                     <span>{item.province}</span>,<span>{item.name}</span>
                 </p>
