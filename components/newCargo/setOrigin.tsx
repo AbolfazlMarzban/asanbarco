@@ -4,11 +4,12 @@ import {useLayoutEffect, useState} from "react";
 import provinces from "@/helpers/provinces.json"
 import cities from "@/helpers/cities.json"
 
-function SetOrigin({ close }: any) {
+function SetOrigin({ close, select }: any) {
     const [city, setCity] = useState([])
     const [searchInput, setSearchInput] = useState('')
     function selectCity(ev:any){
         setCity(ev.target.value)
+        select(ev.target.value)
         close()
     }
   function closeDialog() {

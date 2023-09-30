@@ -12,6 +12,7 @@ import SetOrigin from "@/components/newCargo/setOrigin";
 
 function NewCargo() {
   const [showOrigin, setShowOrigin] = useState(false);
+  const [origin, setOrigin] = useState('')
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="top flex flex-row bg-white font-[vazir] p-4 justify-start gap-5 border-b-2 shadow ">
@@ -36,6 +37,7 @@ function NewCargo() {
            open={() => setShowOrigin(true)}
            close={() => setShowOrigin(false)}
             title={"مبدأ"}
+            value={origin}
             firstIcon={
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -255,6 +257,7 @@ function NewCargo() {
       {showOrigin && (
         <SetOrigin
           close={()=>setShowOrigin(false)}
+          select={(value)=>setOrigin(value)}
         ></SetOrigin>
       )}
     </div>
