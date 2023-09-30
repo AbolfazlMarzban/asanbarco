@@ -4,7 +4,7 @@ import {useLayoutEffect, useState} from "react";
 import provinces from "@/helpers/provinces.json"
 import cities from "@/helpers/cities.json"
 
-function SetOrigin({ close, select }: any) {
+function SetLocation({ close, select }: any) {
     const [city, setCity] = useState([])
     const [searchInput, setSearchInput] = useState('')
     function selectCity(ev:any){
@@ -23,7 +23,7 @@ function SetOrigin({ close, select }: any) {
     }
 })
 if(searchInput.length > 0){
-  cityList = cityList.filter(item => item.name.includes(searchInput))
+  cityList = cityList.filter((item:any) => item.name.includes(searchInput))
 }
   return (
     <>
@@ -61,4 +61,4 @@ if(searchInput.length > 0){
   );
 }
 
-export default SetOrigin;
+export default SetLocation;

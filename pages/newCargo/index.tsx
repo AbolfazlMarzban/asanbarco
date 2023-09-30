@@ -8,11 +8,15 @@ import Accordion from "@/components/UI/accardion";
 import Textbox from "@/components/UI/textbox";
 import { useState } from "react";
 import Dialog from "@/components/UI/dialog";
-import SetOrigin from "@/components/newCargo/setOrigin";
+import SetLocation from "@/components/newCargo/setLocation";
 
 function NewCargo() {
   const [showOrigin, setShowOrigin] = useState(false);
+  const [showDest, setShowDest] = useState(false);
+
   const [origin, setOrigin] = useState('')
+  const [dest, setDest] = useState('')
+
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="top flex flex-row bg-white font-[vazir] p-4 justify-start gap-5 border-b-2 shadow ">
@@ -78,6 +82,9 @@ function NewCargo() {
           ></DialogBtn>
           <DialogBtn
             title={"مقصد"}
+            open={() => setShowDest(true)}
+            close={() => setShowDest(false)}
+            value={dest}
             firstIcon={
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -255,10 +262,16 @@ function NewCargo() {
         </div>
       </div>
       {showOrigin && (
-        <SetOrigin
+        <SetLocation
           close={()=>setShowOrigin(false)}
-          select={(value)=>setOrigin(value)}
-        ></SetOrigin>
+          select={(value:any)=>setOrigin(value)}
+        ></SetLocation>
+      )}
+           {showDest && (
+        <SetLocation
+          close={()=>setShowDest(false)}
+          select={(value:any)=>setDest(value)}
+        ></SetLocation>
       )}
     </div>
   );
