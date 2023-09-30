@@ -1,13 +1,11 @@
 import Link from "next/link";
 import React from "react";
-import Select from "@/components/UI/select";
 import Checkbox from "@/components/UI/checkbox";
 import DialogBtn from "@/components/UI/dialogBtn";
 import RadioBtn from "@/components/UI/radioBtn";
 import Accordion from "@/components/UI/accardion";
 import Textbox from "@/components/UI/textbox";
 import { useState } from "react";
-import Dialog from "@/components/UI/dialog";
 import SetLocation from "@/components/newCargo/setLocation";
 
 function NewCargo() {
@@ -263,12 +261,14 @@ function NewCargo() {
       </div>
       {showOrigin && (
         <SetLocation
+        title={'شهر مبدأ مورد نظر خود را انتخاب کنید'}
           close={()=>setShowOrigin(false)}
           select={(value:any)=>setOrigin(value)}
         ></SetLocation>
       )}
            {showDest && (
         <SetLocation
+            title={'شهر مقصد مورد نظر خود را انتخاب کنید'}
           close={()=>setShowDest(false)}
           select={(value:any)=>setDest(value)}
         ></SetLocation>

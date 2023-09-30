@@ -24,9 +24,9 @@ function DialogBtn({ title, value, open, firstIcon, secondIcon }: any) {
         </svg> */}
 
         <label htmlFor="" className="mr-1">
-          {title} :
+          {title}:
         </label>
-        <span>{value}</span>
+        <span className="mr-1">{value}</span>
       </div>
       {/* <svg
         xmlns="http://www.w3.org/2000/svg"

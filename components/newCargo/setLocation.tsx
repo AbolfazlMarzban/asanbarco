@@ -4,7 +4,7 @@ import {useLayoutEffect, useState} from "react";
 import provinces from "@/helpers/provinces.json"
 import cities from "@/helpers/cities.json"
 
-function SetLocation({ close, select }: any) {
+function SetLocation({ close, select, title }: any) {
     const [city, setCity] = useState([])
     const [searchInput, setSearchInput] = useState('')
     function selectCity(ev:any){
@@ -28,7 +28,7 @@ if(searchInput.length > 0){
   return (
     <>
       <Dialog
-        title={"شهر مبدأ مورد نظر خود را انتخاب کنید"}
+        title={title}
         close={() => closeDialog()}
       >
         <div className="flex p-2 w-full border border-1 rounded-lg mb-2">
