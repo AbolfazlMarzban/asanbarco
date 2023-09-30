@@ -7,6 +7,7 @@ import Accordion from "@/components/UI/accardion";
 import Textbox from "@/components/UI/textbox";
 import { useState } from "react";
 import SetLocation from "@/components/newCargo/setLocation";
+import SetCarrier from "@/components/newCargo/setCarrier";
 
 function NewCargo() {
   const [showOrigin, setShowOrigin] = useState(false);
@@ -14,6 +15,9 @@ function NewCargo() {
 
   const [origin, setOrigin] = useState('')
   const [dest, setDest] = useState('')
+
+
+  const [showCarrier, setShowCarrier] = useState(false)
 
   return (
     <div className="bg-[#f1f5f8] h-screen">
@@ -124,6 +128,8 @@ function NewCargo() {
           <Checkbox title={"صدور بارنامه از طرف آسان بار"} />
           <DialogBtn
             title={"نوع ناوگان و بارگیر"}
+            open={()=>setShowCarrier(true)}
+            close={()=>setShowCarrier(false)}
             secondIcon={<svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -272,6 +278,12 @@ function NewCargo() {
           close={()=>setShowDest(false)}
           select={(value:any)=>setDest(value)}
         ></SetLocation>
+      )}
+      {showCarrier && (
+        <SetCarrier
+          title={'انتخاب ناوگان مورد نظر'}
+          close={()=>setShowCarrier(false)}
+        ></SetCarrier>
       )}
     </div>
   );

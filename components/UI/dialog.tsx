@@ -22,7 +22,7 @@ function Dialog({
                     X
                   </button>
                 </div>
-                <div className="relative p-6 flex-auto w-full overflow-auto">
+                <div className="relative flex-auto w-full overflow-auto">
                   {children}
                 </div>
                 

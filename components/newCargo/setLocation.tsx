@@ -31,6 +31,7 @@ if(searchInput.length > 0){
         title={title}
         close={() => closeDialog()}
       >
+        <div className="p-6">
         <div className="flex p-2 w-full border border-1 rounded-lg mb-2">
           <input type="text" placeholder="جستجو کنید" className="w-full outline-0" onChange={(ev)=>setSearchInput(ev.target.value)}/>
           <svg
@@ -56,6 +57,7 @@ if(searchInput.length > 0){
                 </p>
             </div>
         ))}
+        </div>
       </Dialog>
     </>
   );
