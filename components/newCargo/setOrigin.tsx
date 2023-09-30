@@ -6,6 +6,7 @@ import cities from "@/helpers/cities.json"
 
 function SetOrigin({ close }: any) {
     const [city, setCity] = useState([])
+    const [searchInput, setSearchInput] = useState('')
     function selectCity(ev:any){
         setCity(ev.target.value)
         close()
@@ -20,7 +21,9 @@ function SetOrigin({ close }: any) {
         province: provinces.find(pr => pr.id == item.province_id)?.name
     }
 })
-
+if(searchInput.length > 0){
+  cityList = cityList.filter(item => item.name.includes(searchInput))
+}
   return (
     <>
       <Dialog
@@ -28,7 +31,7 @@ function SetOrigin({ close }: any) {
         close={() => closeDialog()}
       >
         <div className="flex p-2 w-full border border-1 rounded-lg mb-2">
-          <input type="text" placeholder="جستجو کنید" className="w-full outline-0"/>
+          <input type="text" placeholder="جستجو کنید" className="w-full outline-0" onChange={(ev)=>setSearchInput(ev.target.value)}/>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
