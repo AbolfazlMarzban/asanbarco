@@ -5,15 +5,35 @@ import CarrierType from "./carrierType";
 function SetCarrier({ title, close }: any) {
 var carriers = [
     {
-        icon: '/traily',
+        icon: '/traily.png',
         name: 'تریلی',
         active: 120
     },
     {
-        icon: '/tak',
+        icon: '/tak.png',
         name: 'تک',
         active: 82
     },
+    {
+        icon: '/joft.png',
+        name: 'جفت',
+        active: 49
+    },
+    {
+        icon: '/khavar.png',
+        name: 'خاور و کامیونت',
+        active: 396
+    },
+    {
+        icon: '/neisan.png',
+        name: 'وانت و نیسان',
+        active: 325
+    },
+    {
+        icon: '/others.png',
+        name: 'سایر ناوگان ها',
+        active: null
+    }
 ]
   function closeDialog() {
     close();
@@ -43,9 +63,16 @@ var carriers = [
             </p>
           </div>
           <div className="flex p-2">
-            <div className="basis-1/3">
-            <CarrierType></CarrierType>
+            {carriers.map((item, i)=> (
+            <div className="basis-1/3" key={i}>
+            <CarrierType
+                icon={item.icon}
+                name={item.name}
+                active={item.active}
+            ></CarrierType>
             </div>
+
+            ))}
           </div>
         </div>
       </Dialog>
