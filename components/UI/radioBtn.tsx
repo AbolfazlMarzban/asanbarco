@@ -2,9 +2,12 @@ import React from 'react';
 
 function RadioBtn({
     title,
-    btns
+    btns,
+    children
 }:any) {
     return (
+        <>
+        {children}
         <div className="bg-white border shadow flex flex-col p-3 rounded-md mt-2">
             {title}
             <div className='flex justify-between items-center mt-2'>
@@ -16,6 +19,7 @@ function RadioBtn({
                 ))}
             </div>
         </div>
+        </>
     );
 }
 

@@ -154,7 +154,11 @@ function NewCargo() {
           <RadioBtn
             title={"کرایه موردنظر شما:"}
             btns={["توافقی", "سرویسی", "تنی"]}
-          ></RadioBtn>
+          >
+            <div className="flex">
+
+            </div>
+          </RadioBtn>
           <hr className="w-full my-3 border-1 border-neutral-300	" />
           <Accordion
             title="وارد کردن اطلاعات بیشتر (اختیاری)"
