@@ -18,7 +18,12 @@ function NewCargo() {
 
 
   const [showCarrier, setShowCarrier] = useState(false)
+  const [carrier, setCarrier] = useState([])
 
+  function selectCarrier(value:any){
+    console.log('carrier', value)
+    setCarrier(value)
+  }
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="top flex flex-row bg-white font-[vazir] p-4 justify-start gap-5 border-b-2 shadow ">
@@ -283,6 +288,7 @@ function NewCargo() {
         <SetCarrier
           title={'انتخاب ناوگان مورد نظر'}
           close={()=>setShowCarrier(false)}
+          select={(value:any)=>selectCarrier(value)}
         ></SetCarrier>
       )}
     </div>
