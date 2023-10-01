@@ -31,7 +31,7 @@ function DialogBtn({
         </div>
         <div>
         {selected?.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mt-1">
                 {selected.map((item: any, i: any) => (
                   <div className="flex flex-col justify-center items-center">
                     <span>{item.parent}</span>
