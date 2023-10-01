@@ -135,6 +135,7 @@ function NewCargo() {
             title={"نوع ناوگان و بارگیر"}
             open={()=>setShowCarrier(true)}
             close={()=>setShowCarrier(false)}
+            selected={carrier}
             secondIcon={<svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
