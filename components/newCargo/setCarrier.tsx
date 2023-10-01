@@ -4,7 +4,7 @@ import CarrierType from "./carrierType";
 import { useState } from "react";
 
 function SetCarrier({ title, close }: any) {
-const [carrierType, setCarrierType] = useState(null)
+const [carrierType, setCarrierType] : any = useState(null)
 const [carrierChildren, setcarrierChildren] = useState([])
 function selectCarrierType(id:any){
   var cari:any = carriers.find(item => item.id == id)
@@ -142,11 +142,13 @@ var carriers = [
               </div>
              ))}
           </div>
+          {carrierType && (
           <div className="flex justify-center items-center mt-5">
             <button className="w-full px-4 py-2 bg-green-300 text-white rounded-lg">
               ثبت و ادامه
             </button>
           </div>
+          )}
         </div>
       </Dialog>
     </>
