@@ -46,7 +46,7 @@ function Navbar() {
         <span className="text-xs">آسان</span>
       </button>
 
-      <Link href={'/newcargo'} className="flex flex-col items-center justify-center bg-myblue text-white px-2 rounded-lg">
+      <Link href={'/newCargo'} className="flex flex-col items-center justify-center bg-myblue text-white px-2 rounded-lg">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
