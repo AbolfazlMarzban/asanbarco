@@ -326,6 +326,16 @@ function NewCargo() {
             <RadioBtn
               title={"تاریخ بارگیری"}
               btns={["بار امروز", "بار فردا", "بار همه روزه"]}
+              timePicker={
+                <>
+                  <div className="flex justify-between mt-2 items-center">
+                    <span className="text-xs text-slate-400">هنوز تاریخی انتخاب نشده</span>
+                    <button className="py-1 px-3 bg-white text-myblue border border-myblue rounded-xl text-sm">
+                      انتخاب تاریخ
+                    </button>
+                  </div>
+                </>
+              }
             ></RadioBtn>
             <Textbox
               title={"توضیحات (اختیاری)"}
