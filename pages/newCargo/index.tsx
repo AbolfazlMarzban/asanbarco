@@ -31,6 +31,9 @@ function NewCargo() {
   const [showLoadingTime, setShowLoadingTime] = useState(false)
   const [loadingTime, setLoadingTime] = useState('')
 
+  const [showDischargeTime, setShowDischargeTime] = useState(false)
+  const [dischargeTime, setDischargeTime] = useState('')
+
   function selectCarrier(value: any) {
     console.log("carrier", value);
     setCarrier(value);
@@ -277,6 +280,9 @@ function NewCargo() {
             ></DialogBtn>
             <DialogBtn
               title={"زمان تخلیه"}
+              open={()=> setShowDischargeTime(true)}
+              close={()=>setShowDischargeTime(false)}
+              value={dischargeTime}
               secondIcon={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -388,6 +394,13 @@ function NewCargo() {
           title={'زمان تحویل را انتخاب کنید'}
           close={()=>setShowLoadingTime(false)}
           select={(value:any)=>setLoadingTime(value)}
+        ></LoadingTime>
+      )}
+            {showDischargeTime && (
+        <LoadingTime
+          title={'زمان تخلیه را انتخاب کنید'}
+          close={()=>setShowDischargeTime(false)}
+          select={(value:any)=>setDischargeTime(value)}
         ></LoadingTime>
       )}
     </div>
