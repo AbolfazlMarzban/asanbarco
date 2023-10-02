@@ -14,19 +14,18 @@ function NewCargo() {
   const [showOrigin, setShowOrigin] = useState(false);
   const [showDest, setShowDest] = useState(false);
 
-  const [origin, setOrigin] = useState('')
-  const [dest, setDest] = useState('')
+  const [origin, setOrigin] = useState("");
+  const [dest, setDest] = useState("");
 
+  const [showCarrier, setShowCarrier] = useState(false);
+  const [carrier, setCarrier] = useState([]);
 
-  const [showCarrier, setShowCarrier] = useState(false)
-  const [carrier, setCarrier] = useState([])
+  const [showCargo, setShowCargo] = useState(false);
+  const [cargoType, setCargoType] = useState("");
 
-  const [showCargo, setShowCargo] = useState(false)
-  const [cargoType, setCargoType] = useState('')
-
-  function selectCarrier(value:any){
-    console.log('carrier', value)
-    setCarrier(value)
+  function selectCarrier(value: any) {
+    console.log("carrier", value);
+    setCarrier(value);
   }
   return (
     <div className="bg-[#f1f5f8] h-screen">
@@ -49,8 +48,8 @@ function NewCargo() {
       <div className="flex flex-col items-center bg-[#f1f5f8] justify-start p-2">
         <div className="w-96">
           <DialogBtn
-           open={() => setShowOrigin(true)}
-           close={() => setShowOrigin(false)}
+            open={() => setShowOrigin(true)}
+            close={() => setShowOrigin(false)}
             title={"مبدأ"}
             value={origin}
             firstIcon={
@@ -137,23 +136,25 @@ function NewCargo() {
           <Checkbox title={"صدور بارنامه از طرف آسان بار"} />
           <DialogBtn
             title={"نوع ناوگان و بارگیر"}
-            open={()=>setShowCarrier(true)}
-            close={()=>setShowCarrier(false)}
+            open={() => setShowCarrier(true)}
+            close={() => setShowCarrier(false)}
             selected={carrier}
-            secondIcon={<svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-              />
-            </svg>}
+            secondIcon={
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            }
           ></DialogBtn>
           <RadioBtn
             title={"کرایه موردنظر شما:"}
@@ -161,27 +162,38 @@ function NewCargo() {
           >
             <div className="flex flex-col">
               <div className="flex items-center">
-                  <span className="min-w-max ml-2">کرایه پیشنهادی آسان بار:</span>
-                  <div className="flex flex-wrap">
-                  {carrier.map((item:any,i) => (
-                                      <p className="text-sm text-myblue" key={i}>- {item.parent} , {item.child}</p>
+                <span className="min-w-max ml-2">کرایه پیشنهادی آسان بار:</span>
+                <div className="flex flex-wrap">
+                  {carrier.map((item: any, i) => (
+                    <p className="text-sm text-myblue" key={i}>
+                      - {item.parent} , {item.child}
+                    </p>
                   ))}
-                  </div>
                 </div>
-                <div className="flex justify-between items-center my-3">
-                    <div className="flex">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
-</svg>
-                      <p className="mr-1">
-                        <span className="text-myblue ml-1">1034000</span>
-                       تومان
-                      </p>
-                    </div>
-                    <span className="text-xs text-slate-400">
-                      به ازای هر سرویس
-                    </span>
+              </div>
+              <div className="flex justify-between items-center my-3">
+                <div className="flex">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"
+                    />
+                  </svg>
+                  <p className="mr-1">
+                    <span className="text-myblue ml-1">1034000</span>
+                    تومان
+                  </p>
                 </div>
+                <span className="text-xs text-slate-400">به ازای هر سرویس</span>
+              </div>
             </div>
           </RadioBtn>
           <hr className="w-full my-3 border-1 border-neutral-300	" />
@@ -189,86 +201,104 @@ function NewCargo() {
             title="وارد کردن اطلاعات بیشتر (اختیاری)"
             detail="با وارد کردن اطلاعات بیشتر راننده ی مناسب خود را سریعتر پیدا کنید"
           >
-            <DialogBtn 
-               open={() => setShowCargo(true)}
-               close={() => setShowCargo(false)}
-            title={"نوع بار"} 
-            secondIcon={<svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>}>
-              
-            </DialogBtn>
-            <DialogBtn title={"وزن بار"} secondIcon={<svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>}>
-            </DialogBtn>
-            <DialogBtn title={"زمان بارگیری"} secondIcon={<svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>}>
-            </DialogBtn>
-            <DialogBtn title={"زمان تخلیه"} secondIcon={<svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>}>
-            </DialogBtn>
-            <DialogBtn title={"شماره اعلام کننده بار"} secondIcon={<svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 19.5L8.25 12l7.5-7.5"
-                />
-              </svg>}>
-            </DialogBtn>
+            <DialogBtn
+              open={() => setShowCargo(true)}
+              close={() => setShowCargo(false)}
+              title={"نوع بار"}
+              value={cargoType}
+              secondIcon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              }
+            ></DialogBtn>
+            <DialogBtn
+              title={"وزن بار"}
+              secondIcon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              }
+            ></DialogBtn>
+            <DialogBtn
+              title={"زمان بارگیری"}
+              secondIcon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              }
+            ></DialogBtn>
+            <DialogBtn
+              title={"زمان تخلیه"}
+              secondIcon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              }
+            ></DialogBtn>
+            <DialogBtn
+              title={"شماره اعلام کننده بار"}
+              secondIcon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              }
+            ></DialogBtn>
             <RadioBtn
               title={"تاریخ بارگیری"}
               btns={["بار امروز", "بار فردا", "بار همه روزه"]}
@@ -306,30 +336,30 @@ function NewCargo() {
       </div>
       {showOrigin && (
         <SetLocation
-        title={'شهر مبدأ مورد نظر خود را انتخاب کنید'}
-          close={()=>setShowOrigin(false)}
-          select={(value:any)=>setOrigin(value)}
+          title={"شهر مبدأ مورد نظر خود را انتخاب کنید"}
+          close={() => setShowOrigin(false)}
+          select={(value: any) => setOrigin(value)}
         ></SetLocation>
       )}
-           {showDest && (
+      {showDest && (
         <SetLocation
-            title={'شهر مقصد مورد نظر خود را انتخاب کنید'}
-          close={()=>setShowDest(false)}
-          select={(value:any)=>setDest(value)}
+          title={"شهر مقصد مورد نظر خود را انتخاب کنید"}
+          close={() => setShowDest(false)}
+          select={(value: any) => setDest(value)}
         ></SetLocation>
       )}
       {showCarrier && (
         <SetCarrier
-          title={'انتخاب ناوگان مورد نظر'}
-          close={()=>setShowCarrier(false)}
-          select={(value:any)=>selectCarrier(value)}
+          title={"انتخاب ناوگان مورد نظر"}
+          close={() => setShowCarrier(false)}
+          select={(value: any) => selectCarrier(value)}
         ></SetCarrier>
       )}
       {showCargo && (
         <CargoType
-        title={'انتخاب ناوگان مورد نظر'}
-        close={()=>setShowCargo(false)} 
-        select={(value:any)=>setCargoType(value)}
+          title={"انتخاب ناوگان مورد نظر"}
+          close={() => setShowCargo(false)}
+          select={(value: any) => setCargoType(value)}
         ></CargoType>
       )}
     </div>
