@@ -155,8 +155,29 @@ function NewCargo() {
             title={"کرایه موردنظر شما:"}
             btns={["توافقی", "سرویسی", "تنی"]}
           >
-            <div className="flex">
-
+            <div className="flex flex-col">
+              <div className="flex items-center">
+                  <span className="min-w-max ml-2">کرایه پیشنهادی آسان بار:</span>
+                  <div className="flex flex-wrap">
+                  {carrier.map((item:any,i) => (
+                                      <p className="text-sm text-myblue" key={i}>- {item.parent} , {item.child}</p>
+                  ))}
+                  </div>
+                </div>
+                <div className="flex justify-between items-center my-3">
+                    <div className="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
+</svg>
+                      <p className="mr-1">
+                        <span className="text-myblue ml-1">1034000</span>
+                       تومان
+                      </p>
+                    </div>
+                    <span className="text-xs text-slate-400">
+                      به ازای هر سرویس
+                    </span>
+                </div>
             </div>
           </RadioBtn>
           <hr className="w-full my-3 border-1 border-neutral-300	" />

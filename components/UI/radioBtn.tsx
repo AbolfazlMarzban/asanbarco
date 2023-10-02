@@ -7,9 +7,12 @@ function RadioBtn({
 }:any) {
     return (
         <>
-        {children}
         <div className="bg-white border shadow flex flex-col p-3 rounded-md mt-2">
-            {title}
+            <div>
+            {children}
+
+            </div>
+                <label htmlFor="" className='text-sm mb-2'>{title}</label>
             <div className='flex justify-between items-center mt-2'>
                 {btns.map((item:any) =>(
                     <div className='flex items-center'>
