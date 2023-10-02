@@ -9,6 +9,8 @@ import { useState } from "react";
 import SetLocation from "@/components/newCargo/setLocation";
 import SetCarrier from "@/components/newCargo/setCarrier";
 import CargoType from "@/components/newCargo/cargoType";
+import WeightType from "@/components/newCargo/weightType";
+import LoadingTime from "@/components/newCargo/loadingTime";
 
 function NewCargo() {
   const [showOrigin, setShowOrigin] = useState(false);
@@ -22,6 +24,12 @@ function NewCargo() {
 
   const [showCargo, setShowCargo] = useState(false);
   const [cargoType, setCargoType] = useState("");
+
+  const [showWeight, setShowWeight] = useState(false)
+  const [weight, setWeight] = useState('')
+
+  const [showLoadingTime, setShowLoadingTime] = useState(false)
+  const [loadingTime, setLoadingTime] = useState('')
 
   function selectCarrier(value: any) {
     console.log("carrier", value);
@@ -225,6 +233,9 @@ function NewCargo() {
             ></DialogBtn>
             <DialogBtn
               title={"وزن بار"}
+              open={()=> setShowWeight(true)}
+              close={()=>setShowWeight(false)}
+              value={weight}
               secondIcon={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -244,6 +255,9 @@ function NewCargo() {
             ></DialogBtn>
             <DialogBtn
               title={"زمان بارگیری"}
+              open={()=> setShowLoadingTime(true)}
+              close={()=>setShowLoadingTime(false)}
+              value={loadingTime}
               secondIcon={
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -361,6 +375,20 @@ function NewCargo() {
           close={() => setShowCargo(false)}
           select={(value: any) => setCargoType(value)}
         ></CargoType>
+      )}
+      {showWeight && (
+        <WeightType
+          title={'وزن را انتخاب کنید'}
+          close={()=>setShowWeight(false)}
+          select={(value:any)=>setWeight(value)}
+        ></WeightType>
+      )}
+           {showLoadingTime && (
+        <LoadingTime
+          title={'زمان تحویل را انتخاب کنید'}
+          close={()=>setShowLoadingTime(false)}
+          select={(value:any)=>setLoadingTime(value)}
+        ></LoadingTime>
       )}
     </div>
   );
