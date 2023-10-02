@@ -35,7 +35,7 @@ function NewCargo() {
   const [showDischargeTime, setShowDischargeTime] = useState(false);
   const [dischargeTime, setDischargeTime] = useState("");
 
-  const [phone, setPhone] = useState('')
+  const [phone, setPhone] = useState("");
 
   function selectCarrier(value: any) {
     console.log("carrier", value);
@@ -304,26 +304,25 @@ function NewCargo() {
               }
             ></DialogBtn>
             <Inputbox
-                        title={"شماره اعلام کننده بار"}
-                        value={phone}
-                        secondIcon={
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M15.75 19.5L8.25 12l7.5-7.5"
-                            />
-                          </svg>
-                        }
-            >
-            </Inputbox>
+              title={"شماره اعلام کننده بار"}
+              value={phone}
+              secondIcon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              }
+            ></Inputbox>
             <RadioBtn
               title={"تاریخ بارگیری"}
               btns={["بار امروز", "بار فردا", "بار همه روزه"]}
