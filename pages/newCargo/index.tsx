@@ -8,6 +8,7 @@ import Textbox from "@/components/UI/textbox";
 import { useState } from "react";
 import SetLocation from "@/components/newCargo/setLocation";
 import SetCarrier from "@/components/newCargo/setCarrier";
+import CargoType from "@/components/newCargo/cargoType";
 
 function NewCargo() {
   const [showOrigin, setShowOrigin] = useState(false);
@@ -19,6 +20,8 @@ function NewCargo() {
 
   const [showCarrier, setShowCarrier] = useState(false)
   const [carrier, setCarrier] = useState([])
+
+  const [showCargo, setShowCargo] = useState(false)
 
   function selectCarrier(value:any){
     console.log('carrier', value)
@@ -185,7 +188,11 @@ function NewCargo() {
             title="وارد کردن اطلاعات بیشتر (اختیاری)"
             detail="با وارد کردن اطلاعات بیشتر راننده ی مناسب خود را سریعتر پیدا کنید"
           >
-            <DialogBtn title={"نوع بار"} secondIcon={<svg
+            <DialogBtn 
+               open={() => setShowCargo(true)}
+               close={() => setShowCargo(false)}
+            title={"نوع بار"} 
+            secondIcon={<svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -316,6 +323,12 @@ function NewCargo() {
           close={()=>setShowCarrier(false)}
           select={(value:any)=>selectCarrier(value)}
         ></SetCarrier>
+      )}
+      {showCargo && (
+        <CargoType
+        title={'انتخاب ناوگان مورد نظر'}
+        close={()=>setShowCargo(false)} 
+        ></CargoType>
       )}
     </div>
   );
