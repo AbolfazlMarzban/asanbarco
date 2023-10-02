@@ -22,6 +22,7 @@ function NewCargo() {
   const [carrier, setCarrier] = useState([])
 
   const [showCargo, setShowCargo] = useState(false)
+  const [cargoType, setCargoType] = useState('')
 
   function selectCarrier(value:any){
     console.log('carrier', value)
@@ -328,6 +329,7 @@ function NewCargo() {
         <CargoType
         title={'انتخاب ناوگان مورد نظر'}
         close={()=>setShowCargo(false)} 
+        select={(value:any)=>setCargoType(value)}
         ></CargoType>
       )}
     </div>

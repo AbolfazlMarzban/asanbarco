@@ -2,7 +2,7 @@ import React from 'react';
 import Dialog from '../UI/dialog';
 import {useState} from "react"
 
-function CargoType({title, close}:any) {
+function CargoType({title, close, select}:any) {
     const [searchInput, setSearchInput] = useState('')
     var types = [
         'اثاثیه منزل',
@@ -18,6 +18,10 @@ function CargoType({title, close}:any) {
         'فلزی',
         'ساختمانی و معدنی'
     ]
+    function selectType(ev:any){
+        select(ev.target.value)
+        close();
+    }
     function closeDialog(){
         close()
   }
@@ -50,7 +54,7 @@ function CargoType({title, close}:any) {
         </div>
             {types.map((item, i) => (
                 <div className="flex gap-2 my-1" key={i}>
-                    <input type="radio" name='cargoType' value={item}  />
+                    <input type="radio" name='cargoType' value={item}  onClick={(ev)=>selectType(ev)} />
                     <label htmlFor="">{item}</label>
                     </div>
             ))}
