@@ -8,8 +8,11 @@ function DialogBtn({
   secondIcon,
   selected,
 }: any) {
-  function openDialog() {
+  function openDialog() { 
     open();
+  }
+  function removeChild(i:any){
+
   }
   return (
     <div
@@ -33,9 +36,9 @@ function DialogBtn({
         {selected?.length > 0 && (
               <div className="flex flex-wrap gap-2 mt-1">
                 {selected.map((item: any, i: any) => (
-                  <div className="flex flex-col justify-center items-center">
+                  <div className="flex flex-col justify-center items-center" key={i}>
                     <span>{item.parent}</span>
-                    <div className="flex gap-2 border rounded-xl items-center justify-center p-1">
+                    <div className="flex gap-2 border rounded-xl items-center justify-center p-1"> 
                     <span>{item.child}</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -44,6 +47,7 @@ function DialogBtn({
                         stroke-width="1.5"
                         stroke="currentColor"
                         className="w-6 h-6"
+                        onClick={()=>removeChild(i)}
                       >
                         <path
                           stroke-linecap="round"
