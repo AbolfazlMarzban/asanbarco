@@ -174,6 +174,7 @@ function NewCargo() {
             title={"کرایه موردنظر شما:"}
             btns={["توافقی", "سرویسی", "تنی"]}
           >
+            {origin && dest && carrier && (
             <div className="flex flex-col">
               <div className="flex items-center">
                 <span className="min-w-max ml-2">کرایه پیشنهادی آسان بار:</span>
@@ -209,6 +210,7 @@ function NewCargo() {
                 <span className="text-xs text-slate-400">به ازای هر سرویس</span>
               </div>
             </div>
+            ) }
           </RadioBtn>
           <hr className="w-full my-3 border-1 border-neutral-300	" />
           <Accordion
