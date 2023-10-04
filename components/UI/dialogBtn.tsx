@@ -1,4 +1,4 @@
-import React, { Children, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function DialogBtn({
   title,
@@ -11,9 +11,6 @@ function DialogBtn({
 }: any) {
   function openDialog() {
     open();
-  }
-  function removeChild(i: any) {
-    remove(i);
   }
   return (
     <div
@@ -49,7 +46,7 @@ function DialogBtn({
                       stroke-width="1.5"
                       stroke="currentColor"
                       className="w-6 h-6"
-                      onClick={() => removeChild(i)}
+                      onClick={() => remove(i)}
                     >
                       <path
                         strokeLinecap="round"
