@@ -13,7 +13,6 @@ function SetCarrier({ title, close, select }: any) {
   function selectChildren(ev: any, child: any) {
     if (ev.target.checked) {
       var parent = carriers.find(item => item.children.includes(child))?.name 
-      console.log('parent', parent)     
       let item = {
         parent: parent,
         child: child

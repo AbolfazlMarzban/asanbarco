@@ -38,7 +38,6 @@ function NewCargo() {
   const [phone, setPhone] = useState("");
 
   function selectCarrier(value: any) {
-    console.log("carrier", value);
     setCarrier(value);
   }
   function removeChild(i: any) {
