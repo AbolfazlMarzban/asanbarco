@@ -44,6 +44,7 @@ function NewCargo() {
     var arr = carrier;
     arr.splice(i, 1);
     setCarrier(arr);
+    console.log('carrier', carrier)
   }
   return (
     <div className="bg-[#f1f5f8] h-screen">
@@ -404,7 +405,7 @@ function NewCargo() {
       )}
       {showCargo && (
         <CargoType
-          title={"انتخاب ناوگان مورد نظر"}
+          title={"نوع بار خود را مشخص کنید"}
           close={() => setShowCargo(false)}
           select={(value: any) => setCargoType(value)}
         ></CargoType>
