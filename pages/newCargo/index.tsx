@@ -12,6 +12,9 @@ import CargoType from "@/components/newCargo/cargoType";
 import WeightType from "@/components/newCargo/weightType";
 import LoadingTime from "@/components/newCargo/loadingTime";
 import Inputbox from "@/components/UI/inputbox";
+import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
+import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
+
 
 function NewCargo() {
   const [showOrigin, setShowOrigin] = useState(false);
@@ -36,6 +39,8 @@ function NewCargo() {
   const [dischargeTime, setDischargeTime] = useState("");
 
   const [phone, setPhone] = useState("");
+
+  const [selectedDay, setSelectedDay] = useState(null);
 
   function selectCarrier(value: any) {
     setCarrier(value);
@@ -340,9 +345,12 @@ function NewCargo() {
                     <span className="text-xs text-slate-400">
                       هنوز تاریخی انتخاب نشده
                     </span>
-                    <button className="py-1 px-3 bg-white text-myblue border border-myblue rounded-xl text-sm">
-                      انتخاب تاریخ
-                    </button>
+                    <DatePicker
+                      value={selectedDay}
+                      onChange={(value:any)=>console.log(value)}
+                      shouldHighlightWeekends
+                      locale="fa"
+                    />
                   </div>
                 </>
               }
