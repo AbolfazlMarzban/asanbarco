@@ -342,12 +342,22 @@ function NewCargo() {
               timePicker={
                 <>
                   <div className="flex justify-between mt-2 items-center">
+                    {selectedDay ? 
+                    (
+                      <span className="text-xs text-slate-400">
+                          از امروز تا تاریخ
+                      </span>
+                    ) 
+                    : 
+                    (
                     <span className="text-xs text-slate-400">
                       هنوز تاریخی انتخاب نشده
                     </span>
+                    ) 
+                  }
                     <DatePicker
                       value={selectedDay}
-                      onChange={(value:any)=>console.log(value)}
+                      onChange={setSelectedDay}
                       shouldHighlightWeekends
                       locale="fa"
                     />
