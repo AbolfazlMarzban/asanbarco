@@ -4,6 +4,7 @@ import HistoryIcon from '@mui/icons-material/History';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import Inputbox from "@/components/UI/inputbox";
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import ReverseAccordion from "@/components/UI/reverseAccordion";
 
 function SpecialOffer() {
   return (
@@ -71,6 +72,23 @@ function SpecialOffer() {
                 title={'کد تخفیف'}
             >
             </Inputbox>
+      </div>
+      <div className="absolute bottom-0 bg-white w-full">
+                <ReverseAccordion
+                  title={
+                    <div className="flex gap-5 justify-center w-full">
+                      <div className="flex flex-col justify-center">
+                          <label htmlFor="">مبلغ قابل پرداخت</label>
+                          <span>130,800 تومان</span>
+                      </div>
+                      <button className="bg-blue-300 text-white rounded-lg px-6 py-2">
+                          خرید پکیج
+                      </button>
+                    </div>
+                  }
+                >
+
+                </ReverseAccordion>
       </div>
     </div>
   );
