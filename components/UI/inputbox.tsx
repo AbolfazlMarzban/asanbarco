@@ -15,7 +15,7 @@ function Inputbox({ title, value, firstIcon, secondIcon }: any) {
             <label htmlFor="" className="mr-1">
               {title}:
             </label>
-            <input type="tel" value={inputValue} onChange={(ev)=>setInputValue(ev.target.value)}/>
+            <input className="mr-2 border" type="tel" value={inputValue} onChange={(ev)=>setInputValue(ev.target.value)}/>
           </div>
           {secondIcon}
         </div>
