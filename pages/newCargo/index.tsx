@@ -373,6 +373,7 @@ function NewCargo() {
             ></Textbox>
           </Accordion>
           <div className="w-full flex justify-center align-center bg-[#f1f5f8] p-4">
+            <Link href={'/newCargo/specialOffer'}> 
             <button className="flex gap-2 px-3 py-2 bg-orange-400 text-white rounded-xl mx-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -390,6 +391,7 @@ function NewCargo() {
               </svg>
               <span>ثبت بار ویژه</span>
             </button>
+            </Link>
             <button className="flex gap-2 px-3 py-2 bg-teal-400 text-white rounded-xl mx-2">
               <span>ثبت بار عادی</span>
             </button>
