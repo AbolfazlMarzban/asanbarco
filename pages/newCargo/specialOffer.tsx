@@ -76,18 +76,20 @@ function SpecialOffer() {
       <div className="absolute bottom-0 bg-white w-full">
                 <ReverseAccordion
                   title={
-                    <div className="flex gap-5 justify-center w-full">
-                      <div className="flex flex-col justify-center">
+                    <div className="flex justify-between w-full">
+                      <div className="flex flex-col justify-center items-start">
                           <label htmlFor="">مبلغ قابل پرداخت</label>
                           <span>130,800 تومان</span>
                       </div>
-                      <button className="bg-blue-300 text-white rounded-lg px-6 py-2">
+                      <button className="bg-emerald-300 text-white rounded-lg px-6">
                           خرید پکیج
                       </button>
                     </div>
                   }
                 >
+                    <div className="flex flex-col ">
 
+                    </div>
                 </ReverseAccordion>
       </div>
     </div>

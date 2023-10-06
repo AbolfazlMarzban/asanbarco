@@ -19,6 +19,17 @@ function ReverseAccordion({
         <div>
         <div id="accordionExample">
           <div className="rounded-t-lg ">
+          <span className='text-xs text-slate-400'>
+                {detail}
+                </span>
+                  {(activeElement == "element1") && 
+                  (
+                      <div>
+                          {children}
+                      </div>
+                  )
+                  
+                  }
             <h2 className="mb-0" id="headingOne">
               <button
                 className={`${
@@ -55,17 +66,7 @@ function ReverseAccordion({
                 {title}
               </button>
             </h2>
-            <span className='text-xs text-slate-400'>
-                {detail}
-                </span>
-                  {(activeElement == "element1") && 
-                  (
-                      <div>
-                          {children}
-                      </div>
-                  )
-                  
-                  }
+          
    
           </div>
         </div>
