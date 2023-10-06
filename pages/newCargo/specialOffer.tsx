@@ -29,6 +29,16 @@ function SpecialOffer() {
           <HistoryIcon></HistoryIcon>
         </div>
       </div>
+      <div className="flex p-4 gap-5 justify-center">
+            <div className="bg-myblue text-white rounded-lg flex flex-col px-8 py-6 justify-center items-center ">
+                <span className="text-xs mb-3">120,000 تومان</span>
+                <p className="text-lg">اشتراک ماهیانه</p>
+            </div>
+            <div className="rounded-lg flex flex-col px-8 py-6 justify-center items-center border ">
+            <span className="text-xs mb-3 text-myblue">40,000 تومان</span>
+                <p className="text-lg">اشتراک هفتگی</p>
+            </div>
+      </div>
     </>
   );
 }
