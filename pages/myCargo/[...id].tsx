@@ -34,7 +34,33 @@ function index() {
         <CargoBox></CargoBox>
       </div>
       <div>
-        
+      <div className=" mx-4 bg-white border-[1px] rounded-md  ">
+      <div className="small_details grid grid-cols-2 justify-items-stretch ">
+        <div className="border-b-[1px] border-l-[1px] border-slate-100  px-2 py-3">
+          <h3 className="text-gray-400 text-sm">شماره بار</h3>
+          7702390
+        </div>
+        <div className="border-b-[1px]  border-slate-100 px-2 py-3 ">
+          <h3 className="text-gray-400 text-sm pb-2">مسافت کل</h3>
+          95 کیلومتر
+        </div>
+        <div className="border-b-[1px] border-l-[1px] border-slate-100 px-2 py-3 ">
+          <h3 className="text-gray-400 text-sm pb-2">بارگیری</h3>امروز
+        </div>
+        <div className="border-b-[1px]  border-slate-100  px-2 py-3">
+          <h3 className="text-gray-400 text-sm pb-2">ناوگان</h3>
+          وانت و نیسان، پراید وانت
+        </div>
+        <div className="border-b-[1px] border-l-[1px] border-slate-100 px-2 py-3 ">
+        <h3 className="text-gray-400 text-sm ">نوع بار</h3>
+        سایر
+        </div>
+        <div className="border-b-[1px]  border-slate-100  px-2 py-3">
+        <h3 className="text-gray-400 text-sm ">وزن</h3>
+        ظرفیت
+        </div>
+      </div>
+    </div>
       </div>
     </div>
   );
