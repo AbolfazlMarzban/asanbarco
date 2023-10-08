@@ -1,7 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
 
 function Header() {
+    const router = useRouter()
+    var {}
     const menu  = [
         {
             name: 'بار های من',
@@ -28,7 +32,7 @@ function Header() {
     <div className="fixed top-0 w-full">
         <div className="w-full h-14 bg-myblue p-4 text-center">
             <label className="text-white">آسان بار</label>
-        <button className="float-left mr-3 text-white " >
+        <button className="float-left mr-3 text-white" >
             <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
