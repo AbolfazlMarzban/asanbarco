@@ -5,7 +5,14 @@ import { useRouter } from "next/router";
 
 function Header() {
     const router = useRouter()
-    var {}
+    var path = router.pathname.split('/')
+    function setBorder(link:any){
+        if(link==path[1]){
+            return 'border-b-2 border-myblue'
+        } else {
+            return ''
+        }
+    }
     const menu  = [
         {
             name: 'بار های من',
@@ -13,19 +20,19 @@ function Header() {
         },
         {
             name: 'بار های در حال حمل',
-            link: 'myCargo'
+            link: 'ongoingCargo'
         },
         {
             name: 'بار های همه روزه',
-            link: 'myCargo'
+            link: 'everydayCargo'
         },
         {
             name: 'آماروارقام بارها',
-            link: 'myCargo'
+            link: 'cargoStats'
         },
         {
             name: 'سوابق حمل',
-            link: 'myCargo'
+            link: 'cargoHistory'
         },
     ]
   return (
@@ -71,7 +78,7 @@ function Header() {
         {menu.map((item, i) => (
 
         <li className="mr-2" key={i}>
-            <a href={'/cargolist/'+item.link} className="inline-block p-4 rounded-t-lg active dark:text-blue-500 dark:border-blue-500" aria-current="page">
+            <a href={item.link} className={`${setBorder(item.link)} inline-block p-4 rounded-t-lg active dark:text-blue-500 dark:border-blue-500`} aria-current="page">
                 {item.name}</a>
         </li>
         ))}
