@@ -1,15 +1,14 @@
 import React from "react";
-import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 
 function CargoBox() {
   return (
-    <div className="flex flex-col w-full mx-1 my-2 p-2 bg-white border rounded-lg">
+    <div className="flex flex-col w-full mx-1 my-2 p-2 bg-white border rounded-lg relative">
       <div className="flex pb-4">
-        <div className="basis-1/2 flex flex-col items-center border-l-2">
+        <div className="basis-1/2 flex flex-col items-center border-l-2 py-3">
           <label htmlFor="">تهران</label>
           <span>تهران</span>
         </div>
-        <div className="basis-1/2 flex flex-col items-center">
+        <div className="basis-1/2 flex flex-col items-center py-3">
           <label htmlFor="">تهران</label>
           <span>تهران</span>
         </div>
@@ -33,9 +32,27 @@ function CargoBox() {
           <span>وانت و نیسان، پراید وانت</span>
         </div>
         <div className="basis-1/2 flex items-center gap-4">
-            <div className="text-myblue border-2 border-myblue w-10 h-10 p-0 text-center rounded-full flex items-center justify-center">0</div>
+          <div className="text-myblue border-2 border-myblue w-10 h-10 p-0 text-center rounded-full flex items-center justify-center">
+            0
+          </div>
           <span>تعداد در خواست ها</span>
         </div>
+      </div>
+      <div className="absolute middle border-2 border-myblue p-1 left-[49%] top-[18%] z-10 rounded-md bg-white">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+          />
+        </svg>
       </div>
     </div>
   );
