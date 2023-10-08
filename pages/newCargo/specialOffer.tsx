@@ -87,7 +87,7 @@ function SpecialOffer() {
                     </div>
                   }
                 >
-                    <div className="flex flex-col pt-3 px-4 gap-2">
+                    <div className="flex flex-col pt-3 px-4 gap-2  border-t-2">
                       <span className="text-center text-emerald-300">
                         پرداختی های شما:
                       </span>
