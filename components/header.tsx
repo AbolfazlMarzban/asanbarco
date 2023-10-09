@@ -55,7 +55,7 @@ function Header() {
             />
             </svg>
         </button>
-        <Link href={"/"} className="float-left mr-2 text-white">
+        <Link href={"/driverRequests"} className="float-left mr-2 text-white">
             <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
