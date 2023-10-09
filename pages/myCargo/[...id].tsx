@@ -5,7 +5,8 @@ import Dialog from "@/components/UI/dialog";
 
 function index() {
   const [display, setDisplay] = useState("cargo");
-  const [confirm, setConfirm] = useState(false)
+  const [confirm, setConfirm] = useState(false);
+  const [cancelCargo, setCancelCargo] = useState(false);
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -100,7 +101,10 @@ function index() {
 
               <span>ویرایش بار</span>
             </button>
-            <button className="flex gap-2 px-3 py-2 bg-slate-400 text-black rounded-xl mx-2 w-1/2 justify-center">
+            <button
+              className="flex gap-2 px-3 py-2 bg-slate-400 text-black rounded-xl mx-2 w-1/2 justify-center"
+              onClick={() => setCancelCargo(true)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -119,6 +123,21 @@ function index() {
               <span>لغو بار</span>
             </button>
           </div>
+          {cancelCargo && (
+            <Dialog title={"لغو بار"} close={() => setCancelCargo(false)}>
+              <div className="flex flex-col px-3 py-2">
+                <span>آیا برای لغو بار مطمئن هستید؟</span>
+                <div className="flex gap-3 mx-3 my-2">
+                  <button className="bg-slate-300 rounded-mdc w-1/2">
+                    خیر
+                  </button>
+                  <button className="bg-myblue text-white rounded-md w-1/2">
+                    بله
+                  </button>
+                </div>
+              </div>
+            </Dialog>
+          )}
         </>
       ) : (
         <>
@@ -133,7 +152,10 @@ function index() {
                 0918341441
               </div>
               <div className="border-b-[1px] border-l-[1px] border-slate-100 px-2 py-3 ">
-                <div className="flex items-center gap-4 cursor-pointer" onClick={()=>setConfirm(true)}>
+                <div
+                  className="flex items-center gap-4 cursor-pointer"
+                  onClick={() => setConfirm(true)}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -161,7 +183,7 @@ function index() {
                     stroke-width="1.5"
                     stroke="currentColor"
                     className="w-10 h-10 border-2 border-myblue p-1 rounded-full text-myblue"
-                    >
+                  >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
@@ -175,15 +197,16 @@ function index() {
             </div>
           </div>
           {confirm && (
-            <Dialog
-                title={'تأیید راننده'}
-                close={()=>setConfirm(false)}
-            >
+            <Dialog title={"تأیید راننده"} close={() => setConfirm(false)}>
               <div className="flex flex-col px-3 py-2">
                 <span>آیا این بار را حمل خواهد کرد؟</span>
                 <div className="flex gap-3 mx-3 my-2">
-                  <button className="bg-slate-300 rounded-mdc w-1/2">خیر</button>
-                  <button className="bg-myblue text-white rounded-md w-1/2">بله</button>
+                  <button className="bg-slate-300 rounded-mdc w-1/2">
+                    خیر
+                  </button>
+                  <button className="bg-myblue text-white rounded-md w-1/2">
+                    بله
+                  </button>
                 </div>
               </div>
             </Dialog>
