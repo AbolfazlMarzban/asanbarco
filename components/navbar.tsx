@@ -8,7 +8,7 @@ function Navbar() {
 
   return (
     <div className="footer fixed bottom-0 w-full  border-[1px] border-opacity-100 flex flex-row gap-3 justify-around text-color space-aroun z-1 bg-white py-2">
-      <Link href={'/myCargo'} className={`${path[1] == 'myCargo' ? `text-[#0000ff]` : `` }fill-[#0000ff] text-[#0000ff] flex flex-col items-center`}>
+      <Link href={'/myCargo'} className={`${path[1] == 'myCargo' ? `fill-[#0000ff] text-[#0000ff]` : `` }  flex flex-col items-center`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -86,7 +86,7 @@ function Navbar() {
 
         <span className="text-xs">باشگاه</span>
       </button>
-      <Link href={'/profile'} className={`${path[1] == 'profile' ? `text-[#0000ff]` : `` }flex flex-col items-center`}>
+      <Link href={'/profile'} className={`${path[1] == 'profile' ? `fill-[#0000ff] text-[#0000ff]` : `` } flex flex-col items-center`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
