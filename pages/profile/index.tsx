@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "@/components/header";
 import Navbar from "@/components/navbar";
+import Link from "next/link";
 
 function index() {
   const menuItems = [
@@ -22,7 +23,7 @@ function index() {
         </svg>
       ),
       name: "مشخصات شخصی",
-      link: "",
+      link: "/profile/personalinfo",
     },
     {
       icon: (
@@ -235,6 +236,7 @@ function index() {
         </div>
         <div className="bg-white h-3/4 rounded-t-xl flex flex-col p-4">
           {menuItems.map((item, i) => (
+            <Link href={item.link}>   
             <div
               className="w-full flex justify-between items-center my-2"
               key={i}
@@ -258,6 +260,7 @@ function index() {
                 />
               </svg>
             </div>
+            </Link>
           ))}
         </div>
       </div>
