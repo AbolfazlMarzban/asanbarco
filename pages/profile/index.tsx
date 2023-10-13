@@ -108,7 +108,7 @@ function index() {
         </svg>
       ),
       name: "کیف پول",
-      link: "",
+      link: "/profile/wallet",
     },
     {
       icon: (
