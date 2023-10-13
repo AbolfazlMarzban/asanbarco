@@ -76,34 +76,86 @@ function index() {
         </div>
         <hr className="w-full m-3"></hr>
         <div className="flex flex-col items-start my-1">
-            <label htmlFor="" className="text-md">نام و نام خانوادگی</label>
-            <input type="text" className="border p-2 rounded-xl mt-2 w-64"/>
+          <label htmlFor="" className="text-md">
+            نام و نام خانوادگی
+          </label>
+          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col items-start my-1">
-            <label htmlFor="" className="text-md">کد ملی</label>
-            <input type="text" className="border p-2 rounded-xl mt-2 w-64"/>
+          <label htmlFor="" className="text-md">
+            کد ملی
+          </label>
+          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col items-start my-1">
-            <label htmlFor="" className="text-md">نام شرکت حمل و نقل</label>
-            <input type="text" className="border p-2 rounded-xl mt-2 w-64"/>
+          <label htmlFor="" className="text-md">
+            نام شرکت حمل و نقل
+          </label>
+          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col items-start my-1">
-            <label htmlFor="" className="text-md">تاریخ تولد</label>
-            <input type="text" className="border p-2 rounded-xl mt-2 w-64"/>
+          <label htmlFor="" className="text-md">
+            تاریخ تولد
+          </label>
+          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col items-start my-1">
-            <label htmlFor="" className="text-md">شماره کارت بانکی</label>
-            <input type="text" className="border p-2 rounded-xl mt-2 w-64"/>
+          <label htmlFor="" className="text-md">
+            شماره کارت بانکی
+          </label>
+          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col my-1 w-72">
-            <div className="flex justify-between items-center ">
-                <label htmlFor="">تصویر کارت ملی</label>
-                <span className="text-green-600 text-sm">تغییر تصویر کارت ملی</span>
-            </div>
-                <div className="w-full h-64 border-2 border-dashed mt-2 rounded-lg">
-
-                </div>
+          <div className="flex justify-between items-center ">
+            <label htmlFor="">تصویر کارت ملی</label>
+            <span className="text-green-600 text-sm">تغییر تصویر کارت ملی</span>
+          </div>
+          <div className="w-full h-32 border-2 border-dashed mt-2 rounded-lg flex justify-center items-center relative">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+              />
+            </svg>
+            <input type="file" className="w-full h-full opacity-0 absolute" />
+          </div>
         </div>
+
+        <div className="flex flex-col my-1 w-72">
+          <div className="flex justify-between items-center ">
+            <label htmlFor="">لوگوی اختصاصی</label>
+            <span className="text-green-600 text-sm">تغییر لوگوی اختصاصی</span>
+          </div>
+          <div className="w-full h-32 border-2 border-dashed mt-2 rounded-lg flex justify-center items-center relative">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+              />
+            </svg>
+            <input type="file" className="w-full h-full opacity-0 absolute" />
+          </div>
+        </div>
+
+        <button className="w-72 border border-green-600 p-2 rounded-lg text-green-600 my-3">
+            ثبت مشخصات
+        </button>
       </div>
     </div>
   );
