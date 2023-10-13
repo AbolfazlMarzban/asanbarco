@@ -95,7 +95,15 @@ function index() {
             <label htmlFor="" className="text-md">شماره کارت بانکی</label>
             <input type="text" className="border p-2 rounded-xl mt-2 w-64"/>
         </div>
-        
+        <div className="flex flex-col my-1 w-72">
+            <div className="flex justify-between items-center ">
+                <label htmlFor="">تصویر کارت ملی</label>
+                <span className="text-green-600 text-sm">تغییر تصویر کارت ملی</span>
+            </div>
+                <div className="w-full h-64 border-2 border-dashed mt-2 rounded-lg">
+
+                </div>
+        </div>
       </div>
     </div>
   );
