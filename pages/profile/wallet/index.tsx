@@ -126,13 +126,16 @@ function index() {
                 </svg>
               </div>
             </div>
-          </div>
-        ) : (
-          <></>
-        )}
-        <button className="bg-teal-600 text-white rounded-lg w-full p-2 mt-10">
+            <button className="bg-teal-600 text-white rounded-lg w-full p-2 mt-10">
           پرداخت
         </button>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="">لیست تراکنش ها</label>
+          </>
+        )}
+  
       </div>
     </div>
   );
