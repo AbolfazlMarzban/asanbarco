@@ -6,6 +6,7 @@ import { useState } from "react";
 
 function index() {
   const [display, setDisplay] = useState("pay");
+  const [suggested, setSuggested] = useState('')
   const moneyList = ['5,000', '10,000', '20,000', '30,000', '40,000', '50,000', '100,000', '200,000']
   return (
     <div className="w-full h-screen">
@@ -65,9 +66,11 @@ function index() {
               <label htmlFor="">مبالغ پیشنهادی:</label>
               <div className="flex flex-wrap w-full justify-center">
                 {moneyList.map(item => (
-                <div className="basis-1/5 flex flex-col items-center border border-cyan-600 m-2 p-3 rounded-xl">
-                    <span>{item}</span>
-                    <span>تومان</span>
+                <div className="basis-1/4  p-2" onClick={()=>setSuggested(item)}>
+                  <div className={`${suggested == item ? `bg-cyan-400 text-white` : ``} flex flex-col items-center cursor-pointer border border-cyan-400 rounded-xl py-2`}>
+                    <span className="text-sm">{item}</span>
+                    <span className="text-sm">تومان</span>
+                  </div>
                 </div>
                 ))}
               </div>
