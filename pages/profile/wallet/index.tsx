@@ -50,7 +50,7 @@ function index() {
             <span>0 تومان</span>
           </div>
         </div>
-        <div className="bg-cyan-100 rounded-xl flex gap-5 p-4 m-4 w-full">
+        <div className="bg-cyan-100 rounded-xl flex gap-5 p-2 m-4 w-full">
           <button
             onClick={() => setDisplay("pay")}
             className={`${
@@ -79,8 +79,8 @@ function index() {
                 >
                   <div
                     className={`${
-                      suggested == item ? `bg-cyan-400 text-white` : ``
-                    } flex flex-col items-center cursor-pointer border border-cyan-400 rounded-xl py-2`}
+                      suggested == item ? `bg-teal-600 text-white` : ``
+                    } flex flex-col items-center cursor-pointer border border-teal-600 rounded-xl py-2`}
                   >
                     <span className="text-sm">{item}</span>
                     <span className="text-sm">تومان</span>
@@ -107,7 +107,7 @@ function index() {
                 </svg>
               </div>
               <div className="w-1/2">
-                <input type="number" className="w-full border-2 border-cyan-300 rounded-xl text-center h-full" />
+                <input type="number" className="w-full border-2 border-teal-600 rounded-xl text-center h-full" />
               </div>
               <div className="w-1/4 bg-red-200 text-red-600 text-center flex justify-center items-center p-2 rounded-xl">
                 <svg
@@ -130,6 +130,9 @@ function index() {
         ) : (
           <></>
         )}
+        <button className="bg-teal-600 text-white rounded-lg w-full p-2 mt-10">
+          پرداخت
+        </button>
       </div>
     </div>
   );
