@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Accardion from "@/components/UI/accardion";
 
 function index() {
   return (
@@ -84,8 +85,11 @@ function index() {
             <span>خوش آمدگویی</span>
           </div>
         </div>
-        <div className="">
-
+        <div className="flex flex-col items-start mt-3">
+            <label htmlFor="">سوالات متداول:</label>
+            <Accardion
+            title={'چگونه مبدأ و مقصد بارگیری را تعیین کنم؟'} 
+            ></Accardion>
         </div>
       </div>
     </div>
