@@ -67,7 +67,7 @@ function Navbar() {
         </svg>
       </Link>
 
-
+      <Link href={'/club'} className={`${path[1] == 'club' ? `fill-[#0000ff] text-[#0000ff]` : `` } flex flex-col items-center`}>
       <button className="flex flex-col items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -86,6 +86,7 @@ function Navbar() {
 
         <span className="text-xs">باشگاه</span>
       </button>
+      </Link>
       <Link href={'/profile'} className={`${path[1] == 'profile' ? `fill-[#0000ff] text-[#0000ff]` : `` } flex flex-col items-center`}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
