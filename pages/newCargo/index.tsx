@@ -53,7 +53,7 @@ function NewCargo() {
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="top flex flex-row bg-white font-[vazir] p-4 justify-start gap-5 border-b-2 shadow ">
-        <Link href={"/cargolist"}>
+        <Link href={"/myCargo"}>
           <svg
             className="inline-block w-[20px] h-[20px]"
             xmlns="http://www.w3.org/2000/svg"

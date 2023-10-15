@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import DialogBtn from "@/components/UI/dialogBtn";
 
 function index() {
   return (
@@ -27,6 +28,7 @@ function index() {
       </div>
       <div className="flex flex-col h-3/4 mt-3 p-4">
             <span>لیست مشکلات شما:</span>
+            <DialogBtn title={'مشاهده سوالات مربوط به پکیج بار ویژه'}></DialogBtn>
       </div>
     </div>
   );
