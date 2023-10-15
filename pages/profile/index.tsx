@@ -128,7 +128,7 @@ function index() {
         </svg>
       ),
       name: "باشگاه مشتریان",
-      link: "",
+      link: "/club",
     },
     {
       icon: (
@@ -168,7 +168,7 @@ function index() {
         </svg>
       ),
       name: "معرفی به دوستان",
-      link: "",
+      link: "/profile/invite",
     },
   ];
   return (
