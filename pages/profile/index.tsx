@@ -148,7 +148,7 @@ function index() {
         </svg>
       ),
       name: "آسان بار پلاس",
-      link: "",
+      link: "/profile/asanbarplus",
     },
     {
       icon: (
