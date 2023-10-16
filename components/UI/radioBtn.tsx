@@ -13,7 +13,7 @@ function RadioBtn({ title, btns, children, timePicker }: any) {
         <label htmlFor="" className="text-sm mb-2">
           {title}
         </label>
-        <div className="flex justify-between items-center mt-2">
+        <div className="flex justify-start gap-4 items-center mt-2">
           {btns.map((item: any) => (
             <div className="flex items-center">
               <input type="radio" name="radio" id={item} value={item} onClick={(ev) => selectRadio(ev)}/>

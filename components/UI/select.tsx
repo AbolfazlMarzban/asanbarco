@@ -3,12 +3,12 @@ import React, { useState } from "react";
 function Select({ data, title, getLocation,children, placeholder }: any) {
   return (
     <div className="bg-white border shadow flex items-center justify-between p-3 rounded-md mt-2">
-      <div className="flex ">
+      <div className="flex w-full max-w-fit">
 
       {children}
       <label htmlFor="" className="mr-1">{title}</label>
       </div>
-      <select name="location" id="location" className="mx-3">
+      <select name="location" id="location" className="mx-3 w-full">
         <option value="">{placeholder}</option>
         {data.map((item: any, i: any) => (
           <option key={i} value={item}>
