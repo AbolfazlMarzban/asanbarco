@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function DialogBtn({
-  title,
+  title, 
   value,
   open,
   firstIcon,
