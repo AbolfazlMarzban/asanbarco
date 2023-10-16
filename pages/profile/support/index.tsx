@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import DialogBtn from "@/components/UI/dialogBtn";
-
+import CustomeLink from "@/components/UI/customeLink";
 function index() {
   return (
     <div className="w-full h-screen bg-mybg">
@@ -29,7 +28,7 @@ function index() {
       <div className="flex flex-col h-3/4 mt-3 p-4">
         <span>لیست مشکلات شما:</span>
         <Link href={'/profile/support/بارویژه'}>        
-        <DialogBtn
+        <CustomeLink
           title={"مشاهده سوالات مربوط به پکیج بار ویژه"}
           secondIcon={
             <svg
@@ -47,9 +46,9 @@ function index() {
               />
             </svg>
           }
-        ></DialogBtn>
+        ></CustomeLink>
         </Link>
-        <DialogBtn
+        <CustomeLink
           title={"کرایه و نحوه پرداخت"}
           secondIcon={
             <svg
@@ -67,8 +66,8 @@ function index() {
               />
             </svg>
           }
-        ></DialogBtn>
-        <DialogBtn
+        ></CustomeLink>
+        <CustomeLink
           title={"بار و پیدا کردن راننده"}
           secondIcon={
             <svg
@@ -86,7 +85,7 @@ function index() {
               />
             </svg>
           }
-        ></DialogBtn>
+        ></CustomeLink>
         <hr className="my-3" />
         <div className="bg-white flex items-center p-3 rounded-lg justify-between">
           <svg
