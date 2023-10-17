@@ -5,7 +5,11 @@ const UserSchema = new Schema({
     name: {type: String, required: true },
     nationalNumber: { type: Number, required: false },
     businessName: { type: String, required: false },
-    birthDate: { type: String, required: false }
+    birthDate: { type: String, required: false },
+    bankCard: { type: Number, required: false },
+    profilePic: { type: String, required: false },
+    nationalCardPic: { type: String, required: false },
+    logoPic: { type: String, required: false }
 })
 
-export const Project = models.Project || model('Project', UserSchema)
+export const User = models.User || model('Project', UserSchema)
