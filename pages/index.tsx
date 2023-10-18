@@ -6,6 +6,7 @@ import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
 
+
 export default function Home() {
   const [showCodeBox, setShowCodeBox] = useState(false)
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -34,6 +35,7 @@ export default function Home() {
         const res = await axios.post('/api/auth', {data: otpValue, phoneNumber: phoneNumber})
         console.log('res', res)
         if(res.data){
+          localStorage.setItem('userID', res.data._id)
           router.push("/myCargo")
         } else {
           setPhoneNumber('')

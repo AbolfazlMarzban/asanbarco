@@ -48,8 +48,11 @@ export default async function handler(req: any, res: any) {
       var user = await cargoOwners.findOne({ phoneNumber: phoneNumber });
       if (!user) {
         await cargoOwners.create({ phoneNumber });
+        user = await cargoOwners.findOne({ phoneNumber: phoneNumber });
+        res.json(user)
+      } else {
+        res.json(user)
       }
-      res.json(true);
     } else {
       res.json(false);
     }

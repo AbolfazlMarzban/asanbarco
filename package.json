@@ -30,5 +30,8 @@
     "react-modern-calendar-datepicker": "^3.1.6",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "@types/cookies": "^0.7.9"
   }
 }
