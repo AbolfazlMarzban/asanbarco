@@ -12,4 +12,4 @@ const UserSchema = new Schema({
     logoPic: { type: String, required: false }
 })
 
-export const User = models.User || model('Project', UserSchema)
+export const User = models.User || model('User', UserSchema)

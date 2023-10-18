@@ -2,10 +2,24 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import axios from "axios";
 
 function Login() {
   const [showRef, setShowRef] = useState(false)
   const [showCodeBox, setShowCodeBox] = useState(false)
+  const [phoneNumber, setPhoneNumber] = useState('')
+
+  async function sendNumber(){
+    try{
+      if(phoneNumber.length > 0){
+        const res = await axios.post("/api/auth", {data: phoneNumber})
+        console.log('res', res.data)
+      }
+    } catch(error){
+      console.log(error)
+    }
+    // setShowCodeBox(true)
+  }
   return (
     <div className="h-full w-full flex flex-col items-center justify-center">
       <Image src={"/logo.png"} width={200} height={200} alt=""></Image>
@@ -30,6 +44,7 @@ function Login() {
           id=""
           placeholder="شماره موبایل"
           className="w-64 p-2 mt-4 outline-myblue rounded-lg border border-myblue"
+          onChange={(ev)=>setPhoneNumber(ev.target.value)}
         />
         <p className="mt-4 text-sm">
           با ورود به آسان بار
@@ -40,7 +55,7 @@ function Login() {
           از آن را پذیرفته اید.
         </p>
         <div className="flex justify-end w-64">
-          <button className="bg-green-600 text-white flex mt-4 p-2 rounded-full" onClick={()=> setShowCodeBox(true)}>
+          <button className="bg-green-600 text-white flex mt-4 p-2 rounded-full" onClick={()=>sendNumber()}>
             ورود و دریافت بار
             <svg
               xmlns="http://www.w3.org/2000/svg"
