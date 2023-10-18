@@ -1,8 +1,8 @@
 const { Schema, model, models } = require("mongoose");
 
-const UserSchema = new Schema({
+const cargoOwnersSchema = new Schema({
     phone:  {type: Number, required: true },
-    name: {type: String, required: true },
+    name: {type: String, required: false },
     nationalNumber: { type: Number, required: false },
     businessName: { type: String, required: false },
     birthDate: { type: String, required: false },
@@ -12,4 +12,4 @@ const UserSchema = new Schema({
     logoPic: { type: String, required: false }
 })
 
-export const User = models.User || model('User', UserSchema)
+export const cargoOwners = models.cargoOwners || model('cargoOwners', cargoOwnersSchema)
