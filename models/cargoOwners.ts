@@ -1,7 +1,7 @@
 const { Schema, model, models } = require("mongoose");
 
 const cargoOwnersSchema = new Schema({
-    phone:  {type: Number, required: true },
+    phoneNumber:  {type: Number, required: true },
     name: {type: String, required: false },
     nationalNumber: { type: Number, required: false },
     businessName: { type: String, required: false },

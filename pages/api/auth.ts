@@ -47,18 +47,7 @@ export default async function handler(req: any, res: any) {
     if (userOtp == result.OTP) {
       var user = await cargoOwners.findOne({ phoneNumber: phoneNumber });
       if (!user) {
-        let data = {
-            phone: phoneNumber,
-            name: "",
-            nationalNumber: 0,
-            businessName: "",
-            birthDate: 0,
-            bankCard: 0,
-            profilePic: "",
-            nationalCardPic: "",
-            logoPic: "",
-          }
-        // await cargoOwners.create({ data.phone, data.name, data.nationalNumber, data.businessName, data.birthDate, data.bankCard, data.profilePic, data.nationalCardPic, data.logoPic });
+        await cargoOwners.create({ phoneNumber });
       }
       res.json(true);
     } else {
