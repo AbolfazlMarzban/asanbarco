@@ -1,6 +1,5 @@
 import Loading from "@/components/loading";
-import { useState, useLayoutEffect } from "react";
-import Login from "@/components/login";
+import { useState, useLayoutEffect, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
@@ -48,7 +47,12 @@ export default function Home() {
       console.log(error)
     }
   }
+  // useEffect(()=>{
+  //   console.log('abolfazl Marzban')
+  //   const user = localStorage.getItem('userID')
+  //   console.log('user', user)
 
+  // })
   useLayoutEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -59,6 +63,7 @@ export default function Home() {
     return <Loading />;
   } else {
     return (
+      
       <main
         className={`flex min-h-screen flex-col items-center justify-between p-24`}
       >
