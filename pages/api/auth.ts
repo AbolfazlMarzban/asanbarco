@@ -47,8 +47,5 @@ if(method == "POST"){
     } else {
         res.json(false)
     }
-    // if(userOtp == OTP){
-    // } else {
-    // }
 }
 }
