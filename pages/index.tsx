@@ -31,7 +31,7 @@ export default function Home() {
   async function checkOtp(){
     try{
       if(otpValue.length > 0){
-        const res = await axios.post('/api/auth', {data: otpValue})
+        const res = await axios.post('/api/auth', {data: otpValue, phoneNumber: phoneNumber})
         console.log('res', res)
         if(res.data){
           router.push("/myCargo")
