@@ -14,10 +14,10 @@ function Login() {
   async function sendNumber(){
     try{
       if(phoneNumber.length > 0){
-        // const res = await axios.post("/api/auth", {data: phoneNumber})
-        // console.log('res', res.data)
-        // setOtp(res.data)
-        // setShowCodeBox(true)
+        const res = await axios.post("/api/auth", {data: phoneNumber})
+        if(res){
+          setShowCodeBox(true)
+        }
       }
     } catch(error){
       console.log(error)

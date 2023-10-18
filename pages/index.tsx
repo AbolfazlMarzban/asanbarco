@@ -3,24 +3,25 @@ import { useState, useLayoutEffect } from "react";
 import Login from "@/components/login";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios"
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  const [showRef, setShowRef] = useState(false)
   const [showCodeBox, setShowCodeBox] = useState(false)
   const [phoneNumber, setPhoneNumber] = useState('')
-  const [otp, setOtp] = useState('')
   const [loading, setLoading] = useState(true);
   const[otpValue, setOtpValue] = useState('')
+  const[showError, setShowError] = useState(false)
 
+  const router = useRouter()
 
   async function sendNumber(){
     try{
       if(phoneNumber.length > 0){
-        const res = await axios.post("/api/auth", {data: phoneNumber})
-        console.log('res', res.data)
-        setOtp(res.data)
-        setShowCodeBox(true)
+        const res = await axios.get(`/api/auth?data=${phoneNumber}`)
+        if(res.data){
+          setShowCodeBox(true)
+        }
       }
     } catch(error){
       console.log(error)
@@ -29,8 +30,17 @@ export default function Home() {
 
   async function checkOtp(){
     try{
-      if(otpValue.length > 0 && otpValue == otp){
-        console.log('gooods')
+      if(otpValue.length > 0){
+        const res = await axios.post('/api/auth', {data: otpValue})
+        console.log('res', res)
+        if(res.data){
+          router.push("/myCargo")
+        } else {
+          setPhoneNumber('')
+          setOtpValue('')
+          setShowError(true)
+          setShowCodeBox(false)
+        }
       }
     } catch(error){
       console.log(error)
@@ -53,8 +63,7 @@ export default function Home() {
         {/* <Login></Login> */}
         <div className="h-full w-full flex flex-col items-center justify-center">
       <Image src={"/logo.png"} width={200} height={200} alt=""></Image>
-
-  
+   
       {showCodeBox ? (
       <div className="flex flex-col w-72">
       <label htmlFor="" className="mt-12">
@@ -90,6 +99,9 @@ export default function Home() {
         :
         (
           <div className="flex flex-col w-72">
+               {showError && (
+              <h2 className="text-red-600">کد وارد شده اشتباه است</h2>
+      )}
           <label htmlFor="" className="mt-12">
             برای شروع، شماره موبایل خود را وارد کنید.
           </label>
@@ -108,6 +120,7 @@ export default function Home() {
             type="tel"
             name=""
             id="phoneNumber"
+            value={phoneNumber}
             placeholder="شماره موبایل"
             className="w-64 p-2 mt-4 outline-myblue rounded-lg border border-myblue"
             onChange={(ev)=>setPhoneNumber(ev.target.value)}
