@@ -15,6 +15,7 @@ const cargoSchema = new Schema({
     loadingDate: {type: Array, required: false},
     comments: {type: String, required: false},
     regDate: {type: String, required: false},
+    regTime : {type: String, required: false},
     userRegID: {type: String, required: false},
     regType: {type: String, required: false}
 })

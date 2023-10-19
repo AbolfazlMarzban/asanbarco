@@ -32,6 +32,9 @@ function NewCargo() {
 
   const [showWeight, setShowWeight] = useState(false);
   const [weight, setWeight] = useState("");
+  const [feeType, setFeeType] = useState('')
+  const [fee, setFee] = useState('')
+  const [barnameh, setBarnameh] = useState(false)
 
   const [showLoadingTime, setShowLoadingTime] = useState(false);
   const [loadingTime, setLoadingTime] = useState("");
@@ -40,6 +43,7 @@ function NewCargo() {
   const [dischargeTime, setDischargeTime] = useState("");
   const [loadingDate, setLoadingDate] = useState('')
   const [phone, setPhone] = useState("");
+  const [comment, setComment] = useState('')
 
   const [selectedDay, setSelectedDay] = useState(null);
 
@@ -51,19 +55,30 @@ function NewCargo() {
     arr.splice(i, 1);
     setCarrier(arr);
   }
-  function registerCargo(){
+  async function registerCargo(){
     try{
+      var userID= localStorage.getItem('userID')
       let data = {
         "origin": origin,
         "dest": dest,
         "carrier": carrier,
         "cargoType": cargoType,
+        "barnameh": barnameh,
+        "feeType": feeType,
+        "fee": fee,
         "weight": weight,
         "loadingTime": loadingTime,
         "dischargeTime": dischargeTime,
         "phone": phone,
         "loadingDate": loadingDate,
-        "selectedDay": selectedDay
+        "selectedDay": selectedDay,
+        "comment": comment,
+        "userRegID": userID,
+        "regType": "normal"
+      }
+      const result = await axios.post('/api/cargoManage', data)
+      if(result){
+        console.log('result', result)
       }
       console.log('data', data)
     } catch(error){
@@ -173,7 +188,7 @@ function NewCargo() {
               </svg>
             }
           ></DialogBtn>
-          <Checkbox title={"صدور بارنامه از طرف آسان بار"} />
+          <Checkbox title={"صدور بارنامه از طرف آسان بار"} value={barnameh} exportValue={(value:any)=>setBarnameh(value)} />
           <DialogBtn
             title={"نوع ناوگان و بارگیر"}
             open={() => setShowCarrier(true)}
@@ -200,6 +215,7 @@ function NewCargo() {
           <RadioBtn
             title={"کرایه موردنظر شما:"}
             btns={["توافقی", "سرویسی", "تنی"]}
+            exportValue={(value:any)=>setFeeType(value)}
           >
             {origin && dest && carrier && (
               <div className="flex flex-col">
@@ -358,6 +374,7 @@ function NewCargo() {
               }
             ></Inputbox>
             <RadioBtn
+              exportValue={(value:any)=>setLoadingDate(value)}
               title={"تاریخ بارگیری"}
               btns={["بار امروز", "بار فردا", "بار همه روزه"]}
               timePicker={
@@ -385,10 +402,11 @@ function NewCargo() {
                   </div>
                 </>
               }
-              exportValue={(value:any)=>setLoadingDate(value)}
             ></RadioBtn>
             <Textbox
               title={"توضیحات (اختیاری)"}
+              value={comment}
+              exportValue={(value:any)=>setComment(value)}
               placeholder={
                 "در این قسمت میتوانید به ابعاد، بار، ارزش بار و یا هر نوع اطلاعات دیگر بپردازید"
               }

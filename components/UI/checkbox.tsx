@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Checkbox({ title }: any) {
+function Checkbox({ title, value, exportValue }: any) {
+  const [check, setCheck] = useState(value)
+  function checked(value: any){
+    console.log('value', value)
+    setCheck(value)
+    exportValue(value)
+  }
   return (
     <div className="bg-white border shadow flex items-center justify-between p-3 rounded-md mt-2">
       <div className="flex items-center">
@@ -21,7 +27,7 @@ function Checkbox({ title }: any) {
 
         <label htmlFor="" className="mr-1">{title}</label>
       </div>
-      <input type="checkbox" />
+      <input type="checkbox" value={check} onChange={(ev)=>checked(ev.target.checked)} />
     </div>
   );
 }
