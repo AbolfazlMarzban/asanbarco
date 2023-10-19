@@ -62,7 +62,10 @@ function NewCargo() {
         "loadingTime": loadingTime,
         "dischargeTime": dischargeTime,
         "phone": phone,
+        "loadingDate": loadingDate,
+        "selectedDay": selectedDay
       }
+      console.log('data', data)
     } catch(error){
       console.log(error)
     }
