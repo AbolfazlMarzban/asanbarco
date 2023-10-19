@@ -1,11 +1,13 @@
 import React from "react";
 import { useState } from "react";
 
-function RadioBtn({ title, btns, children, timePicker }: any) {
+function RadioBtn({ title, btns, children, timePicker, exportValue }: any) {
   const [radioValue, setRadioValue] = useState("");
     function selectRadio(ev:any){
-        setRadioValue(ev.target.value)        
+        setRadioValue(ev.target.value)
+        exportValue(ev.target.value)        
     }   
+
   return (
     <>
       <div className="bg-white border shadow flex flex-col p-3 rounded-md mt-2">

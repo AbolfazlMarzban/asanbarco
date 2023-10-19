@@ -14,6 +14,7 @@ import LoadingTime from "@/components/newCargo/loadingTime";
 import Inputbox from "@/components/UI/inputbox";
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
+import axios from "axios"
 
 
 function NewCargo() {
@@ -37,7 +38,7 @@ function NewCargo() {
 
   const [showDischargeTime, setShowDischargeTime] = useState(false);
   const [dischargeTime, setDischargeTime] = useState("");
-
+  const [loadingDate, setLoadingDate] = useState('')
   const [phone, setPhone] = useState("");
 
   const [selectedDay, setSelectedDay] = useState(null);
@@ -49,6 +50,22 @@ function NewCargo() {
     var arr = Array.from(carrier);
     arr.splice(i, 1);
     setCarrier(arr);
+  }
+  function registerCargo(){
+    try{
+      let data = {
+        "origin": origin,
+        "dest": dest,
+        "carrier": carrier,
+        "cargoType": cargoType,
+        "weight": weight,
+        "loadingTime": loadingTime,
+        "dischargeTime": dischargeTime,
+        "phone": phone,
+      }
+    } catch(error){
+      console.log(error)
+    }
   }
   return (
     <div className="bg-[#f1f5f8] h-screen">
@@ -317,6 +334,7 @@ function NewCargo() {
               }
             ></DialogBtn>
             <Inputbox
+            exportValue={(value:any)=>setPhone(value)}
               title={"شماره اعلام کننده بار"}
               value={phone}
               secondIcon={
@@ -364,6 +382,7 @@ function NewCargo() {
                   </div>
                 </>
               }
+              exportValue={(value:any)=>setLoadingDate(value)}
             ></RadioBtn>
             <Textbox
               title={"توضیحات (اختیاری)"}
@@ -392,7 +411,7 @@ function NewCargo() {
               <span>ثبت بار ویژه</span>
             </button>
             </Link>
-            <button className="flex gap-2 px-3 py-2 bg-teal-400 text-white rounded-xl mx-2">
+            <button className="flex gap-2 px-3 py-2 bg-teal-400 text-white rounded-xl mx-2" onClick={()=>registerCargo()}>
               <span>ثبت بار عادی</span>
             </button>
           </div>

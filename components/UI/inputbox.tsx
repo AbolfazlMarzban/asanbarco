@@ -1,9 +1,12 @@
 import React, { Children } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function Inputbox({ title, value, firstIcon, secondIcon }: any) {
+function Inputbox({ title, value, firstIcon, secondIcon, exportValue }: any) {
   const [inputValue, setInputValue] = useState(value);
-
+  function getInput(value: any){
+    setInputValue(value)
+    exportValue(value)
+  }  
 
   return (
     <div className="bg-white border shadow flex items-center justify-between p-3 rounded-md mt-2">
@@ -15,7 +18,7 @@ function Inputbox({ title, value, firstIcon, secondIcon }: any) {
             <label htmlFor="" className="mr-1">
               {title}:
             </label>
-            <input className="mr-2 border" type="tel" value={inputValue} onChange={(ev)=>setInputValue(ev.target.value)}/>
+            <input className="mr-2 border" type="tel" value={inputValue} onChange={(ev)=>getInput(ev.target.value)}/>
           </div>
           {secondIcon}
         </div>
