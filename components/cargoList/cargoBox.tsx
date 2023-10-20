@@ -5,8 +5,8 @@ function CargoBox({data}:any) {
     <div className="flex flex-col w-full mx-1 my-2 p-2 bg-white border rounded-lg relative">
       <div className="flex pb-4">
         <div className="basis-1/2 flex flex-col items-center border-l-2 py-3">
-          <label htmlFor="">تهران</label>
-          <span>تهران</span>
+          <label htmlFor="">{data.desination.split(',')[1]}</label>
+          <span>{data.desination.split(',')[0]}</span>
         </div>
         <div className="basis-1/2 flex flex-col items-center py-3">
           <label htmlFor="">تهران</label>
