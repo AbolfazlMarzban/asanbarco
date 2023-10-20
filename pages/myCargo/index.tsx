@@ -6,14 +6,16 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
 
 function CargoList() {
-  const [hasCargo, setHasCargo] = useState(true)
+  const [cargos,setCargos]  = useState([])
  useEffect(()=>{
   (async ()=>{
     try{  
      let userID = localStorage.getItem('userID') 
    const result = await axios.get(`/api/cargoManage?userID=${userID}`)
-   console.log('get result', result)
-    } catch(error){
+    if(result){
+      setCargos(result.data)
+    }
+  } catch(error){
       console.log(error)
     }
   })()
@@ -21,9 +23,11 @@ function CargoList() {
   return (
     <div className="w-full h-screen">
       <Header></Header>
-      {hasCargo ? (
+      {cargos.length > 0 ? (
           <div className="w-full min-h-full flex flex-col items-center bg-mybg pt-32 px-3">
-            <CargoBox></CargoBox>
+            {cargos.map((cargo:any) => (
+            <CargoBox key={cargo._id}></CargoBox>
+            ))}
           </div>
       ):
         (
