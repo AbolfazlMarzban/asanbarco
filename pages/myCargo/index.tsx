@@ -13,6 +13,7 @@ function CargoList() {
      let userID = localStorage.getItem('userID') 
    const result = await axios.get(`/api/cargoManage?userID=${userID}`)
     if(result){
+      console.log('result', result)
       setCargos(result.data)
     }
   } catch(error){
@@ -26,7 +27,7 @@ function CargoList() {
       {cargos.length > 0 ? (
           <div className="w-full min-h-full flex flex-col items-center bg-mybg pt-32 px-3">
             {cargos.map((cargo:any) => (
-            <CargoBox key={cargo._id}></CargoBox>
+            <CargoBox data={cargo} key={cargo._id}></CargoBox>
             ))}
           </div>
       ):

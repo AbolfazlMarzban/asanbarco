@@ -1,6 +1,6 @@
 import React from "react";
 
-function CargoBox() {
+function CargoBox({data}:any) {
   return (
     <div className="flex flex-col w-full mx-1 my-2 p-2 bg-white border rounded-lg relative">
       <div className="flex pb-4">
