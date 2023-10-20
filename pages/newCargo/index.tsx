@@ -16,6 +16,8 @@ import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
 import axios from "axios"
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function NewCargo() {
@@ -81,6 +83,7 @@ function NewCargo() {
       const result = await axios.post('/api/cargoManage', data)
       if(result){
         console.log('result', result)
+        toast("بار شما با موفقیت به سامانه افزوده شد!")
         router.push('/myCargo')
       }
       console.log('data', data)
