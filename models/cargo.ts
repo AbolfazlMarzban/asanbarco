@@ -13,6 +13,7 @@ const cargoSchema = new Schema({
     dischargeTime: { type: String, required: false },
     phoneNumber: { type: String, required: false },
     loadingDate: {type: Array, required: false},
+    selectedDay: {type: Array, required: false},
     comments: {type: String, required: false},
     regDate: {type: String, required: false},
     regTime : {type: String, required: false},
