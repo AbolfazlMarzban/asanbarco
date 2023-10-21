@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-function RadioBtn({ title, btns , exportValue, children, timePicker  }: any) {
+function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePicker  }: any) {
   const [radioValue, setRadioValue] = useState("");
     function selectRadio(ev:any){
         setRadioValue(ev.target.value)
@@ -28,6 +28,22 @@ function RadioBtn({ title, btns , exportValue, children, timePicker  }: any) {
         {radioValue == 'بار همه روزه' && (
             <>
         {timePicker}
+            </>
+)}
+      {radioValue == 'سرویسی' && (
+            <>
+            <div className="flex items-center gap-4 w-full mt-3">
+            <input type="number" className="border rounded-lg" value={fee} onChange={(ev)=>exportFee(ev.target.value)}/>
+            <span className="text-xs text-slate-400"> تومان به ازای هر سرویس</span>
+            </div>
+            </>
+)}
+{radioValue == 'تنی' && (
+            <>
+            <div className="flex items-center gap-4 w-full mt-3">
+            <input type="number" className="border rounded-lg" value={fee} onChange={(ev)=>exportFee(ev.target.value)}/>
+            <span className="text-xs text-slate-400"> تومان به ازای هر تن</span>
+            </div>
             </>
 )}
       </div>

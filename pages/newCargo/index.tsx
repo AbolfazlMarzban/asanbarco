@@ -222,8 +222,9 @@ function NewCargo() {
             title={"کرایه موردنظر شما:"}
             btns={["توافقی", "سرویسی", "تنی"]}
             exportValue={(value:any)=>setFeeType(value)}
+            exportFee={(value:any) => setFee(value)}
           >
-            {origin && dest && carrier && (
+            {origin && dest && carrier && fee.length> 0 && (
               <div className="flex flex-col">
                 <div className="flex items-center">
                   <span className="min-w-max ml-2">
@@ -254,12 +255,12 @@ function NewCargo() {
                       />
                     </svg>
                     <p className="mr-1">
-                      <span className="text-myblue ml-1">1034000</span>
+                      <span className="text-myblue ml-1">{fee}</span>
                       تومان
                     </p>
                   </div>
                   <span className="text-xs text-slate-400">
-                    به ازای هر سرویس
+                    به ازای هر {feeType == 'سرویسی' ? 'سرویس' : 'تن'}
                   </span>
                 </div>
               </div>

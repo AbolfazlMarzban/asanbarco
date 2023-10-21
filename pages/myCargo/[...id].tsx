@@ -29,7 +29,7 @@ function index() {
   const [showWeight, setShowWeight] = useState(false);
   const [showLoadingTime, setShowLoadingTime] = useState(false);
   const [showDischargeTime, setShowDischargeTime] = useState(false);
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState('');
   const [loadingDate, setLoadingDate] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
   const [comment, setComment] = useState("");
@@ -478,7 +478,7 @@ function index() {
                       <Inputbox
                         exportValue={(value: any) => setPhone(value)}
                         title={"شماره اعلام کننده بار"}
-                        value={data.phone}
+                        value={data.phoneNumber}
                         secondIcon={
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
