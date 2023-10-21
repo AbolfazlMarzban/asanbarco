@@ -27,7 +27,7 @@ function Checkbox({ title, value, exportValue }: any) {
 
         <label htmlFor="" className="mr-1">{title}</label>
       </div>
-      <input type="checkbox" value={check} onChange={(ev)=>checked(ev.target.checked)} />
+      <input type="checkbox" checked={check} onChange={(ev)=>checked(ev.target.checked)} />
     </div>
   );
 }

@@ -222,6 +222,8 @@ function index() {
                   <div className="w-96">
                     <DialogBtn
                       title={"مبدأ"}
+                      open={()=>toast('قابل ویرایش نیست')}
+                      close={()=>toast('قابل ویرایش نیست')}
                       value={data.origin}
                       firstIcon={
                         <svg
@@ -263,6 +265,8 @@ function index() {
                     ></DialogBtn>
                     <DialogBtn
                       title={"مقصد"}
+                      open={()=>toast('قابل ویرایش نیست')}
+                      close={()=>toast('قابل ویرایش نیست')}
                       value={data.desination}
                       firstIcon={
                         <svg
