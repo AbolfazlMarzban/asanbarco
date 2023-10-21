@@ -11,4 +11,13 @@ export default async function handler(req: any, res: any) {
             res.json(result)
         }
     }
+    if(method == "POST"){
+        const id = req.query.id
+        const result = await cargo.deleteOne({_id: id})
+        if(result){
+            res.json(true)
+        } else {
+            res.json(false)
+        }
+    }
 }

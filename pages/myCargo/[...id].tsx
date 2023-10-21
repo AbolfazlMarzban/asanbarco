@@ -10,21 +10,35 @@ function index() {
   const [confirm, setConfirm] = useState(false);
   const [cancelCargo, setCancelCargo] = useState(false);
   const [data, setData] :any = useState(null)
+  const [cargoId, setCargoId]: any = useState(null)
   const router = useRouter()
   useEffect(()=>{
     let id;
     var query = router.query.id
     if(query){
       id = query[0]
+      setCargoId(id)
     }
     if(id){
       (async ()=>{
         const result = await axios.get(`/api/cargoDetail?id=${id}`)
-        console.log('result', result)
+        console.log('data', result.data)
         setData(result.data)
       })()
     }
   }, [])
+  async function deleteCargo(){
+    try{
+      if(cargoId){
+        const result = await axios.post(`/api/cargoDetail?id=${cargoId}`)
+        if(result){
+            router.push('/myCargo')
+        }
+      }
+    } catch(error){
+      console.log(error)
+    }
+  }
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -85,19 +99,23 @@ function index() {
                   95 کیلومتر
                 </div>
                 <div className="border-b-[1px] border-l-[1px] border-slate-100 px-2 py-3 ">
-                  <h3 className="text-gray-400 text-sm pb-2">بارگیری</h3>امروز
+                  <h3 className="text-gray-400 text-sm pb-2">بارگیری</h3>{data.loadingDate[0]}
                 </div>
                 <div className="border-b-[1px]  border-slate-100  px-2 py-3">
                   <h3 className="text-gray-400 text-sm pb-2">ناوگان</h3>
-                  وانت و نیسان، پراید وانت
+                  {data.carrier.map((item:any, i:any)=> (
+                    <>
+                      {item.parent},{item.child} |
+                    </>
+                  ))}
                 </div>
                 <div className="border-b-[1px] border-l-[1px] border-slate-100 px-2 py-3 ">
                   <h3 className="text-gray-400 text-sm ">نوع بار</h3>
-                  سایر
+                  {data.cargoType}
                 </div>
                 <div className="border-b-[1px]  border-slate-100  px-2 py-3">
                   <h3 className="text-gray-400 text-sm ">وزن</h3>
-                  ظرفیت
+                  {data.weightType}
                 </div>
               </div>
             </div>
@@ -150,10 +168,10 @@ function index() {
               <div className="flex flex-col px-3 py-2">
                 <span>آیا برای لغو بار مطمئن هستید؟</span>
                 <div className="flex gap-3 mx-3 my-2">
-                  <button className="bg-slate-300 rounded-mdc w-1/2">
+                  <button className="bg-slate-300 rounded-md w-1/2 p-3" onClick={()=>setCancelCargo(false)}>
                     خیر
                   </button>
-                  <button className="bg-myblue text-white rounded-md w-1/2">
+                  <button className="bg-myblue text-white rounded-md w-1/2 p-3" onClick={()=>deleteCargo()}>
                     بله
                   </button>
                 </div>
