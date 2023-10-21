@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar";
 import React from "react";
 import { useState, useEffect, useLayoutEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 function CargoList() {
   const [cargos,setCargos]  = useState([])
@@ -27,7 +28,9 @@ function CargoList() {
       {cargos.length > 0 ? (
           <div className="w-full min-h-full flex flex-col items-center bg-mybg pt-32 px-3">
             {cargos.map((cargo:any) => (
-            <CargoBox data={cargo} key={cargo._id}></CargoBox>
+              <Link href={'/myCargo/' + cargo._id} key={cargo._id} className="w-full">
+                <CargoBox data={cargo}></CargoBox>
+              </Link>
             ))}
           </div>
       ):

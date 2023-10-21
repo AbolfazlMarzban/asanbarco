@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import CargoBox from "@/components/cargoList/cargoBox";
 import Dialog from "@/components/UI/dialog";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 function index() {
   const [display, setDisplay] = useState("cargo");
   const [confirm, setConfirm] = useState(false);
   const [cancelCargo, setCancelCargo] = useState(false);
+  const [data, setData] :any = useState(null)
+  const router = useRouter()
+  useEffect(()=>{
+    let id;
+    var query = router.query.id
+    if(query){
+      id = query[0]
+    }
+    if(id){
+      (async ()=>{
+        const result = await axios.get(`/api/cargoDetail?id=${id}`)
+        console.log('result', result)
+        setData(result.data)
+      })()
+    }
+  }, [])
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -50,15 +68,17 @@ function index() {
       </div>
       {display == "cargo" ? (
         <>
+        {data && (
+          <>          
           <div className="mx-4">
-            <CargoBox></CargoBox>
+            <CargoBox data={data}></CargoBox>
           </div>
           <div>
             <div className=" mx-4 bg-white border-[1px] rounded-md  ">
               <div className="small_details grid grid-cols-2 justify-items-stretch ">
                 <div className="border-b-[1px] border-l-[1px] border-slate-100  px-2 py-3">
                   <h3 className="text-gray-400 text-sm">شماره بار</h3>
-                  7702390
+                  {data._id}
                 </div>
                 <div className="border-b-[1px]  border-slate-100 px-2 py-3 ">
                   <h3 className="text-gray-400 text-sm pb-2">مسافت کل</h3>
@@ -123,6 +143,8 @@ function index() {
               <span>لغو بار</span>
             </button>
           </div>
+          </>
+        )}
           {cancelCargo && (
             <Dialog title={"لغو بار"} close={() => setCancelCargo(false)}>
               <div className="flex flex-col px-3 py-2">
