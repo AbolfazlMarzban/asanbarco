@@ -503,7 +503,7 @@ function index() {
                         exportValue={(value: any) => setLoadingDate(value)}
                         title={"تاریخ بارگیری"}
                         btns={["بار امروز", "بار فردا", "بار همه روزه"]}
-                        value={data.loadingDate}
+                        value={data.loadingDate[0]}
                         timePicker={
                           <>
                             <div className="flex justify-between mt-2 items-center">

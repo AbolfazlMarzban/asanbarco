@@ -2,15 +2,14 @@ import React from "react";
 import { useState } from "react";
 
 function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePicker, value  }: any) {
-  const [radioValue, setRadioValue] = useState(value ? value : "");
+  const [radioValue, setRadioValue] = useState(value || "");
     function selectRadio(ev:any){
         setRadioValue(ev.target.value)
         exportValue(ev.target.value)        
     }   
     function isChecked(item: true){
-      if(value && value == item){
-        return true
-      }
+      console.log('radioValue', radioValue)
+      return radioValue === item
     }
   return (
     <>
@@ -22,7 +21,7 @@ function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePic
         <div className="flex justify-start gap-4 items-center mt-2">
           {btns.map((item: any, i:any) => (
             <div className="flex items-center" key={btns[i]}>
-              <input type="radio" name="radio" key={item} id={item} value={item}  onClick={(ev:any) => selectRadio(ev)}/>
+              <input type="radio" name="radio" key={item} id={item} value={item} checked={isChecked(item)}  onChange={(ev:any) => selectRadio(ev)}/>
               <label htmlFor="" className="mr-1">
                 {item}
               </label>
