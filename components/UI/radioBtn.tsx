@@ -8,7 +8,6 @@ function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePic
         exportValue(ev.target.value)        
     }   
     function isChecked(item: true){
-      console.log('radioValue', radioValue)
       return radioValue === item
     }
   return (
