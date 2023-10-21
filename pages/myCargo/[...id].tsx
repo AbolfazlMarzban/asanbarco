@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import DialogBtn from "@/components/UI/dialogBtn";
 import RadioBtn from "@/components/UI/radioBtn";
 import DatePicker from "react-modern-calendar-datepicker";
+import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import Textbox from "@/components/UI/textbox";
 import CargoType from "@/components/newCargo/cargoType";
 import Checkbox from "@/components/UI/checkbox";
@@ -338,6 +339,7 @@ function index() {
                       btns={["توافقی", "سرویسی", "تنی"]}
                       exportValue={(value: any) => setFeeType(value)}
                       value={data.feeType}
+                      fee={data.suggestedFee}
                     >
                       {data.origin && data.desination && data.carrier && (
                         <div className="flex flex-col">
@@ -377,7 +379,7 @@ function index() {
                               </p>
                             </div>
                             <span className="text-xs text-slate-400">
-                              به ازای هر سرویس
+                              به ازای هر {data.feeType == 'سرویسی' ? 'سرویس' : 'تن'}
                             </span>
                           </div>
                         </div>
@@ -501,6 +503,7 @@ function index() {
                         exportValue={(value: any) => setLoadingDate(value)}
                         title={"تاریخ بارگیری"}
                         btns={["بار امروز", "بار فردا", "بار همه روزه"]}
+                        value={data.loadingDate}
                         timePicker={
                           <>
                             <div className="flex justify-between mt-2 items-center">
@@ -514,7 +517,7 @@ function index() {
                                 </span>
                               )}
                               <DatePicker
-                                value={data.selectedDay}
+                                value={selectedDay}
                                 onChange={setSelectedDay}
                                 shouldHighlightWeekends
                                 locale="fa"
@@ -525,7 +528,7 @@ function index() {
                       ></RadioBtn>
                       <Textbox
                         title={"توضیحات (اختیاری)"}
-                        value={data.comment}
+                        value={data.comments}
                         exportValue={(value: any) => setComment(value)}
                         placeholder={
                           "در این قسمت میتوانید به ابعاد، بار، ارزش بار و یا هر نوع اطلاعات دیگر بپردازید"

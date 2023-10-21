@@ -7,7 +7,11 @@ function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePic
         setRadioValue(ev.target.value)
         exportValue(ev.target.value)        
     }   
-
+    function isChecked(item: true){
+      if(value && value == item){
+        return true
+      }
+    }
   return (
     <>
       <div className="bg-white border shadow flex flex-col p-3 rounded-md mt-2">
@@ -16,9 +20,9 @@ function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePic
           {title}
         </label>
         <div className="flex justify-start gap-4 items-center mt-2">
-          {btns.map((item: any) => (
-            <div className="flex items-center">
-              <input type="radio" name="radio" id={item} value={item} onClick={(ev) => selectRadio(ev)}/>
+          {btns.map((item: any, i:any) => (
+            <div className="flex items-center" key={btns[i]}>
+              <input type="radio" name="radio" key={item} id={item} value={item}  onClick={(ev:any) => selectRadio(ev)}/>
               <label htmlFor="" className="mr-1">
                 {item}
               </label>
