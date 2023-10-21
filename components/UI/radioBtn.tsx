@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePicker  }: any) {
-  const [radioValue, setRadioValue] = useState("");
+function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePicker, value  }: any) {
+  const [radioValue, setRadioValue] = useState(value ? value : "");
     function selectRadio(ev:any){
         setRadioValue(ev.target.value)
         exportValue(ev.target.value)        

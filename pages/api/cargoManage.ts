@@ -18,7 +18,7 @@ if(method == "POST"){
     }
     const result = await cargo.create({"origin": data.origin, "desination": data.dest,"barnameh": data.barnameh, "carrier": data.carrier,
     "feeType": data.feeType,"suggestedFee": data.fee, "cargoType": data.cargoType, "weightType": data.weight,
-    "loadingType": data.loadingTime, "dischargeTime": data.dischargeTime,"phoneNumber": data.phone,"loadingDate": data.loadingDate, "selectedDay": selectedDay
+    "loadingTime": data.loadingTime, "dischargeTime": data.dischargeTime,"phoneNumber": data.phone,"loadingDate": data.loadingDate, "selectedDay": selectedDay
     , "comments": data.comment, "regDate": date, "regTime": time, "userRegID": data.userRegID, "regType": data.regType
 })
     if(result){

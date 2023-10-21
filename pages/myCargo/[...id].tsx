@@ -337,6 +337,7 @@ function index() {
                       title={"کرایه موردنظر شما:"}
                       btns={["توافقی", "سرویسی", "تنی"]}
                       exportValue={(value: any) => setFeeType(value)}
+                      value={data.feeType}
                     >
                       {data.origin && data.desination && data.carrier && (
                         <div className="flex flex-col">
@@ -370,7 +371,7 @@ function index() {
                               </svg>
                               <p className="mr-1">
                                 <span className="text-myblue ml-1">
-                                  1034000
+                                  {data.suggestedFee}
                                 </span>
                                 تومان
                               </p>
