@@ -4,6 +4,8 @@ import CargoBox from "@/components/cargoList/cargoBox";
 import Dialog from "@/components/UI/dialog";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function index() {
   const [display, setDisplay] = useState("cargo");
@@ -32,6 +34,7 @@ function index() {
       if(cargoId){
         const result = await axios.post(`/api/cargoDetail?id=${cargoId}`)
         if(result){
+          toast("بار شما با موفقیت از سامانه حذف شد!")
             router.push('/myCargo')
         }
       }
