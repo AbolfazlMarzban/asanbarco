@@ -312,9 +312,9 @@ function index() {
                     />
                     <DialogBtn
                       title={"نوع ناوگان و بارگیر"}
-                      // open={() => setShowCarrier(true)}
-                      // close={() => setShowCarrier(false)}
-                      // remove={(i: any) => removeChild(i)}
+                      open={()=>toast('قابل ویرایش نیست')}
+                      close={()=>toast('قابل ویرایش نیست')}
+                      remove={()=>toast('قابل ویرایش نیست')}
                       selected={data.carrier}
                       secondIcon={
                         <svg
