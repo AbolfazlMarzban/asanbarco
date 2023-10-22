@@ -5,7 +5,7 @@ import Image from "next/image";
 import placeholder from "@/public/man.png";
 import Inputbox from "@/components/UI/inputbox";
 import {useState, useEffect} from "react"
-import DatePicker from "react-modern-calendar-datepicker";
+import DatePicker from "@hassanmojab/react-modern-calendar-datepicker";
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import axios from "axios";
 
@@ -14,7 +14,9 @@ function index() {
   const [fullName,setFullName] = useState('')
   const [nationalNumber, setNationalNumber] = useState('')
   const [businessName, setBusinessName] = useState('')
-  const [birthDate, setBirthDate] : any = useState('')
+  const [birthDate, setBirthDate] : any = useState(null)
+  const [selectedDay, setSelectedDay] : any = useState(null);
+
   const [bankCard, setBankCard] = useState('')
   const [userID, setUserID] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -63,18 +65,18 @@ function index() {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="w-6 h-6"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"
               />
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"
               />
             </svg>
@@ -91,8 +93,8 @@ function index() {
               className="w-6 h-6"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
               />
             </svg>
@@ -133,12 +135,12 @@ function index() {
             تاریخ تولد
           </label>
           {/* <input type="text" className="border p-2 rounded-xl mt-2 w-64" /> */}
-          <DatePicker 
-            value={birthDate}
-            onChange={setBirthDate}
-            shouldHighlightWeekends
-            locale="fa"
-          ></DatePicker>
+          <DatePicker
+                      value={selectedDay}
+                      onChange={setSelectedDay}
+                      shouldHighlightWeekends
+                      locale="fa"
+                    />
         </div>
         <div className="flex flex-col items-start my-1">
           <label htmlFor="" className="text-md">
