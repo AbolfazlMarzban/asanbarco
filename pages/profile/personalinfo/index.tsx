@@ -48,6 +48,11 @@ function index() {
     var url = URL.createObjectURL(ev.target.files[0])
     setLogoUrl(url)
   }
+  function getProfilePic(ev:any){
+    setProfilePic(ev.target.files[0])
+    var url = URL.createObjectURL(ev.target.files[0])
+    setProfilePicUrl(url)  
+  }
   return (
     <div className="w-full h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -72,11 +77,19 @@ function index() {
         </div>
       </div>
       <div className="flex flex-col items-center ">
-        <div className="w-16 h-16 rounded-full border-2 mt-6">
-          <Image src={placeholder} alt=""></Image>
+        <div className="w-16 h-16 rounded-full border-2 mt-6 relative">
+          {profilePicUrl ? 
+          (
+            <Image src={profilePicUrl} alt="" layout="fill" objectFit="cover" className="rounded-full"></Image>
+          )
+            : 
+            (
+              <Image src={placeholder} alt=""></Image>
+            )
+        }
         </div>
         <div className="w-1/2 flex items-center justify-between gap-4">
-          <div className="flex border border-myblue rounded-lg p-2 text-myblue gap-2">
+          <div className="flex border border-myblue rounded-lg p-2 text-myblue gap-2 cursor-pointer" onClick={()=> document.getElementById('profilePic')?.click()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -98,6 +111,7 @@ function index() {
             </svg>
             <span>تغییر عکس پروفایل</span>
           </div>
+          <input id="profilePic" type="file" accept="[.png, .jpg, .jepg]" hidden  onChange={(ev)=>getProfilePic(ev)}/>
           <div className="flex border border-myblue rounded-lg p-2 text-myblue gap-2">
             <svg
               onClick={()=>setEditPN(true)}
