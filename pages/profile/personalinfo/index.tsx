@@ -43,6 +43,11 @@ function index() {
     var url = URL.createObjectURL(ev.target.files[0])
     setNationalCardPicUrl(url)
   }
+  function getLogo(ev:any){
+    setLogo(ev.target.files[0])
+    var url = URL.createObjectURL(ev.target.files[0])
+    setLogoUrl(url)
+  }
   return (
     <div className="w-full h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -187,7 +192,7 @@ function index() {
             </svg>
               )  
           }
-            <input type="file" className="w-full h-full opacity-0 absolute" onChange={(ev)=>getNationalCard(ev)} />
+            <input type="file" accept="[.png, .jpg, .jepg]" className="w-full h-full opacity-0 absolute" onChange={(ev)=>getNationalCard(ev)} />
           </div>
         </div>
 
@@ -197,6 +202,12 @@ function index() {
             <span className="text-green-600 text-sm">تغییر لوگوی اختصاصی</span>
           </div>
           <div className="w-full h-32 border-2 border-dashed mt-2 rounded-lg flex justify-center items-center relative">
+            {logoUrl.length > 0 ?
+            (
+              <img src={logoUrl} alt="" className="w-full h-32 rounded-lg" />
+            )
+            :
+            (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -211,7 +222,9 @@ function index() {
                 d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
               />
             </svg>
-            <input type="file" className="w-full h-full opacity-0 absolute" />
+            )  
+          }
+            <input type="file" accept="[.png, .jpg, .jepg]" className="w-full h-full opacity-0 absolute" onChange={(ev)=>getLogo(ev)}/>
           </div>
         </div>
 
