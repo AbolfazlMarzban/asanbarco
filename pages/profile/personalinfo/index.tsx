@@ -10,6 +10,7 @@ import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import axios from "axios";
 
 function index() {
+  const [editPN, setEditPN] = useState(false)
   const [fullName,setFullName] = useState('')
   const [nationalNumber, setNationalNumber] = useState('')
   const [businessName, setBusinessName] = useState('')
@@ -81,6 +82,7 @@ function index() {
           </div>
           <div className="flex border border-myblue rounded-lg p-2 text-myblue gap-2">
             <svg
+              onClick={()=>setEditPN(true)}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -94,8 +96,17 @@ function index() {
                 d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
               />
             </svg>
+            {editPN ? 
+              (
+                <input type="tel" value={phoneNumber} onChange={(ev)=>setPhoneNumber(ev.target.value)} />
+                )
+              :
+              (
+                <span style={{direction: "ltr"}}>{phoneNumber}</span>
+                
+              )  
+          }
 
-            <span style={{direction: "ltr"}}>{phoneNumber}</span>
           </div>
         </div>
         <hr className="w-full m-3"></hr>
