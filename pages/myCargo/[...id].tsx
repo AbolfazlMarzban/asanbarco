@@ -95,10 +95,15 @@ async function editCargo() {
   "phone": phone,
   "loadingDate": loadingDate,
   "selectedDay": loadingDate == 'بار همه روزه' ? loadingDate : '',
-  "comments": comment
+  "comments": comment,
+  "cargoId": cargoId
  }
-  console.log('data', data)
+  // console.log('data', data)
   const result = await axios.put('/api/cargoDetail', data)
+  if(result){
+    toast('ویرایش با موفقیت انجام شد')
+    router.push('/myCargo')
+  }
   } catch(error){
     console.log(error)
   }
