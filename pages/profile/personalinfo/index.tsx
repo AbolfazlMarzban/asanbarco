@@ -20,6 +20,12 @@ function index() {
   const [bankCard, setBankCard] = useState('')
   const [userID, setUserID] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
+  const [profilePic, setProfilePic] = useState([])
+  const [profilePicUrl, setProfilePicUrl] = useState('')
+  const [nationalCardPic, setNationalCardPic] = useState([])
+  const [nationalCardPicUrl, setNationalCardPicUrl] = useState('')
+  const [logo, setLogo] = useState([])
+  const [logoUrl, setLogoUrl] = useState('')
 
   useEffect(()=>{
     (async ()=>{
@@ -32,6 +38,11 @@ function index() {
       }
     })()
   }, [])
+  function getNationalCard(ev:any){
+    setNationalCardPic(ev.target.files[0])
+    var url = URL.createObjectURL(ev.target.files[0])
+    setNationalCardPicUrl(url)
+  }
   return (
     <div className="w-full h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -154,6 +165,12 @@ function index() {
             <span className="text-green-600 text-sm">تغییر تصویر کارت ملی</span>
           </div>
           <div className="w-full h-32 border-2 border-dashed mt-2 rounded-lg flex justify-center items-center relative">
+            {nationalCardPicUrl.length > 0 ?
+              (
+                // <Image src={nationalCardPicUrl} alt={''} width={32} ></Image>
+                <img src={nationalCardPicUrl} alt="" className="w-full h-32 rounded-lg" />
+              )
+              : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -168,7 +185,9 @@ function index() {
                 d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
               />
             </svg>
-            <input type="file" className="w-full h-full opacity-0 absolute" />
+              )  
+          }
+            <input type="file" className="w-full h-full opacity-0 absolute" onChange={(ev)=>getNationalCard(ev)} />
           </div>
         </div>
 
