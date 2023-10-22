@@ -4,7 +4,31 @@ import Link from "next/link";
 import Image from "next/image";
 import placeholder from "@/public/man.png";
 import Inputbox from "@/components/UI/inputbox";
+import {useState, useEffect} from "react"
+import DatePicker from "react-modern-calendar-datepicker";
+import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
+import axios from "axios";
+
 function index() {
+  const [fullName,setFullName] = useState('')
+  const [nationalNumber, setNationalNumber] = useState('')
+  const [businessName, setBusinessName] = useState('')
+  const [birthDate, setBirthDate] : any = useState('')
+  const [bankCard, setBankCard] = useState('')
+  const [userID, setUserID] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+
+  useEffect(()=>{
+    (async ()=>{
+      var id = localStorage.getItem('userID')
+      if(id){
+        setUserID(id)
+        const result = await axios.get(`/api/userManage?id=${id}`)
+        console.log('result', result)
+        setPhoneNumber(result.data.phoneNumber)
+      }
+    })()
+  }, [])
   return (
     <div className="w-full h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -71,7 +95,7 @@ function index() {
               />
             </svg>
 
-            <span>0918 393 3164</span>
+            <span style={{direction: "ltr"}}>{phoneNumber}</span>
           </div>
         </div>
         <hr className="w-full m-3"></hr>
@@ -79,31 +103,37 @@ function index() {
           <label htmlFor="" className="text-md">
             نام و نام خانوادگی
           </label>
-          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
+          <input type="text" value={fullName} onChange={(ev)=>setFullName(ev.target.value)} className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col items-start my-1">
           <label htmlFor="" className="text-md">
             کد ملی
           </label>
-          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
+          <input type="text" value={nationalNumber} onChange={(ev)=>setNationalNumber(ev.target.value)} className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col items-start my-1">
           <label htmlFor="" className="text-md">
             نام شرکت حمل و نقل
           </label>
-          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
+          <input type="text" value={businessName} onChange={(ev)=>setBusinessName(ev.target.value)} className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col items-start my-1">
           <label htmlFor="" className="text-md">
             تاریخ تولد
           </label>
-          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
+          {/* <input type="text" className="border p-2 rounded-xl mt-2 w-64" /> */}
+          <DatePicker 
+            value={birthDate}
+            onChange={setBirthDate}
+            shouldHighlightWeekends
+            locale="fa"
+          ></DatePicker>
         </div>
         <div className="flex flex-col items-start my-1">
           <label htmlFor="" className="text-md">
             شماره کارت بانکی
           </label>
-          <input type="text" className="border p-2 rounded-xl mt-2 w-64" />
+          <input type="text" value={bankCard} onChange={(ev)=>setBankCard(ev.target.value)} className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col my-1 w-72">
           <div className="flex justify-between items-center ">
