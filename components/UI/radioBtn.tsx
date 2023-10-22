@@ -3,12 +3,18 @@ import { useState } from "react";
 
 function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePicker, value  }: any) {
   const [radioValue, setRadioValue] = useState(value || "");
+  const [radioFee, setRadioFee] = useState(fee)
     function selectRadio(ev:any){
         setRadioValue(ev.target.value)
         exportValue(ev.target.value)        
     }   
     function isChecked(item: true){
       return radioValue === item
+    }
+
+    function getRadioFee(value:any){
+      setRadioFee(value)
+      exportFee(value)
     }
   return (
     <>
@@ -36,7 +42,7 @@ function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePic
       {radioValue == 'سرویسی' && (
             <>
             <div className="flex items-center gap-4 w-full mt-3">
-            <input type="number" className="border rounded-lg" value={fee} onChange={(ev)=>exportFee(ev.target.value)}/>
+            <input type="number" className="border rounded-lg" value={radioFee} onChange={(ev)=>getRadioFee(ev.target.value)}/>
             <span className="text-xs text-slate-400"> تومان به ازای هر سرویس</span>
             </div>
             </>
@@ -44,7 +50,7 @@ function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePic
 {radioValue == 'تنی' && (
             <>
             <div className="flex items-center gap-4 w-full mt-3">
-            <input type="number" className="border rounded-lg" value={fee} onChange={(ev)=>exportFee(ev.target.value)}/>
+            <input type="number" className="border rounded-lg" value={radioFee} onChange={(ev)=>getRadioFee(ev.target.value)}/>
             <span className="text-xs text-slate-400"> تومان به ازای هر تن</span>
             </div>
             </>

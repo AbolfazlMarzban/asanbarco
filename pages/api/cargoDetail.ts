@@ -20,4 +20,9 @@ export default async function handler(req: any, res: any) {
             res.json(false)
         }
     }
+    if(method == "PUT"){
+        const data = req.body
+        console.log('data', data)
+        
+    }
 }

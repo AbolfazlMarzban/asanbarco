@@ -27,6 +27,7 @@ function index() {
   const [showEdit, setShowEdit] = useState(false);
   const [showCargo, setShowCargo] = useState(false);
   const [feeType, setFeeType] = useState("");
+  const [fee, setFee] = useState('')
   const [showWeight, setShowWeight] = useState(false);
   const [showLoadingTime, setShowLoadingTime] = useState(false);
   const [showDischargeTime, setShowDischargeTime] = useState(false);
@@ -56,11 +57,18 @@ function index() {
           month: result.data.selectedDay[0].split('/')[1],
           day: result.data.selectedDay[0].split('/')[2]
         }
-        // console.log('date', date)
         setSelectedDay(date)
+        setFee(result.data.suggestedFee)
+        setCargoType(result.data.cargoType)
+        setLoadingTime(result.data.loadingTime)
+        setWeight(result.data.weightType)
+        setDischargeTime(result.data.dischargeTime)
+        setPhone(result.data.phoneNumber)
+        setComment(result.data.comments)
       })();
     }
   }, []);
+
   async function deleteCargo() {
     try {
       if (cargoId) {
@@ -74,6 +82,28 @@ function index() {
       console.log(error);
     }
   }
+
+async function editCargo() {
+  try{
+ let data = {
+  "feeType": feeType,
+  "fee": feeType !== 'توافقی' ? fee : '',
+  "cargoType": cargoType,
+  "weightType": weight,
+  "loadingTime": loadingTime,
+  "dischargeTime": dischargeTime,
+  "phone": phone,
+  "loadingDate": loadingDate,
+  "selectedDay": loadingDate == 'بار همه روزه' ? loadingDate : '',
+  "comments": comment
+ }
+  console.log('data', data)
+  const result = await axios.put('/api/cargoDetail', data)
+  } catch(error){
+    console.log(error)
+  }
+}
+
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -347,6 +377,7 @@ function index() {
                       exportValue={(value: any) => setFeeType(value)}
                       value={data.feeType}
                       fee={data.suggestedFee}
+                      exportFee={(value:any)=>setFee(value)}
                     >
                       {data.origin && data.desination && data.carrier && (
                         <div className="flex flex-col">
@@ -380,7 +411,7 @@ function index() {
                               </svg>
                               <p className="mr-1">
                                 <span className="text-myblue ml-1">
-                                  {data.suggestedFee}
+                                  {fee}
                                 </span>
                                 تومان
                               </p>
@@ -401,7 +432,7 @@ function index() {
                         open={() => setShowCargo(true)}
                         close={() => setShowCargo(false)}
                         title={"نوع بار"}
-                        value={data.cargoType}
+                        value={cargoType}
                         secondIcon={
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -423,7 +454,7 @@ function index() {
                         title={"وزن بار"}
                         open={() => setShowWeight(true)}
                         close={() => setShowWeight(false)}
-                        value={data.weightType}
+                        value={weight}
                         secondIcon={
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -445,7 +476,7 @@ function index() {
                         title={"زمان بارگیری"}
                         open={() => setShowLoadingTime(true)}
                         close={() => setShowLoadingTime(false)}
-                        value={data.loadingTime}
+                        value={loadingTime}
                         secondIcon={
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -467,7 +498,7 @@ function index() {
                         title={"زمان تخلیه"}
                         open={() => setShowDischargeTime(true)}
                         close={() => setShowDischargeTime(false)}
-                        value={data.dischargeTime}
+                        value={dischargeTime}
                         secondIcon={
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -488,7 +519,7 @@ function index() {
                       <Inputbox
                         exportValue={(value: any) => setPhone(value)}
                         title={"شماره اعلام کننده بار"}
-                        value={data.phoneNumber}
+                        value={phone}
                         secondIcon={
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -535,7 +566,7 @@ function index() {
                       ></RadioBtn>
                       <Textbox
                         title={"توضیحات (اختیاری)"}
-                        value={data.comments}
+                        value={comment}
                         exportValue={(value: any) => setComment(value)}
                         placeholder={
                           "در این قسمت میتوانید به ابعاد، بار، ارزش بار و یا هر نوع اطلاعات دیگر بپردازید"
@@ -543,28 +574,12 @@ function index() {
                       ></Textbox>
                     </Accordion>
                     <div className="w-full flex justify-center align-center bg-[#f1f5f8] p-4">
-                                  {/* <Link href={'/newCargo/specialOffer'}> 
-                        <button className="flex gap-2 px-3 py-2 bg-orange-400 text-white rounded-xl mx-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                            />
-                          </svg>
-                          <span>ثبت بار ویژه</span>
+                        <button className="flex gap-2 px-3 py-2 bg-teal-400 text-white rounded-xl mx-2" onClick={()=>editCargo()}>
+                          <span>ویرایش بار</span>
                         </button>
-                        </Link>
-                        <button className="flex gap-2 px-3 py-2 bg-teal-400 text-white rounded-xl mx-2" onClick={()=>registerCargo()}>
-                          <span>ثبت بار عادی</span>
-                        </button> */}
+                        <button className="flex gap-2 px-3 py-2 bg-teal-400 text-white rounded-xl mx-2" onClick={()=>setShowEdit(false)}>
+                          <span>انصراف</span>
+                        </button>
                     </div>
                   </div>
                 </div>
@@ -573,7 +588,7 @@ function index() {
                     title={"نوع بار خود را مشخص کنید"}
                     close={() => setShowCargo(false)}
                     select={(value: any) => setCargoType(value)}
-                    value={data.cargoType}
+                    value={cargoType}
                   ></CargoType>
                 )}
                 {showWeight && (
@@ -581,7 +596,7 @@ function index() {
                     title={"وزن را انتخاب کنید"}
                     close={() => setShowWeight(false)}
                     select={(value: any) => setWeight(value)}
-                    value={data.weightType}
+                    value={weight}
                   ></WeightType>
                 )}
                 {showLoadingTime && (
@@ -589,7 +604,7 @@ function index() {
                     title={"زمان تحویل را انتخاب کنید"}
                     close={() => setShowLoadingTime(false)}
                     select={(value: any) => setLoadingTime(value)}
-                    value={data.loadingTime}
+                    value={loadingTime}
                   ></LoadingTime>
                 )}
                 {showDischargeTime && (
@@ -597,7 +612,7 @@ function index() {
                     title={"زمان تخلیه را انتخاب کنید"}
                     close={() => setShowDischargeTime(false)}
                     select={(value: any) => setDischargeTime(value)}
-                    value={data.dischargeTime}
+                    value={dischargeTime}
                   ></LoadingTime>
                 )}
               </>
