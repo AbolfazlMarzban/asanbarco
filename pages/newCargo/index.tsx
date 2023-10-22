@@ -81,12 +81,12 @@ function NewCargo() {
         "userRegID": userID,
         "regType": "normal"
       }
-      // const result = await axios.post('/api/cargoManage', data)
-      // if(result){
-      //   console.log('result', result)
-      //   toast("بار شما با موفقیت به سامانه افزوده شد!")
-      //   router.push('/myCargo')
-      // }
+      const result = await axios.post('/api/cargoManage', data)
+      if(result){
+        console.log('result', result)
+        toast("بار شما با موفقیت به سامانه افزوده شد!")
+        router.push('/myCargo')
+      }
       console.log('data', data)
     } catch(error){
       console.log(error)

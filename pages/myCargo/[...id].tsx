@@ -32,7 +32,7 @@ function index() {
   const [showDischargeTime, setShowDischargeTime] = useState(false);
   const [phone, setPhone] = useState('');
   const [loadingDate, setLoadingDate] = useState("");
-  const [selectedDay, setSelectedDay] = useState("");
+  const [selectedDay, setSelectedDay] :any = useState("");
   const [comment, setComment] = useState("");
   const [cargoType, setCargoType] = useState("");
   const [weight, setWeight] = useState("");
@@ -51,6 +51,13 @@ function index() {
         const result = await axios.get(`/api/cargoDetail?id=${id}`);
         console.log("data", result.data);
         setData(result.data);
+        let date = {
+          year: result.data.selectedDay[0].split('/')[0],
+          month: result.data.selectedDay[0].split('/')[1],
+          day: result.data.selectedDay[0].split('/')[2]
+        }
+        // console.log('date', date)
+        setSelectedDay(date)
       })();
     }
   }, []);
