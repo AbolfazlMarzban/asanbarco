@@ -495,6 +495,7 @@ function NewCargo() {
           select={(value: any) => setDischargeTime(value)}
         ></LoadingTime>
       )}
+      <ToastContainer />
     </div>
   );
 }

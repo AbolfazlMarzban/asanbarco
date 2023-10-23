@@ -8,8 +8,10 @@ import {useState, useEffect} from "react"
 import DatePicker from "@hassanmojab/react-modern-calendar-datepicker";
 import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function index() {
+function index() { 
   const [editPN, setEditPN] = useState(false)
   const [fullName,setFullName] = useState('')
   const [nationalNumber, setNationalNumber] = useState('')
@@ -20,11 +22,11 @@ function index() {
   const [bankCard, setBankCard] = useState('')
   const [userID, setUserID] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
-  const [profilePic, setProfilePic] = useState([])
+  const [profilePic, setProfilePic] = useState(null)
   const [profilePicUrl, setProfilePicUrl] = useState('')
-  const [nationalCardPic, setNationalCardPic] = useState([])
+  const [nationalCardPic, setNationalCardPic] = useState(null)
   const [nationalCardPicUrl, setNationalCardPicUrl] = useState('')
-  const [logo, setLogo] = useState([])
+  const [logo, setLogo] = useState(null)
   const [logoUrl, setLogoUrl] = useState('')
 
   useEffect(()=>{
@@ -35,6 +37,14 @@ function index() {
         const result = await axios.get(`/api/userManage?id=${id}`)
         console.log('result', result)
         setPhoneNumber(result.data.phoneNumber)
+        setFullName(result.data.name)
+        setNationalNumber(result.data.nationalNumber)
+        setSelectedDay(result.data.birthDate)
+        setBusinessName(result.data.businessName)
+        setBankCard(result.data.bankCard)
+        setProfilePicUrl(result.data.profilePic)
+        setLogoUrl(result.data.logoPic)
+        setNationalCardPicUrl(result.data.nationalCardPic)
       }
     })()
   }, [])
@@ -52,6 +62,56 @@ function index() {
     setProfilePic(ev.target.files[0])
     var url = URL.createObjectURL(ev.target.files[0])
     setProfilePicUrl(url)  
+  }
+  async function submit(){
+    let profileAddress;
+    let nationalAddress;
+    let logoAddress
+    if(profilePic){
+      const fileBody = new FormData()
+      fileBody.append("image", profilePic)
+      const path =  await axios.post('/api/upload', fileBody)
+      profileAddress = path.data
+    }
+    if(nationalCardPic){
+      const fileBody = new FormData()
+      fileBody.append("image", nationalCardPic)
+      const path =  await axios.post('/api/upload', fileBody)
+      nationalAddress = path.data
+    }
+    if(logo){
+      const fileBody = new FormData()
+      fileBody.append("image", logo)
+      const path =  await axios.post('/api/upload', fileBody)
+      console.log('address', path.data)
+      logoAddress = path.data
+    }
+    let data : any = {
+      "fullName": fullName,
+      "phoneNumber": phoneNumber,
+      "nationalNumber": nationalNumber,
+      "businessName": businessName,
+      "birthDate": selectedDay,
+      "bankCard": bankCard,
+      "userID": userID
+      }
+      if(logo){
+        data["logoAddress"] = logoAddress 
+      }
+      if(profileAddress){
+        data["profileAddress"] = profileAddress
+      }
+      if(nationalAddress){
+        data["nationalAddress"] = nationalAddress
+      }
+      // console.log('data', data)
+      const result = await axios.post('/api/userManage', data)
+      console.log('result', result)
+      if(result.data){
+        toast('ذخیره اطلاعات با موفقیت انجام شد')
+      } else {
+        toast('ذخیره با مشکل مواجه شد با پشتیبانی تماس بگیرید')
+      }
   }
   return (
     <div className="w-full h-screen">
@@ -179,9 +239,9 @@ function index() {
           <input type="text" value={bankCard} onChange={(ev)=>setBankCard(ev.target.value)} className="border p-2 rounded-xl mt-2 w-64" />
         </div>
         <div className="flex flex-col my-1 w-72">
-          <div className="flex justify-between items-center ">
+          <div className="flex justify-start items-center ">
             <label htmlFor="">تصویر کارت ملی</label>
-            <span className="text-green-600 text-sm">تغییر تصویر کارت ملی</span>
+            {/* <span className="text-green-600 text-sm">تغییر تصویر کارت ملی</span> */}
           </div>
           <div className="w-full h-32 border-2 border-dashed mt-2 rounded-lg flex justify-center items-center relative">
             {nationalCardPicUrl.length > 0 ?
@@ -211,9 +271,9 @@ function index() {
         </div>
 
         <div className="flex flex-col my-1 w-72">
-          <div className="flex justify-between items-center ">
+          <div className="flex justify-start items-center ">
             <label htmlFor="">لوگوی اختصاصی</label>
-            <span className="text-green-600 text-sm">تغییر لوگوی اختصاصی</span>
+            {/* <span className="text-green-600 text-sm">تغییر لوگوی اختصاصی</span> */}
           </div>
           <div className="w-full h-32 border-2 border-dashed mt-2 rounded-lg flex justify-center items-center relative">
             {logoUrl.length > 0 ?
@@ -242,10 +302,11 @@ function index() {
           </div>
         </div>
 
-        <button className="w-72 border border-green-600 p-2 rounded-lg text-green-600 my-3">
+        <button className="w-72 border border-green-600 p-2 rounded-lg text-green-600 my-3" onClick={()=>submit()}>
             ثبت مشخصات
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 }
