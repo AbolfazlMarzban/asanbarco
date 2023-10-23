@@ -68,7 +68,7 @@ function index() {
         </svg>
       ),
       name: "مدیریت بارها",
-      link: "",
+      link: "/myCargo",
     },
     {
       icon: (
