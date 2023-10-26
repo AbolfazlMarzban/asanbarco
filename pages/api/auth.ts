@@ -16,7 +16,7 @@ export default async function handler(req: any, res: any) {
     if (phoneNumber.length > 0) {
       var OTP = Math.floor(1000 + Math.random() * 9000);
       console.log("otp", OTP);
-      const sms =  await sendSMS();
+      const sms =  await sendSMS(OTP);
       if(sms){
         const check = await Otp.findOne({ phoneNumber: phoneNumber });
         console.log("res", check);
@@ -62,17 +62,18 @@ export default async function handler(req: any, res: any) {
       res.json(false);
     }
   }
-  async function sendSMS(){
+  async function sendSMS(OTP: any){
     try{
-    const sms =   await axios.post('http://rest.ippanel.com/v1/messages', {
+    const sms =   await axios.post('http://rest.ippanel.com/v1/messages/patterns/send', {
 "originator": "+985000125475",
-"recipients": ["989183933164"],
-"message": "wassup bitch"
-},
+"recipient": "989183933164",
+ "values": {
+"code": OTP
+}},
 {
   headers: {
     "Content-Type": 'application/json',
-    "Authorization": 'fji8IYALETe_Q4raxin1yv14NwlzpGKuFnHSQnUNlZ0='
+    "Authorization": 'AccessKey C8Zqydg8JJCB98Ladw9Lj8M_4TAORhlhh8mrUqJ088I='
   }
 }
 )
