@@ -1,6 +1,7 @@
 import { mongooseConnect } from "@/lib/mongoos";
 import { cargoOwners } from "@/models/cargoOwners";
 import { Otp } from "@/models/otp";
+import { Score } from "@/models/scrore";
 import axios from "axios";
 
 export default async function handler(req: any, res: any) {
@@ -8,7 +9,6 @@ export default async function handler(req: any, res: any) {
   const { method } = req;
   if (method == "GET") {
     const phoneNumber = req.query.data;
-    console.log('phone', phoneNumber)
     var date = new Date().toLocaleDateString();
     var time = new Date().toLocaleTimeString();
     console.log("date", date);
@@ -16,8 +16,7 @@ export default async function handler(req: any, res: any) {
     if (phoneNumber.length > 0) {
       var OTP = Math.floor(1000 + Math.random() * 9000);
       console.log("otp", OTP);
-      const sms =  await sendSMS(OTP);
-      if(sms){
+      const sms =  await sendSMS(OTP, phoneNumber);
         const check = await Otp.findOne({ phoneNumber: phoneNumber });
         console.log("res", check);
         if (check) {
@@ -41,7 +40,6 @@ export default async function handler(req: any, res: any) {
         if (OTP) {
           res.json(true);
         }
-      }
     }
   }
   if (method == "POST") {
@@ -54,6 +52,7 @@ export default async function handler(req: any, res: any) {
       if (!user) {
         await cargoOwners.create({ phoneNumber });
         user = await cargoOwners.findOne({ phoneNumber: phoneNumber });
+        await Score.create({"userID": user._id, "score": 10})
         res.json(user)
       } else {
         res.json(user)
@@ -62,13 +61,15 @@ export default async function handler(req: any, res: any) {
       res.json(false);
     }
   }
-  async function sendSMS(OTP: any){
+  async function sendSMS(OTP: any, phoneNumber:any){
+    console.log('phone', phoneNumber)
     try{
     const sms =   await axios.post('http://rest.ippanel.com/v1/messages/patterns/send', {
+"pattern_code": "0aadwiiowtulzxs",
 "originator": "+985000125475",
-"recipient": "989183933164",
+"recipient": `${phoneNumber}`,
  "values": {
-"code": OTP
+"code": `${OTP}`
 }},
 {
   headers: {
@@ -77,11 +78,6 @@ export default async function handler(req: any, res: any) {
   }
 }
 )
-if(sms){
-  return true
-} else {
-  return false
-}
     } catch(error){
       console.log(error)
     }
