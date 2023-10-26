@@ -45,6 +45,8 @@ export default async function handler(req: any, res: any) {
   if (method == "POST") {
     const userOtp = req.body.data;
     const phoneNumber = req.body.phoneNumber;
+    var date = new Date().toLocaleDateString();
+    var time = new Date().toLocaleTimeString();
     const result = await Otp.findOne({ phoneNumber: phoneNumber });
     console.log("res", res);
     if (userOtp == result.OTP) {
@@ -52,7 +54,7 @@ export default async function handler(req: any, res: any) {
       if (!user) {
         await cargoOwners.create({ phoneNumber });
         user = await cargoOwners.findOne({ phoneNumber: phoneNumber });
-        await Score.create({"userID": user._id, "score": 10})
+        await Score.create({"userID": user._id, "date": date, "score": 10, "time": time})
         res.json(user)
       } else {
         res.json(user)
