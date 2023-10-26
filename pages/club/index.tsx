@@ -1,8 +1,24 @@
 import Navbar from "@/components/navbar";
 import React from "react";
 import Link from "next/link";
+import axios from "axios";
+import {useEffect, useState} from "react"
 
 function index() {
+  const [userID, setUserID] = useState(null)
+  useEffect(()=>{
+    (async ()=>{
+      try{
+        var id:any = localStorage.getItem('userID')
+        if(id){
+          setUserID(id)
+        }
+        const result = await axios.get(`/api/scoreManage?userID=${userID}`)
+      }catch(err){
+        console.log(err)
+      }
+    })()
+  },[])
   return (
     <div className="w-full h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
