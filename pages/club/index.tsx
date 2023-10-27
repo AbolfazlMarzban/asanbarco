@@ -6,6 +6,7 @@ import {useEffect, useState} from "react"
 
 function index() {
   const [userID, setUserID] = useState(null)
+  const [totalScore, setTotalScore] :any = useState(0)
   useEffect(()=>{
     (async ()=>{
       try{
@@ -14,6 +15,14 @@ function index() {
           setUserID(id)
         }
         const result = await axios.get(`/api/scoreManage?userID=${userID}`)
+        console.log('score result', result)
+        let total = 0
+        if(result.data.length > 0){
+          for(var i=0; i < result.data.length; i++){
+            total += result.data[i].score
+          }
+          setTotalScore(total)
+        }
       }catch(err){
         console.log(err)
       }
@@ -86,7 +95,7 @@ function index() {
             </svg>
           </div>
           <div className="text-center w-full">
-            <span>0 امتیاز</span>
+            <span>{totalScore} امتیاز</span>
           </div>
         </div>
       </div>

@@ -1,8 +1,26 @@
 import React from "react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 function index() {
   const [display, setDisplay] = useState("score")
+  const [userID, setUserID] = useState(null)
+  const [scoreItems, setScoreItems] = useState([])
+  useEffect(()=>{
+    (async ()=>{
+      try{
+        var id:any = localStorage.getItem('userID')
+        if(id){
+          setUserID(id)
+        }
+        const result = await axios.get(`/api/scoreManage?userID=${userID}`)
+        console.log('score result', result)
+        setScoreItems(result.data)
+      }catch(err){
+        console.log(err)
+      }
+    })()
+  },[])
   return (
     <div className="w-full h-screen bg-mybg">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between w-full">
@@ -49,17 +67,32 @@ function index() {
             ?
             (
               <>    
-                <div className="flex justify-between items-center">
+              {scoreItems.length > 0 ? (
+                <>  
+                {scoreItems.map((item:any)=> {
+                  <>
+                <div className="flex justify-between items-center" key={item._id}>
                   <div className="flex flex-col justify-start">
-                    <span className="">خوش آمدگویی</span>
-                    <span className="text-myblue mt-3">10 امتیاز</span>
+                    <span className="">{item.reason}</span>
+                    <span className="text-myblue mt-3">{item.score} امتیاز</span>
                   </div>
                   <div className="flex flex-col items-end">
                     <span className="text-myblue">افزایش</span>
-                    <span className="mt-3">1402/07/23 16:33</span>
+                    <span className="mt-3">{item.date} {item.time}</span>
                   </div>
                 </div>
                 <hr className="mt-2"></hr>
+                </>
+                })}
+                </>
+              )
+                :
+                (
+                  <>
+                    <span className="text-red-600 w-full text-center">هنوز امتیازی دریافت نکرده اید!</span>
+                  </>
+                )
+            }
               </>
             )
             :
