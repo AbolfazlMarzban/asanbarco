@@ -54,7 +54,7 @@ export default async function handler(req: any, res: any) {
       if (!user) {
         await cargoOwners.create({ phoneNumber });
         user = await cargoOwners.findOne({ phoneNumber: phoneNumber });
-        await Score.create({"userID": user._id, "date": date, "score": 10, "time": time})
+        await Score.create({"userID": user._id, "date": date, "score": 10, "reason": 'خوش آمد گویی' ,"time": time})
         res.json(user)
       } else {
         res.json(user)
