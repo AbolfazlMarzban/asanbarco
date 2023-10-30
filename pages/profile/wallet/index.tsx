@@ -7,17 +7,17 @@ import axios from "axios";
 
 function index() {
   const [display, setDisplay] = useState("pay");
-  const [suggested, setSuggested] = useState("");
-  const [payAmount, setPayAmount] = useState('')
+  const [suggested, setSuggested] : any = useState("");
+  const [payAmount, setPayAmount] :any = useState('')
   const moneyList = [
-    "5000",
-    "10000",
-    "20000",
-    "30000",
-    "40000",
-    "50000",
-    "100000",
-    "200000",
+    5000,
+    10000,
+    20000,
+    30000,
+    40000,
+    50000,
+    100000,
+    200000,
   ];
  async function getGateway(){
   try{
@@ -99,7 +99,7 @@ function index() {
                       suggested == item ? `bg-teal-600 text-white` : ``
                     } flex flex-col items-center cursor-pointer border border-teal-600 rounded-xl py-2`}
                   >
-                    <span className="text-sm">{item}</span>
+                    <span className="text-sm">{item.toLocaleString()}</span>
                     <span className="text-sm">تومان</span>
                   </div>
                 </div>
