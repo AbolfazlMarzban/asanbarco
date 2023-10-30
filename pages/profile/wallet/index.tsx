@@ -7,15 +7,16 @@ import { useState } from "react";
 function index() {
   const [display, setDisplay] = useState("pay");
   const [suggested, setSuggested] = useState("");
+  const [payAmount, setPayAmount] = useState('')
   const moneyList = [
-    "5,000",
-    "10,000",
-    "20,000",
-    "30,000",
-    "40,000",
-    "50,000",
-    "100,000",
-    "200,000",
+    "5000",
+    "10000",
+    "20000",
+    "30000",
+    "40000",
+    "50000",
+    "100000",
+    "200000",
   ];
   return (
     <div className="w-full h-screen">
@@ -78,6 +79,7 @@ function index() {
                   onClick={() => setSuggested(item)}
                 >
                   <div
+                    onClick={()=>setPayAmount(item)}
                     className={`${
                       suggested == item ? `bg-teal-600 text-white` : ``
                     } flex flex-col items-center cursor-pointer border border-teal-600 rounded-xl py-2`}
@@ -107,7 +109,7 @@ function index() {
                 </svg>
               </div>
               <div className="w-1/2">
-                <input type="number" className="w-full border-2 border-teal-600 rounded-xl text-center h-full" />
+                <input type="number" className="w-full border-2 border-teal-600 rounded-xl text-center h-full" value={payAmount} onChange={(ev)=>setPayAmount(ev.target.value)} />
               </div>
               <div className="w-1/4 bg-red-200 text-red-600 text-center flex justify-center items-center p-2 rounded-xl">
                 <svg
