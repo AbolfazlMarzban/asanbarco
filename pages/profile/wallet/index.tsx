@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import wallet from "@/public/wallet.png";
 import { useState } from "react";
+import axios from "axios";
 
 function index() {
   const [display, setDisplay] = useState("pay");
@@ -18,6 +19,20 @@ function index() {
     "100000",
     "200000",
   ];
+ async function getGateway(){
+  try{
+    if(payAmount.length > 0){
+      var userID = localStorage.getItem('userID')
+      var data = {
+        userID: userID,
+        payAmount: payAmount
+      }
+      const path = await axios.post('/api/paymentManage', data)
+    }
+  } catch(error){
+    console.log(error)
+  }
+ }
   return (
     <div className="w-full h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -128,9 +143,11 @@ function index() {
                 </svg>
               </div>
             </div>
-            <button className="bg-teal-600 text-white rounded-lg w-full p-2 mt-10">
-          پرداخت
-        </button>
+            {payAmount.length > 0 && (
+            <button className="bg-teal-600 text-white rounded-lg w-full p-2 mt-10" onClick={()=>getGateway()}>
+                پرداخت
+             </button>
+            )}
           </div>
         ) : (
           <>
