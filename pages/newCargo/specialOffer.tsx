@@ -11,6 +11,7 @@ function SpecialOffer() {
   const [data, setData] = useState({})
   const [subscription, setSubscription] = useState('')
   const [payAmount, setPayAmount] : any = useState(null)
+  const [offCode, setOffode] = useState('')
   useEffect(()=>{
     let cargo :any = localStorage.getItem('cargoData')
     if(cargo){
@@ -52,12 +53,12 @@ function SpecialOffer() {
         </div>
       </div>
       <div className="flex p-4 gap-5 justify-center">
-            <div className="bg-myblue text-white rounded-lg flex flex-col px-8 py-6 justify-center items-center" onClick={()=>selectMonthly()}>
+            <div className="bg-white  hover:bg-myblue hover:text-white rounded-lg flex flex-col px-8 py-6 justify-center items-center cursor-pointer" onClick={()=>selectMonthly()}>
                 <span className="text-xs mb-3">120,000 تومان</span>
                 <p className="text-lg">اشتراک ماهیانه</p>
             </div>
-            <div className="rounded-lg flex flex-col px-8 py-6 justify-center items-center border bg-white" onClick={()=>selectWeekly()}>
-            <span className="text-xs mb-3 text-myblue">40,000 تومان</span>
+            <div className="rounded-lg flex flex-col px-8 py-6 justify-center items-center border bg-white cursor-pointer hover:bg-myblue hover:text-white" onClick={()=>selectWeekly()}>
+            <span className="text-xs mb-3">40,000 تومان</span>
                 <p className="text-lg">اشتراک هفتگی</p>
             </div>
       </div>
@@ -88,16 +89,20 @@ function SpecialOffer() {
                     <ConfirmationNumberIcon className="text-green-600"></ConfirmationNumberIcon>
                 }
                 title={'کد تخفیف'}
+                exportValue={(value:any)=>setOffode(value)}
             >
             </Inputbox>
       </div>
+      {subscription.length > 0 && (
       <div className="absolute bottom-0 bg-white w-full">
                 <ReverseAccordion
                   title={
                     <div className="flex justify-between w-full">
                       <div className="flex flex-col justify-center items-start">
+                      
                           <label htmlFor="">مبلغ قابل پرداخت</label>
-                          <span>130,800 تومان</span>
+                          <span>{payAmount} تومان</span>
+                        
                       </div>
                       <button className="bg-emerald-300 text-white rounded-lg px-6">
                           خرید پکیج
@@ -111,12 +116,16 @@ function SpecialOffer() {
                       </span>
                       <div className="flex justify-between">
                         <span className="text-slate-400">مبلغ کل</span>
-                        <span className="text-black">40,000 تومان</span>
+                        <span className="text-black">{payAmount} تومان</span>
                       </div>
+                      {offCode.length > 0 && 
+                      
+                      (
                       <div className="flex justify-between">
                         <span className="text-slate-400">تخفیف شما</span>
                         <span className="text-black">40,000 تومان</span>
                       </div>
+                      )}
                       <div className="flex justify-between">
                         <span className="text-slate-400">کسر از کیف پول</span>
                         <span className="text-black">40,000 تومان</span>
@@ -133,6 +142,7 @@ function SpecialOffer() {
                     </div>
                 </ReverseAccordion>
       </div>
+      )}
     </div>
   );
 }
