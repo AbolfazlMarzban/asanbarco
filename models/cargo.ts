@@ -18,7 +18,8 @@ const cargoSchema = new Schema({
     regDate: {type: String, required: false},
     regTime : {type: String, required: false},
     userRegID: {type: String, required: false},
-    regType: {type: String, required: false}
+    regType: {type: String, required: false},
+    special: {type: Boolean, required: false}
 })
 
 export const cargo = models.cargo || model('cargo', cargoSchema)
