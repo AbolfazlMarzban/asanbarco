@@ -1,11 +1,17 @@
+import LocalDate from "@/helpers/date";
+import LocalTime from "@/helpers/time";
 import { mongooseConnect } from "@/lib/mongoos";
 import { cargoOwners } from "@/models/cargoOwners";
+import { payments } from "@/models/payments";
 import axios from "axios";
+
 
 export default async function handler(req: any, res: any) {
   await mongooseConnect();
   const { method } = req;
   if(method == "POST"){
+    const date = LocalDate()
+    const time = LocalTime()
     const userID = req.body.userID
     const payAmount = req.body.payAmount
     const user = await cargoOwners.find({_id:userID})
@@ -25,6 +31,12 @@ export default async function handler(req: any, res: any) {
       }
     })
     if(result){
+      const wallet =  await payments.create({
+        "userID": userID,
+        "date": date,
+        "amount": payAmount,
+        "time": time
+      }) 
       const path = "https://www.zarinpal.com/pg/StartPay/" + result.data.data.authority
       res.json(path)
     }
