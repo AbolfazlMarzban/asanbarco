@@ -2,8 +2,25 @@ import React from "react";
 import Header from "@/components/header";
 import Navbar from "@/components/navbar";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function index() {
+  const [userID, setUserID] = useState(null)
+  const [score, setScore] = useState('')
+  const [wallet, setWallet] = useState('')
+  useEffect(()=>{
+    (async()=>{
+      const id : any = localStorage.getItem('userID')
+      if(id){
+        setUserID(id)
+      }
+      const score = await axios.get(`/api/scoreManage?userID=${id}`)
+      console.log('score', score)
+      const wallet = await axios.get(`/api/paymentManage?userId=${id}`)
+      console.log('wallet', wallet)
+    })()
+  }, [])
   const menuItems = [
     {
       icon: (
@@ -11,7 +28,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue"
         >
@@ -31,7 +48,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue"
         >
@@ -56,7 +73,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue"
         >
@@ -76,7 +93,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue"
         >
@@ -96,7 +113,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue"
         >
@@ -116,7 +133,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue"
         >
@@ -136,7 +153,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue"
         >
@@ -156,7 +173,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue"
         >
@@ -176,7 +193,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue "
         >
@@ -196,7 +213,7 @@ function index() {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 text-myblue"
         >
@@ -223,7 +240,7 @@ function index() {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="w-6 h-6"
             >
@@ -243,7 +260,7 @@ function index() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="w-10 h-10 text-yellow-300"
               >
@@ -260,7 +277,7 @@ function index() {
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke="currentColor"
                 className="w-10 h-10 text-yellow-300"
               >
@@ -289,7 +306,7 @@ function index() {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   className="w-6 h-6"
                 >
