@@ -45,7 +45,6 @@ function index() {
       setUserID(id)
     }
     const result = await axios.get(`/api/paymentManage?userID=${id}`)
-    console.log('walletResult', result)
     if(result){
       setPayments(result.data)
     }
