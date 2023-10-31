@@ -5,8 +5,26 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import Inputbox from "@/components/UI/inputbox";
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ReverseAccordion from "@/components/UI/reverseAccordion";
+import {useState, useEffect} from "react";
 
 function SpecialOffer() {
+  const [data, setData] = useState({})
+  const [subscription, setSubscription] = useState('')
+  const [payAmount, setPayAmount] : any = useState(null)
+  useEffect(()=>{
+    let cargo :any = localStorage.getItem('cargoData')
+    if(cargo){
+      console.log('cargo', JSON.parse(cargo))
+    }
+  }, [])
+  function selectMonthly(){
+    setSubscription('monthly')
+    setPayAmount(120000)
+  }
+  function selectWeekly(){
+    setSubscription('weekly')
+    setPayAmount(40000)
+  }
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -34,11 +52,11 @@ function SpecialOffer() {
         </div>
       </div>
       <div className="flex p-4 gap-5 justify-center">
-            <div className="bg-myblue text-white rounded-lg flex flex-col px-8 py-6 justify-center items-center ">
+            <div className="bg-myblue text-white rounded-lg flex flex-col px-8 py-6 justify-center items-center" onClick={()=>selectMonthly()}>
                 <span className="text-xs mb-3">120,000 تومان</span>
                 <p className="text-lg">اشتراک ماهیانه</p>
             </div>
-            <div className="rounded-lg flex flex-col px-8 py-6 justify-center items-center border bg-white">
+            <div className="rounded-lg flex flex-col px-8 py-6 justify-center items-center border bg-white" onClick={()=>selectWeekly()}>
             <span className="text-xs mb-3 text-myblue">40,000 تومان</span>
                 <p className="text-lg">اشتراک هفتگی</p>
             </div>

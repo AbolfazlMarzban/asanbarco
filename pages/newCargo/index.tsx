@@ -18,7 +18,6 @@ import axios from "axios"
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { data } from "autoprefixer";
 
 
 function NewCargo() {
@@ -86,11 +85,35 @@ function NewCargo() {
         console.log('result', result)
         toast("بار شما با موفقیت به سامانه افزوده شد!")
         router.push('/myCargo')
+      } else {
+        toast("دوباره تلاش کنید")
       }
-      console.log('data', data)
     } catch(error){
       console.log(error)
     }
+  }
+  function specialRegisterCargo(){
+    var userID= localStorage.getItem('userID')
+    let data:any = {
+      "origin": origin,
+      "dest": dest,
+      "carrier": carrier,
+      "cargoType": cargoType,
+      "barnameh": barnameh,
+      "feeType": feeType,
+      "fee": fee,
+      "weight": weight,
+      "loadingTime": loadingTime,
+      "dischargeTime": dischargeTime,
+      "phone": phone,
+      "loadingDate": loadingDate,
+      "selectedDay": selectedDay,
+      "comment": comment,
+      "userRegID": userID,
+      "regType": "normal"
+    }
+    localStorage.setItem('cargoData', JSON.stringify(data))
+    router.push('/newCargo/specialOffer')
   }
   return (
     <div className="bg-[#f1f5f8] h-screen">
@@ -422,7 +445,7 @@ function NewCargo() {
           </Accordion>
           <div className="w-full flex justify-center align-center bg-[#f1f5f8] p-4">
             <Link href={'/newCargo/specialOffer'}> 
-            <button className="flex gap-2 px-3 py-2 bg-orange-400 text-white rounded-xl mx-2">
+            <button className="flex gap-2 px-3 py-2 bg-orange-400 text-white rounded-xl mx-2" onClick={()=>specialRegisterCargo()}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
