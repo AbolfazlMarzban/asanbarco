@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import wallet from "@/public/wallet.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -10,6 +10,8 @@ function index() {
   const [display, setDisplay] = useState("pay");
   const [suggested, setSuggested] : any = useState("");
   const [payAmount, setPayAmount] :any = useState('')
+  const [userID, setUserID] = useState(null)
+  const [payments, setPayments] = useState([])
   const moneyList = [
     5000,
     10000,
@@ -24,7 +26,6 @@ function index() {
  async function getGateway(){
   try{
     if(payAmount.length > 0){
-      var userID = localStorage.getItem('userID')
       var data = {
         userID: userID,
         payAmount: payAmount
@@ -37,6 +38,19 @@ function index() {
     console.log(error)
   }
  }
+ useEffect(()=>{
+  (async()=>{
+    const id:any = localStorage.getItem('userID')
+    if(id){
+      setUserID(id)
+    }
+    const result = await axios.get(`/api/paymentManage?userID=${id}`)
+    console.log('walletResult', result)
+    if(result){
+      setPayments(result.data)
+    }
+  })()
+ },[])
   return (
     <div className="w-full h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
