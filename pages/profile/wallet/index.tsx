@@ -4,6 +4,7 @@ import Image from "next/image";
 import wallet from "@/public/wallet.png";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 function index() {
   const [display, setDisplay] = useState("pay");
@@ -19,6 +20,7 @@ function index() {
     100000,
     200000,
   ];
+  const router = useRouter()
  async function getGateway(){
   try{
     if(payAmount.length > 0){
@@ -28,6 +30,8 @@ function index() {
         payAmount: payAmount
       }
       const path = await axios.post('/api/paymentManage', data)
+      console.log('path', path)
+      router.push(path.data)
     }
   } catch(error){
     console.log(error)
@@ -99,7 +103,7 @@ function index() {
                       suggested == item ? `bg-teal-600 text-white` : ``
                     } flex flex-col items-center cursor-pointer border border-teal-600 rounded-xl py-2`}
                   >
-                    <span className="text-sm">{item.toLocaleString()}</span>
+                    <span className="text-sm">{item.toLocaleString('en-us')}</span>
                     <span className="text-sm">تومان</span>
                   </div>
                 </div>
