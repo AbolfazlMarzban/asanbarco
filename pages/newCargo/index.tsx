@@ -110,7 +110,7 @@ function NewCargo() {
       "selectedDay": selectedDay,
       "comment": comment,
       "userRegID": userID,
-      "regType": "normal"
+      "regType": "special"
     }
     localStorage.setItem('cargoData', JSON.stringify(data))
     router.push('/newCargo/specialOffer')

@@ -123,7 +123,7 @@ function SpecialOffer() {
                       (
                       <div className="flex justify-between">
                         <span className="text-slate-400">تخفیف شما</span>
-                        <span className="text-black">40,000 تومان</span>
+                        <span className="text-black">0 تومان</span>
                       </div>
                       )}
                       <div className="flex justify-between">
@@ -132,12 +132,12 @@ function SpecialOffer() {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-slate-400">ارزش افزوده</span>
-                        <span className="text-black">40,000 تومان</span>
+                        <span className="text-black">{0.09*payAmount} تومان</span>
                       </div>
                       <hr />
                       <div className="flex justify-between">
                         <span className="text-slate-400">مبلغ قابل پرداخت</span>
-                        <span className="text-emerald-300">40,000 تومان</span>
+                        <span className="text-emerald-300">{Math.round(1.09*payAmount).toLocaleString('en-us')} تومان</span>
                       </div>
                     </div>
                 </ReverseAccordion>
