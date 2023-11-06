@@ -49,7 +49,7 @@ function NewCargo() {
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState('')
 
-  const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedDay, setSelectedDay] : any = useState(null);
 
   function selectCarrier(value: any) {
     setCarrier(value);
