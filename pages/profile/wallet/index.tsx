@@ -12,6 +12,7 @@ function index() {
   const [payAmount, setPayAmount] :any = useState(null)
   const [userID, setUserID] = useState(null)
   const [payments, setPayments] = useState([])
+  const [total, setTotal] = useState(0)
   const moneyList = [
     5000,
     10000,
@@ -47,6 +48,9 @@ function index() {
     const result = await axios.get(`/api/paymentManage?userID=${id}`)
     if(result){
       console.log('paymets', result)
+      let sum = 0
+      result.data.forEach((item:any) => sum += item.amount)
+      setTotal(sum)
       setPayments(result.data)
     }
   })()
@@ -60,13 +64,13 @@ function index() {
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
+              strokeWidth="1.5"
               stroke="currentColor"
               className="w-6 h-6"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
               />
             </svg>
@@ -81,7 +85,7 @@ function index() {
           </div>
           <div className="w-1/2 flex flex-col items-center justify-center">
             <span>موجودی کیف پول شما:</span>
-            <span>0 تومان</span>
+            <span>{total} تومان</span>
           </div>
         </div>
         <div className="bg-cyan-100 rounded-xl flex gap-5 p-2 m-4 w-full">
@@ -133,13 +137,13 @@ function index() {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   className="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M12 6v12m6-6H6"
                   />
                 </svg>
@@ -152,13 +156,13 @@ function index() {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   className="w-6 h-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M18 12H6"
                   />
                 </svg>
@@ -173,6 +177,13 @@ function index() {
         ) : (
           <>
             <label htmlFor="">لیست تراکنش ها</label>
+                  {payments.map((item:any)=> {
+                      <div className="flex flex-col gap-2 p-1" key={item._id}>
+                             <div className="border p-1 rounded-lg my-2 flex gap-2">
+                              <span>{item.amount}</span>
+                             </div>
+                      </div>
+                  })}
           </>
         )}
   
