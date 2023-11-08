@@ -41,10 +41,7 @@ export default async function handler(req: any, res: any) {
   if(method == "GET"){
     const userID = req.query.userID
     const result = await payments.find({userID: userID})
-    let date = LocalDate()
-    let time = LocalTime()
-    console.log('date', date)
-    console.log('time', time)
+   
     if(result){
       res.json(result)
     }
