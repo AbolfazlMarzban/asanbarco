@@ -17,9 +17,9 @@ function index() {
       }
       const score = await axios.get(`/api/scoreManage?userID=${id}`)
       console.log('score', score)
-      const wallet = await axios.get(`/api/paymentManage?userId=${id}`)
+      const wallet = await axios.get(`/api/paymentManage?userID=${id}`)
       console.log('wallet', wallet)
-      
+
     })()
   }, [])
   const menuItems = [
