@@ -16,12 +16,10 @@ export default async function handler(req: any, res: any) {
     const payAmount = req.body.payAmount
     const user = await cargoOwners.findOne({_id: userID})
    var code = '942ab142-ed88-4412-8c9f-ab8658074bcf'
-  // var code = "80768044-e2aa-479b-8386-6f6f9d2e6606"
   if(user){
     const result = await axios.post('https://api.zarinpal.com/pg/v4/payment/request.json', {
       "merchant_id": code,
       "amount": payAmount*10,
-      // "callback_url": "https://asanbar.iran.liara.run/profile",
       "callback_url": "https://asanbar.iran.liara.run/profile/wallet/fallback",
       "description": "Transaction description.",
       "metadata": {"mobile": user.phoneNumber.toString(), "email": "info.test@gmail.com"}
