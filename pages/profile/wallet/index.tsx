@@ -177,13 +177,16 @@ function index() {
         ) : (
           <>
             <label htmlFor="">لیست تراکنش ها</label>
-                  {payments.map((item:any)=> {
-                      <div className="flex flex-col gap-2 p-1" key={item._id}>
-                             <div className="border p-1 rounded-lg my-2 flex gap-2">
-                              <span>{item.amount}</span>
+                  {payments.map((item:any)=> (
+                      <div className="flex flex-col gap-1 p-1 w-full" key={item._id}>
+                             <div className="border p-1 rounded-lg my-2 flex justify-between w-full">
+                              <span>{item.amount.toLocaleString()} تومان</span>
+                              <span>{item.date}</span>
+                              <span>{item.time}</span>
                              </div>
                       </div>
-                  })}
+                  )
+                  )}
           </>
         )}
   
