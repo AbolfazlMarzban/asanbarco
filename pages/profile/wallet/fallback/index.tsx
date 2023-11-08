@@ -40,18 +40,18 @@ function index() {
         <div className="w-full h-screen flex justify-center items-center">
             {router.query.Status == "OK" ? 
             (
-                <>
+                <div className='flex flex-col gap-2'>
                 <span className='text-green-600 text-xl'>پرداخت شما موفقیت آمیز بود</span>
                 <button className='w-64 bg-green-600 text-white p-3 text-center' onClick={()=>paySuccess()}>بازگشت به آسان بار</button>
-                </>
+                </div>
             )
             :
             (
-                <>                
+                <div className='flex flex-col gap-2'>                
                 <span className='text-red-600 text-xl'>پرداخت شما موفقیت آمیز نبود لطفاً مجدداً تلاش فرمایید</span>
                 <button className='w-64 bg-red-600 text-white p-3 text-center' onClick={()=>router.push('/profile')}>بازگشت به آسان بار</button>
 
-                </>
+                </div>
             )
         }
         </div>
