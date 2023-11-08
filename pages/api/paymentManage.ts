@@ -20,8 +20,9 @@ export default async function handler(req: any, res: any) {
   if(user){
     const result = await axios.post('https://api.zarinpal.com/pg/v4/payment/request.json', {
       "merchant_id": code,
-      "amount": payAmount,
-      "callback_url": "https://asanbar.iran.liara.run/profile",
+      "amount": payAmount*10,
+      // "callback_url": "https://asanbar.iran.liara.run/profile",
+      "callback_url": "http://localhost:3000/profile/wallet/fallback",
       "description": "Transaction description.",
       "metadata": {"mobile": user.phoneNumber.toString(), "email": "info.test@gmail.com"}
     },
@@ -31,13 +32,7 @@ export default async function handler(req: any, res: any) {
         "Accept": '*/*'
       }
     })
-    if(result){
-      // const wallet =  await payments.create({
-      //   "userID": userID,
-      //   "date": date,
-      //   "amount": payAmount,
-      //   "time": time
-      // }) 
+    if(result){ 
       const path = "https://www.zarinpal.com/pg/StartPay/" + result.data.data.authority
       res.json(path)
     }
@@ -46,6 +41,10 @@ export default async function handler(req: any, res: any) {
   if(method == "GET"){
     const userID = req.query.userID
     const result = await payments.find({userID: userID})
+    let date = LocalDate()
+    let time = LocalTime()
+    console.log('date', date)
+    console.log('time', time)
     if(result){
       res.json(result)
     }

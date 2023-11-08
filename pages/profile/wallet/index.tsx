@@ -31,7 +31,7 @@ function index() {
         payAmount: payAmount
       }
       const path = await axios.post('/api/paymentManage', data)
-      console.log('path', path)
+      localStorage.setItem('payAmount', payAmount)
       router.push(path.data)
     }
   } catch(error){
@@ -46,6 +46,7 @@ function index() {
     }
     const result = await axios.get(`/api/paymentManage?userID=${id}`)
     if(result){
+      console.log('paymets', result)
       setPayments(result.data)
     }
   })()
