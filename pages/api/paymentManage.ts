@@ -14,15 +14,16 @@ export default async function handler(req: any, res: any) {
     const time = LocalTime()
     const userID = req.body.userID
     const payAmount = req.body.payAmount
-    const user = await cargoOwners.find({_id:userID})
-    // console.log('user', user)
-   var code = '942ab142-ed88-4412-8c9f-ab8658074bcf' 
+    const user = await cargoOwners.findOne({_id: userID})
+   var code = '942ab142-ed88-4412-8c9f-ab8658074bcf'
+  // var code = "80768044-e2aa-479b-8386-6f6f9d2e6606"
+  if(user){
     const result = await axios.post('https://api.zarinpal.com/pg/v4/payment/request.json', {
       "merchant_id": code,
       "amount": payAmount,
-      "callback_url": "/profile",
+      "callback_url": "https://asanbar.iran.liara.run/profile",
       "description": "Transaction description.",
-      "metadata": {"mobile": user[0].phoneNumber, "email": "info.test@gmail.com"}
+      "metadata": {"mobile": user.phoneNumber.toString(), "email": "info.test@gmail.com"}
     },
     {
       headers: {
@@ -31,15 +32,16 @@ export default async function handler(req: any, res: any) {
       }
     })
     if(result){
-      const wallet =  await payments.create({
-        "userID": userID,
-        "date": date,
-        "amount": payAmount,
-        "time": time
-      }) 
+      // const wallet =  await payments.create({
+      //   "userID": userID,
+      //   "date": date,
+      //   "amount": payAmount,
+      //   "time": time
+      // }) 
       const path = "https://www.zarinpal.com/pg/StartPay/" + result.data.data.authority
       res.json(path)
     }
+  }
   }
   if(method == "GET"){
     const userID = req.query.userID

@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 function index() {
   const [display, setDisplay] = useState("pay");
   const [suggested, setSuggested] : any = useState("");
-  const [payAmount, setPayAmount] :any = useState('')
+  const [payAmount, setPayAmount] :any = useState(null)
   const [userID, setUserID] = useState(null)
   const [payments, setPayments] = useState([])
   const moneyList = [
@@ -25,7 +25,7 @@ function index() {
   const router = useRouter()
  async function getGateway(){
   try{
-    if(payAmount.length > 0){
+    if(payAmount){
       var data = {
         userID: userID,
         payAmount: payAmount
@@ -108,7 +108,10 @@ function index() {
               {moneyList.map((item) => (
                 <div
                   className="basis-1/4  p-2"
-                  onClick={() => setSuggested(item)}
+                  onClick={() =>{
+                    setSuggested(item)
+                    setPayAmount(item)
+                  } }
                 >
                   <div
                     onClick={()=>setPayAmount(item)}
@@ -160,7 +163,7 @@ function index() {
                 </svg>
               </div>
             </div>
-            {payAmount.length > 0 && (
+            {payAmount &&  (
             <button className="bg-teal-600 text-white rounded-lg w-full p-2 mt-10" onClick={()=>getGateway()}>
                 پرداخت
              </button>
