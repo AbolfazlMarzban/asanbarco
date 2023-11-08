@@ -22,7 +22,7 @@ export default async function handler(req: any, res: any) {
       "merchant_id": code,
       "amount": payAmount*10,
       // "callback_url": "https://asanbar.iran.liara.run/profile",
-      "callback_url": "http://localhost:3000/profile/wallet/fallback",
+      "callback_url": "https://asanbar.iran.liara.run/profile/wallet/fallback",
       "description": "Transaction description.",
       "metadata": {"mobile": user.phoneNumber.toString(), "email": "info.test@gmail.com"}
     },
