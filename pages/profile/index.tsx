@@ -14,11 +14,11 @@ function index() {
       const id : any = localStorage.getItem('userID')
       if(id){
         setUserID(id)
+        const score = await axios.get(`/api/scoreManage?userID=${id}`)
+        console.log('score', score)
+        const wallet = await axios.get(`/api/paymentManage?userID=${id}`)
+        console.log('wallet', wallet)
       }
-      const score = await axios.get(`/api/scoreManage?userID=${id}`)
-      console.log('score', score)
-      const wallet = await axios.get(`/api/paymentManage?userID=${id}`)
-      console.log('wallet', wallet)
 
     })()
   }, [])
