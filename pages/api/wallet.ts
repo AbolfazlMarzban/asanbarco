@@ -18,6 +18,13 @@ export default async function handler(req: any, res: any) {
         "amount": payAmount,
         "time": time
       })
+      
+      const wallett =  await wallet.create({
+        "userID": userID,
+        "date": date,
+        "amount": payAmount,
+        "time": time
+      })
       if(wallet){
         res.send(true)
       }
