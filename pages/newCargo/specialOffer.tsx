@@ -6,16 +6,19 @@ import Inputbox from "@/components/UI/inputbox";
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ReverseAccordion from "@/components/UI/reverseAccordion";
 import {useState, useEffect} from "react";
+import axios from "axios";
 
 function SpecialOffer() {
   const [data, setData] = useState({})
   const [subscription, setSubscription] = useState('')
   const [payAmount, setPayAmount] : any = useState(null)
   const [offCode, setOffode] = useState('')
+  const [cargoData, setCargoData] = useState({})
   useEffect(()=>{
     let cargo :any = localStorage.getItem('cargoData')
     if(cargo){
       console.log('cargo', JSON.parse(cargo))
+      setCargoData(cargo)
     }
   }, [])
   function selectMonthly(){
@@ -25,6 +28,17 @@ function SpecialOffer() {
   function selectWeekly(){
     setSubscription('weekly')
     setPayAmount(40000)
+  }
+  async function buyPackage() {
+    try{
+      let data = {
+        'duration': subscription,
+        'payAmount': payAmount
+      }
+      const result = await axios.post(`/api/packageManage`, data )
+    } catch(error){
+      console.log(error)
+    }
   }
   return (
     <div className="bg-[#f1f5f8] h-screen">
@@ -104,7 +118,7 @@ function SpecialOffer() {
                           <span>{Math.round(1.09*payAmount).toLocaleString('en-us')} تومان</span>
                         
                       </div>
-                      <button className="bg-emerald-300 text-white rounded-lg px-6">
+                      <button className="bg-emerald-300 text-white rounded-lg px-6" onClick={()=>buyPackage()}>
                           خرید پکیج
                       </button>
                     </div>
@@ -126,13 +140,14 @@ function SpecialOffer() {
                         <span className="text-black">0 تومان</span>
                       </div>
                       )}
-                      <div className="flex justify-between">
-                        <span className="text-slate-400">کسر از کیف پول</span>
-                        <span className="text-black">40,000 تومان</span>
-                      </div>
+                   
                       <div className="flex justify-between">
                         <span className="text-slate-400">ارزش افزوده</span>
                         <span className="text-black">{0.09*payAmount} تومان</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-slate-400">کسر از کیف پول</span>
+                        <span className="text-black">{Math.round(1.09*payAmount).toLocaleString('en-us')} تومان</span>
                       </div>
                       <hr />
                       <div className="flex justify-between">
