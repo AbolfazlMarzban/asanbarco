@@ -101,7 +101,7 @@ function SpecialOffer() {
                       <div className="flex flex-col justify-center items-start">
                       
                           <label htmlFor="">مبلغ قابل پرداخت</label>
-                          <span>{payAmount} تومان</span>
+                          <span>{Math.round(1.09*payAmount).toLocaleString('en-us')} تومان</span>
                         
                       </div>
                       <button className="bg-emerald-300 text-white rounded-lg px-6">
