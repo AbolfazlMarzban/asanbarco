@@ -25,7 +25,7 @@ function index() {
           score.data.forEach((item:any)=> total += item.score)
           setScore(total)
         }
-        const wallet = await axios.get(`/api/paymentManage?userID=${id}`)
+        const wallet = await axios.get(`/api/wallet?userID=${id}`)
         // console.log('wallet', wallet)
         if(wallet){
           let total = 0

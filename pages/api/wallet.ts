@@ -2,6 +2,7 @@ import LocalDate from "@/helpers/date";
 import LocalTime from "@/helpers/time";
 import { mongooseConnect } from "@/lib/mongoos";
 import { payments } from "@/models/payments";
+import { wallet } from "@/models/wallet";
 
 export default async function handler(req: any, res: any) {
     await mongooseConnect();
@@ -28,5 +29,10 @@ export default async function handler(req: any, res: any) {
       if(wallet){
         res.send(true)
       }
+    }
+    if(method == "GET"){
+      const id = req.query.userID
+      const result = await wallet.find({userID:id})
+      res.json(result)
     }
 }
