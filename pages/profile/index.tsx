@@ -4,11 +4,15 @@ import Navbar from "@/components/navbar";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
+import placeholder from "@/public/man.png"
 
 function index() {
   const [userID, setUserID] = useState(null)
   const [score, setScore] = useState(0)
   const [wallet, setWallet] = useState(0)
+  const [profilePic, setProfilePic] = useState('')
+  const [phoneNumber, setPhonenumber] = useState('')
   useEffect(()=>{
     (async()=>{
       const id : any = localStorage.getItem('userID')
@@ -27,6 +31,14 @@ function index() {
           let total = 0
           wallet.data.forEach((item:any)=> total += item.amount)
           setWallet(total)
+        }
+
+        const user = await axios.get(`/api/userManage?id=${id}`)
+        if(user.data.profilePic && user.data.profilePic.length > 0){
+          setProfilePic(user.data.profilePic)
+        }
+        if(user.data.phoneNumber){
+          setPhonenumber(user.data.phoneNumber)
         }
       }
 
@@ -244,8 +256,15 @@ function index() {
       <div className="h-full bg-myblue">
         <div className="flex flex-col items-center py-6 ">
           <div className="w-16 h-16 rounded-full border-2 ">
-            <img src="man.png" alt="" />
-          </div>
+          {profilePic ? 
+          (
+            <Image src={profilePic} alt="" layout="fill" objectFit="cover" className="rounded-full"></Image>
+          )
+            : 
+            (
+              <Image src={placeholder} alt=""></Image>
+            )
+        }          </div>
           <div className="w-8 bg-green-300 mt-2 pa-3 rounded-lg flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -263,7 +282,7 @@ function index() {
             </svg>
           </div>
           <div className="mt-2">
-            <span className="text-white">09183933164</span>
+            <span className="text-white">{phoneNumber}</span>
           </div>
           <div className="flex items-center justify-center">
             <div className="flex flex-col items-center mx-5">
