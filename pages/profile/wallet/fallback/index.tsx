@@ -7,18 +7,6 @@ import axios from 'axios';
 function index() {
     const [status, setStatus]:any = useState(null)
     const router: any = useRouter()
-    // useEffect(()=>{
-    //     if(router.query.Status == "OK"){
-    //         (async()=>{
-    //             let payAmount = localStorage.getItem('payAmount')
-    //             let userID = localStorage.getItem('userID')
-    //             const result = await axios.post(`/api/wallet?payAmount=${payAmount}&userID=${userID}`)
-    //             if(result){
-    //                 localStorage.removeItem('payAmount')
-    //             }
-    //         })()
-    //     }
-    // }, [])
 
     async function paySuccess(){
         try{
