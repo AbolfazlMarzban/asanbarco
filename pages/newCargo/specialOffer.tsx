@@ -54,7 +54,7 @@ function SpecialOffer() {
       } else {
         data.payAmount = payAmount
       }
-      // const result = await axios.post(`/api/packageManage`, data )
+      const result = await axios.post(`/api/packageManage`, data )
     } catch(error){
       console.log(error)
     }
