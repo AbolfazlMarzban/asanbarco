@@ -45,7 +45,7 @@ function index() {
     if(id){
       setUserID(id)
     }
-    const result = await axios.get(`/api/paymentManage?userID=${id}`)
+    const result = await axios.get(`/api/wallet?userID=${id}`)
     if(result){
       console.log('paymets', result)
       let sum = 0

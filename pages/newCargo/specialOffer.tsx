@@ -20,6 +20,9 @@ function SpecialOffer() {
       console.log('cargo', JSON.parse(cargo))
       setCargoData(cargo)
     }
+    (async()=>{
+      const result = await axios.get(`/api/`)
+    })()
   }, [])
   function selectMonthly(){
     setSubscription('monthly')
