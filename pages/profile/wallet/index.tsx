@@ -47,7 +47,6 @@ function index() {
     }
     const result = await axios.get(`/api/wallet?userID=${id}`)
     if(result){
-      console.log('paymets', result)
       let sum = 0
       result.data.forEach((item:any) => sum += item.amount)
       setTotal(sum)

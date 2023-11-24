@@ -14,29 +14,45 @@ function SpecialOffer() {
   const [payAmount, setPayAmount] : any = useState(null)
   const [offCode, setOffode] = useState('')
   const [cargoData, setCargoData] = useState({})
+  const [total, setTotal] = useState(0)
+  const [getFromWallet, setGetFromWallet] = useState(false)
   useEffect(()=>{
     let cargo :any = localStorage.getItem('cargoData')
     if(cargo){
-      console.log('cargo', JSON.parse(cargo))
       setCargoData(cargo)
     }
     (async()=>{
-      const result = await axios.get(`/api/`)
+      const id = localStorage.getItem('userID')
+      const result = await axios.get(`/api/wallet?userID=${id}`)
+      let sum = 0
+      result.data.forEach((item:any) => sum += item.amount)
+      setTotal(sum)
     })()
   }, [])
   function selectMonthly(){
     setSubscription('monthly')
     setPayAmount(120000)
+    if(total > 120000){
+      setGetFromWallet(true)
+    }
   }
   function selectWeekly(){
     setSubscription('weekly')
     setPayAmount(40000)
+    if(total > 40000){
+      setGetFromWallet(true)
+    }
   }
   async function buyPackage() {
     try{
-      let data = {
-        'duration': subscription,
-        'payAmount': payAmount
+      let data : any = {
+        'duration': subscription
+      }
+
+      if(total > payAmount){
+        data.walletPay = payAmount 
+      } else {
+        data.payAmount = payAmount
       }
       // const result = await axios.post(`/api/packageManage`, data )
     } catch(error){
@@ -150,7 +166,7 @@ function SpecialOffer() {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-slate-400">کسر از کیف پول</span>
-                        <span className="text-black">{Math.round(1.09*payAmount).toLocaleString('en-us')} تومان</span>
+                        <span className="text-black">{getFromWallet ? Math.round(1.09*payAmount).toLocaleString('en-us') : total} تومان</span>
                       </div>
                       <hr />
                       <div className="flex justify-between">
