@@ -52,6 +52,8 @@ export default async function handler(req: any, res: any) {
         }
     }
     if(method == "PATCH"){
+        const data = req.body
+        const cargoData = req.body.cargoData
         
     }
 }
