@@ -41,7 +41,7 @@ function SpecialOffer() {
   }
   function selectWeekly(){
     setSubscription('weekly')
-    setPayAmount(40000)
+    setPayAmount(1000)
     if(total > 40000){
       setGetFromWallet(true)
     }
@@ -50,7 +50,7 @@ function SpecialOffer() {
     try{
       const id = localStorage.getItem('userID')
       let data : any = {
-        // 'duration': subscription,
+        'duration': subscription,
         'userID': id,
         'cargoData': cargoData
       }

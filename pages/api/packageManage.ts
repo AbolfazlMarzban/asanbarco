@@ -16,12 +16,12 @@ export default async function handler(req: any, res: any) {
         const date = LocalDate()
         const time = LocalTime()
         // console.log('data', data)
-        // let duration;
-        // if(data.duration == 'monthly'){
-        //     duration = 30;
-        // } else if(data.duration == 'weekly'){
-        //     duration = 7;
-        // }
+        let duration;
+        if(data.duration == 'monthly'){
+            duration = 30;
+        } else if(data.duration == 'weekly'){
+            duration = 7;
+        }
         if(data.walletPay){
             const payfromWallet = await wallet.create({"userID": data.userID, "date": date, "amount": -data.walletPay, "time": time})
         }
@@ -51,6 +51,20 @@ export default async function handler(req: any, res: any) {
               }
             }
         }
+        if(!data.payAmount){
+          let cd = data.cargoData
+          const cargoData = JSON.parse(cd)
+          let selectedDay = ''
+          if(cargoData.selectedDay){
+            selectedDay = cargoData.selectedDay.year.toString() + '/' + cargoData.selectedDay.month.toString() + '/' + cargoData.selectedDay.day.toString()
+       }
+       const result = await cargo.create({"origin": cargoData.origin, "desination": cargoData.dest,"barnameh": cargoData.barnameh, "carrier": cargoData.carrier,
+       "feeType": cargoData.feeType,"suggestedFee": cargoData.fee, "cargoType": cargoData.cargoType, "weightType": cargoData.weight,
+       "loadingTime": cargoData.loadingTime, "dischargeTime": cargoData.dischargeTime,"phoneNumber": cargoData.phone,"loadingDate": cargoData.loadingDate, "selectedDay": selectedDay
+       , "comments": cargoData.comment, "regDate": date, "regTime": time, "userRegID": cargoData.userRegID, "regType": cargoData.regType, "specialDate": date, 'specialDuration': duration
+   }) 
+        }
+        
     }
     if(method == "PATCH"){
         const data = req.body
