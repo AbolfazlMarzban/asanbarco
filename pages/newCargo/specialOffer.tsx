@@ -7,6 +7,7 @@ import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ReverseAccordion from "@/components/UI/reverseAccordion";
 import {useState, useEffect} from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 function SpecialOffer() {
   const [data, setData] = useState({})
@@ -16,6 +17,8 @@ function SpecialOffer() {
   const [cargoData, setCargoData] = useState({})
   const [total, setTotal] = useState(0)
   const [getFromWallet, setGetFromWallet] = useState(false)
+  const router = useRouter()
+
   useEffect(()=>{
     let cargo :any = localStorage.getItem('cargoData')
     if(cargo){
@@ -45,16 +48,24 @@ function SpecialOffer() {
   }
   async function buyPackage() {
     try{
+      const id = localStorage.getItem('userID')
       let data : any = {
-        'duration': subscription
+        'duration': subscription,
+        'userID': id,
+        'cargoData': cargoData
       }
 
       if(total > payAmount){
         data.walletPay = payAmount 
       } else {
-        data.payAmount = payAmount
+        data.payAmount = payAmount - total
+        data.walletPay = total
       }
       const result = await axios.post(`/api/packageManage`, data )
+      if(result.data.path){
+        console.log('result', result)
+        router.push(result.data.path)
+      }
     } catch(error){
       console.log(error)
     }

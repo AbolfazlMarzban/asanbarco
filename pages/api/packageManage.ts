@@ -1,4 +1,9 @@
+import LocalDate from "@/helpers/date";
+import LocalTime from "@/helpers/time";
 import { mongooseConnect } from "@/lib/mongoos";
+import { cargoOwners } from "@/models/cargoOwners";
+import { wallet } from "@/models/wallet";
+import axios from "axios";
 
 export default async function handler(req: any, res: any) {
     await mongooseConnect();
@@ -7,7 +12,9 @@ export default async function handler(req: any, res: any) {
     }
     if(method == "POST"){
         const data = req.body
-        console.log('data', data)
+        const date = LocalDate()
+        const time = LocalTime()
+        // console.log('data', data)
         let duration;
         if(data.duration == 'monthly'){
             duration = 30;
@@ -15,10 +22,33 @@ export default async function handler(req: any, res: any) {
             duration = 7;
         }
         if(data.walletPay){
-
-        } 
+            const payfromWallet = await wallet.create({"userID": data.userID, "date": date, "amount": -data.walletPay, "time": time})
+        }
         if(data.payAmount){
-            
+            const user = await cargoOwners.findOne({_id: data.userID})
+            // console.log('user', user)
+            var code = '942ab142-ed88-4412-8c9f-ab8658074bcf'
+            if(user){
+              const result = await axios.post('https://api.zarinpal.com/pg/v4/payment/request.json', {
+                "merchant_id": code,
+                "amount": data.payAmount*10,
+                "callback_url": "https://asanbar.iran.liara.run/newCargo/fallback",
+                "description": "Transaction description.",
+                "metadata": {"mobile": user.phoneNumber.toString(), "email": "info.test@gmail.com"}
+              },
+              {
+                headers: {
+                  "Content-Type": 'application/json',
+                  "Accept": '*/*'
+                }
+              })
+              if(result){ 
+                const path = "https://www.zarinpal.com/pg/StartPay/" + result.data.data.authority
+                res.json({
+                    "path": path
+                })
+              }
+            }
         }
     }
 }
