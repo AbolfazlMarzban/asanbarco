@@ -15,12 +15,12 @@ export default async function handler(req: any, res: any) {
         const date = LocalDate()
         const time = LocalTime()
         // console.log('data', data)
-        let duration;
-        if(data.duration == 'monthly'){
-            duration = 30;
-        } else if(data.duration == 'weekly'){
-            duration = 7;
-        }
+        // let duration;
+        // if(data.duration == 'monthly'){
+        //     duration = 30;
+        // } else if(data.duration == 'weekly'){
+        //     duration = 7;
+        // }
         if(data.walletPay){
             const payfromWallet = await wallet.create({"userID": data.userID, "date": date, "amount": -data.walletPay, "time": time})
         }
@@ -50,5 +50,8 @@ export default async function handler(req: any, res: any) {
               }
             }
         }
+    }
+    if(method == "PATCH"){
+        
     }
 }

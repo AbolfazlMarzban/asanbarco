@@ -50,7 +50,7 @@ function SpecialOffer() {
     try{
       const id = localStorage.getItem('userID')
       let data : any = {
-        'duration': subscription,
+        // 'duration': subscription,
         'userID': id,
         'cargoData': cargoData
       }
@@ -61,6 +61,7 @@ function SpecialOffer() {
         data.payAmount = payAmount - total
         data.walletPay = total
       }
+      localStorage.setItem('packageDuration', subscription)
       const result = await axios.post(`/api/packageManage`, data )
       if(result.data.path){
         console.log('result', result)
