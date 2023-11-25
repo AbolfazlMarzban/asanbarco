@@ -41,7 +41,7 @@ function SpecialOffer() {
   }
   function selectWeekly(){
     setSubscription('weekly')
-    setPayAmount(1000)
+    setPayAmount(40000)
     if(total > 40000){
       setGetFromWallet(true)
     }
