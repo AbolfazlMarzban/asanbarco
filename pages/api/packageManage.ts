@@ -89,6 +89,8 @@ export default async function handler(req: any, res: any) {
         "loadingTime": cargoData.loadingTime, "dischargeTime": cargoData.dischargeTime,"phoneNumber": cargoData.phone,"loadingDate": cargoData.loadingDate, "selectedDay": selectedDay
         , "comments": cargoData.comment, "regDate": date, "regTime": time, "userRegID": cargoData.userRegID, "regType": cargoData.regType, "specialDate": date, 'specialDuration': duration
     })
-        
+        if(result){
+          res.json(true)
+        }
     }
 }
