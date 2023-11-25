@@ -4,6 +4,7 @@ import { mongooseConnect } from "@/lib/mongoos";
 import { cargoOwners } from "@/models/cargoOwners";
 import { wallet } from "@/models/wallet";
 import axios from "axios";
+import { cargo } from "@/models/cargo";
 
 export default async function handler(req: any, res: any) {
     await mongooseConnect();
@@ -53,7 +54,27 @@ export default async function handler(req: any, res: any) {
     }
     if(method == "PATCH"){
         const data = req.body
-        const cargoData = req.body.cargoData
+        let cd = req.body.cargoData
+        const cargoData = JSON.parse(cd)
+        let du = req.body.duration
+        let duration;
+        if(du == 'weekly'){
+            duration = 7;
+        }
+        if(du == 'monthly'){
+            duration = 30;
+        }
+        let selectedDay = ''
+        let time = LocalTime()
+        let date = LocalDate()
+        if(cargoData.selectedDay){
+             selectedDay = cargoData.selectedDay.year.toString() + '/' + cargoData.selectedDay.month.toString() + '/' + cargoData.selectedDay.day.toString()
+        }
+        const result = await cargo.create({"origin": cargoData.origin, "desination": cargoData.dest,"barnameh": cargoData.barnameh, "carrier": cargoData.carrier,
+        "feeType": cargoData.feeType,"suggestedFee": cargoData.fee, "cargoType": cargoData.cargoType, "weightType": cargoData.weight,
+        "loadingTime": cargoData.loadingTime, "dischargeTime": cargoData.dischargeTime,"phoneNumber": cargoData.phone,"loadingDate": cargoData.loadingDate, "selectedDay": selectedDay
+        , "comments": cargoData.comment, "regDate": date, "regTime": time, "userRegID": cargoData.userRegID, "regType": cargoData.regType, "specialDate": date, 'specialDuration': duration
+    })
         
     }
 }
