@@ -61,7 +61,7 @@ export default async function handler(req: any, res: any) {
        const result = await cargo.create({"origin": cargoData.origin, "desination": cargoData.dest,"barnameh": cargoData.barnameh, "carrier": cargoData.carrier,
        "feeType": cargoData.feeType,"suggestedFee": cargoData.fee, "cargoType": cargoData.cargoType, "weightType": cargoData.weight,
        "loadingTime": cargoData.loadingTime, "dischargeTime": cargoData.dischargeTime,"phoneNumber": cargoData.phone,"loadingDate": cargoData.loadingDate, "selectedDay": selectedDay
-       , "comments": cargoData.comment, "regDate": date, "regTime": time, "userRegID": cargoData.userRegID, "regType": cargoData.regType, "specialDate": date, 'specialDuration': duration
+       , "comments": cargoData.comment, "regDate": date, "regTime": time, "userRegID": cargoData.userRegID, "regType": cargoData.regType, "specialDate": new Date(), 'specialDuration': duration
    }) 
         }
         
@@ -87,7 +87,7 @@ export default async function handler(req: any, res: any) {
         const result = await cargo.create({"origin": cargoData.origin, "desination": cargoData.dest,"barnameh": cargoData.barnameh, "carrier": cargoData.carrier,
         "feeType": cargoData.feeType,"suggestedFee": cargoData.fee, "cargoType": cargoData.cargoType, "weightType": cargoData.weight,
         "loadingTime": cargoData.loadingTime, "dischargeTime": cargoData.dischargeTime,"phoneNumber": cargoData.phone,"loadingDate": cargoData.loadingDate, "selectedDay": selectedDay
-        , "comments": cargoData.comment, "regDate": date, "regTime": time, "userRegID": cargoData.userRegID, "regType": cargoData.regType, "specialDate": date, 'specialDuration': duration
+        , "comments": cargoData.comment, "regDate": date, "regTime": time, "userRegID": cargoData.userRegID, "regType": cargoData.regType, "specialDate": new Date(), 'specialDuration': duration
     })
         if(result){
           res.json(true)
