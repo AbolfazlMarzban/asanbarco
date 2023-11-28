@@ -3,7 +3,12 @@ import React from "react";
 function CargoBox({data}:any) {
   function isSpecial(){
     console.log('data', data)
-    return true
+    let today: any = new Date()
+    var date = new Date()
+    var expDate: any = date.setDate(date.getDate() + data.specialDuration)
+    if(data.specialDuration && (Date.parse(today) < Date.parse(expDate))){
+      return true
+    }
   }
   return (
     <div className="flex flex-col w-full mx-1 my-2 p-2 bg-white border rounded-lg relative">
