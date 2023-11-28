@@ -124,7 +124,11 @@ async function editCargo() {
 }
   async function submitDriver(item:any){
     try{
-
+      let data = item
+      const result = await axios.post(`/api/requestsManage`, data)
+      if(result){
+        console.log("result", result)
+      }
     } catch(error){
       console.log(error)
     }
