@@ -122,7 +122,13 @@ async function editCargo() {
     console.log(error)
   }
 }
-
+  async function submitDriver(item:any){
+    try{
+      
+    } catch(error){
+      console.log(error)
+    }
+  }
   return (
     <div className="bg-[#f1f5f8] h-screen">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between">
@@ -702,12 +708,12 @@ async function editCargo() {
            {confirm && (
             <Dialog title={"تأیید راننده"} close={() => setConfirm(false)}>
               <div className="flex flex-col px-3 py-2">
-                <span>آیا این بار را حمل خواهد کرد؟</span>
+                <span>آیا {item.driver.fullName} این بار را حمل خواهد کرد؟</span>
                 <div className="flex gap-3 mx-3 my-2">
-                  <button className="bg-slate-300 rounded-mdc w-1/2">
+                  <button className="bg-slate-300 rounded-md w-1/2 p-2" onClick={()=>setConfirm(false)}>
                     خیر
                   </button>
-                  <button className="bg-myblue text-white rounded-md w-1/2">
+                  <button className="bg-myblue text-white rounded-md w-1/2 p-2" onClick={()=>submitDriver(item)}>
                     بله
                   </button>
                 </div>
