@@ -641,6 +641,7 @@ async function editCargo() {
       ) : (
         <>
         {calls.map((item:any)=>(
+          <>
           <div className=" mx-4 bg-white border-[1px] rounded-md  ">
             <div className="small_details grid grid-cols-2 justify-items-stretch ">
               <div className="border-b-[1px] border-l-[1px] border-slate-100  px-2 py-3">
@@ -675,6 +676,7 @@ async function editCargo() {
                 </div>
               </div>
               <div className="border-b-[1px]  border-slate-100  px-2 py-3">
+              <a href={`tel:${item.driver.phoneNumber}`}>
                 <div className="flex items-center gap-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -693,11 +695,11 @@ async function editCargo() {
 
                   <span className="text-myblue">تماس با راننده</span>
                 </div>
+                </a>
               </div>
             </div>
           </div>
-        ))}
-          {confirm && (
+           {confirm && (
             <Dialog title={"تأیید راننده"} close={() => setConfirm(false)}>
               <div className="flex flex-col px-3 py-2">
                 <span>آیا این بار را حمل خواهد کرد؟</span>
@@ -712,6 +714,9 @@ async function editCargo() {
               </div>
             </Dialog>
           )}
+          </>
+        ))}
+         
          
         </>
       )}
