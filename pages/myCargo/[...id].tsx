@@ -60,15 +60,14 @@ function index() {
           day: result.data.selectedDay[0].split('/')[2]
         }
         const callss = await axios.get(`/api/callManage?cargoID=${id}`)
-        // console.log('calls', callss)
         callss.data.forEach(async(item:any)=> {
           var user = await axios.get(`/api/driverManage?id=${item.driverId}`)
           if(user){
-            item.driver = user
+            item.driver = user.data
           }
         })
-        console.log('callss', callss)
-        // setCalls(callss.data)
+        // console.log('callss', callss)
+        setCalls(callss.data)
 
 
 
