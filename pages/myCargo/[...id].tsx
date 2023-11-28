@@ -640,15 +640,16 @@ async function editCargo() {
         </>
       ) : (
         <>
+        {calls.map((item:any)=>(
           <div className=" mx-4 bg-white border-[1px] rounded-md  ">
             <div className="small_details grid grid-cols-2 justify-items-stretch ">
               <div className="border-b-[1px] border-l-[1px] border-slate-100  px-2 py-3">
                 <h3 className="text-gray-400 text-sm">نام راننده</h3>
-                علی مرادی
+                {item.driver.fullName}
               </div>
               <div className="border-b-[1px]  border-slate-100 px-2 py-3 ">
                 <h3 className="text-gray-400 text-sm pb-2">شماره راننده</h3>
-                0918341441
+                {item.driver.phoneNumber}
               </div>
               <div className="border-b-[1px] border-l-[1px] border-slate-100 px-2 py-3 ">
                 <div
@@ -695,6 +696,7 @@ async function editCargo() {
               </div>
             </div>
           </div>
+        ))}
           {confirm && (
             <Dialog title={"تأیید راننده"} close={() => setConfirm(false)}>
               <div className="flex flex-col px-3 py-2">
