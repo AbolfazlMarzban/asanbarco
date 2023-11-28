@@ -39,6 +39,7 @@ function index() {
   const [weight, setWeight] = useState("");
   const [loadingTime, setLoadingTime] = useState("");
   const [dischargeTime, setDischargeTime] = useState("");
+  const [calls, setCalls] = useState([])
   const router = useRouter();
   useEffect(() => {
     let id;
@@ -50,6 +51,7 @@ function index() {
     if (id) {
       (async () => {
         const result = await axios.get(`/api/cargoDetail?id=${id}`);
+
         console.log("data", result.data);
         setData(result.data);
         let date = {
@@ -57,6 +59,9 @@ function index() {
           month: result.data.selectedDay[0].split('/')[1],
           day: result.data.selectedDay[0].split('/')[2]
         }
+        const callss = await axios.get(`/api/callManage?cargoID=${id}`)
+        console.log('calls', callss)
+        setCalls(callss.data)
         setSelectedDay(date)
         setFee(result.data.suggestedFee)
         setCargoType(result.data.cargoType)
