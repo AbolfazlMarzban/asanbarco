@@ -124,7 +124,7 @@ async function editCargo() {
 }
   async function submitDriver(item:any){
     try{
-      
+
     } catch(error){
       console.log(error)
     }
@@ -167,7 +167,7 @@ async function editCargo() {
             display == "reqs" ? `bg-myblue text-white` : `bg-white text-myblue`
           } p-2 w-1/2 rounded-md`}
         >
-          درخواست ها
+          درخواست ها 
         </button>
       </div>
       {display == "cargo" ? (
@@ -175,7 +175,7 @@ async function editCargo() {
           {data && (
             <>
               <div className="mx-4">
-                <CargoBox data={data}></CargoBox>
+                <CargoBox data={data} calls={calls.length}></CargoBox>
               </div>
               <div>
                 <div className=" mx-4 bg-white border-[1px] rounded-md  ">

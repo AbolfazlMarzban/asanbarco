@@ -1,6 +1,6 @@
 import React from "react";
 
-function CargoBox({data}:any) {
+function CargoBox({data, calls}:any) {
   function isSpecial(){
     console.log('data', data)
     let today: any = new Date()
@@ -44,7 +44,7 @@ function CargoBox({data}:any) {
         </div>
         <div className="basis-1/2 flex items-center gap-4">
           <div className="text-myblue border-2 border-myblue w-10 h-10 p-0 text-center rounded-full flex items-center justify-center">
-            0
+            {calls}
           </div>
           <span>تعداد در خواست ها</span>
         </div>
