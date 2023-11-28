@@ -62,6 +62,9 @@ function index() {
         const callss = await axios.get(`/api/callManage?cargoID=${id}`)
         console.log('calls', callss)
         setCalls(callss.data)
+
+
+        
         setSelectedDay(date)
         setFee(result.data.suggestedFee)
         setCargoType(result.data.cargoType)
