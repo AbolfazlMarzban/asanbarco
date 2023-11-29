@@ -127,7 +127,12 @@ async function editCargo() {
       let data = item
       const result = await axios.post(`/api/requestsManage`, data)
       if(result){
-        console.log("result", result)
+        if(result.data){
+          toast('بار به راننده موردنظر انتساب داده شد')
+        } 
+        if(!result.data){
+          toast('این بار قبلاً انتساب داده شده است')
+        }
       }
     } catch(error){
       console.log(error)

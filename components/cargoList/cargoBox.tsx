@@ -2,7 +2,7 @@ import React from "react";
 
 function CargoBox({data, calls}:any) {
   function isSpecial(){
-    console.log('data', data)
+    // console.log('data', data)
     let today: any = new Date()
     var date = new Date()
     var expDate: any = date.setDate(date.getDate() + data.specialDuration)

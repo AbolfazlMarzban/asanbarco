@@ -2,6 +2,7 @@ import { mongooseConnect } from "@/lib/mongoos";
 import { cargo } from "@/models/cargo";
 import LocalDate from "@/helpers/date";
 import LocalTime from "@/helpers/time";
+import { cargoRequests } from "@/models/cargoRequests";
 
 
 export default async function handler(req: any, res: any) {
