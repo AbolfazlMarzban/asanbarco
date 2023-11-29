@@ -129,9 +129,11 @@ async function editCargo() {
       if(result){
         if(result.data){
           toast('بار به راننده موردنظر انتساب داده شد')
+          router.push('/myCargo')
         } 
         if(!result.data){
           toast('این بار قبلاً انتساب داده شده است')
+          router.push('/myCargo')
         }
       }
     } catch(error){
