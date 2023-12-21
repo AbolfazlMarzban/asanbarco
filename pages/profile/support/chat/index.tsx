@@ -42,6 +42,9 @@ function index() {
         const result = await axios.patch("/api/supportManage", data);
         if (result.data) {
           toast("پیام شما با موفقیت ارسال شد");
+          setTimeout(()=>{
+            location.reload()
+          }, 3000)
         } else {
           toast("ارسال موفقیت آمیز نبود، دوباره تلاش کنید");
         }
@@ -49,6 +52,9 @@ function index() {
         const result = await axios.post("/api/supportManage", data);
         if (result.data) {
           toast("پیام شما با موفقیت ارسال شد");
+          setTimeout(()=>{
+            location.reload()
+          }, 3000)
         } else {
           toast("ارسال موفقیت آمیز نبود، دوباره تلاش کنید");
         }
