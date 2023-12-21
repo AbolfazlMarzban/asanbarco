@@ -18,7 +18,7 @@ export default async function handler(req: any, res:any){
         const time = LocalTime()
         const result = await Messages.create({
             'userID': data.userID,
-            'userType': 'راننده',
+            'userType': 'صاحب بار',
             'date': date,
             'time': time,
             'importance': data.importance,
