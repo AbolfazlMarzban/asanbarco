@@ -97,7 +97,10 @@ function index() {
           ارسال پیام
         </button>
         <button
-          onClick={() => setDisplay("list")}
+          onClick={() => {
+            setDisplay("list")
+            setMessageID(null)
+          }}
           className={`${
             display == "list" ? `bg-myblue text-white` : `bg-white text-myblue`
           } p-2 w-1/2 rounded-md`}
