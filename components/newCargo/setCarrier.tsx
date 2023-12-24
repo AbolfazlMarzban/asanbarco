@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Dialog from "../UI/dialog";
 import CarrierType from "./carrierType";
 import { useState } from "react";
+import axios from "axios";
 
 function SetCarrier({ title, close, select }: any) {
   const [carrierType, setCarrierType]: any = useState(null);
   const [carrierChildren, setcarrierChildren] = useState([]);
+  const [carriers, setCarriers]: any = useState([])
+  useEffect(()=>{
+    (async()=>{
+      const vehicles = await axios.get('/api/vehicleManage')
+      setCarriers(vehicles.data)
+    })()
+  }, [])
   function selectCarrierType(id: any) {
-    var cari: any = carriers.find((item) => item.id == id);
+    var cari: any = carriers.find((item:any) => item._id == id);
     setCarrierType(cari);
   }
   function selectChildren(ev: any, child: any) {
     if (ev.target.checked) {
-      var parent = carriers.find(item => item.children.includes(child))?.name 
+      var parent = carriers.find((item:any) => item.children.includes(child))?.name 
       let item = {
         parent: parent,
         child: child
@@ -26,80 +34,80 @@ function SetCarrier({ title, close, select }: any) {
     select(carrierChildren)
     close()
   }
-  var carriers = [
-    {
-      icon: "/traily.png",
-      name: "تریلی",
-      active: 120,
-      id: 0,
-      children: [
-        "کفی",
-        "بغلدار",
-        "کانتینردار",
-        "کمپرسی",
-        "ترانزیت",
-        "یخچال دار",
-        "تیغه دار(کانتینر بر)",
-        "تانکر مخزن دار",
-      ],
-    },
-    {
-      icon: "/tak.png",
-      name: "تک",
-      active: 82,
-      id: 1,
-      children: ["اطاقدار", "کمپرسی", "مسقف", "یخچال دار", "تانکر مخزن دار"],
-    },
-    {
-      icon: "/joft.png",
-      name: "جفت",
-      active: 49,
-      id: 2,
-      children: ["اطاق دار", "کمپرسی", "مسقف", "تانکر مخزن دار", "یخچال دار"],
-    },
-    {
-      icon: "/khavar.png",
-      name: "خاور و کامیونت",
-      active: 396,
-      id: 3,
-      children: [
-        "اطاقدار",
-        "کمپرسی",
-        "مسقف",
-        "یخچال دار",
-        "تانکر مخزن دار",
-        "911",
-      ],
-    },
-    {
-      icon: "/neisan.png",
-      name: "وانت و نیسان",
-      active: 325,
-      id: 4,
-      children: [
-        "پراید وانت",
-        "پیکان وانت ",
-        "نیسان",
-        "آریسان",
-        "نیسان یخچالی",
-      ],
-    },
-    {
-      icon: "/others.png",
-      name: "سایر ناوگان ها",
-      active: null,
-      id: 5,
-      children: [
-        "تانکر مخزن دار",
-        "بوژی",
-        "کمرشکن",
-        "بونکر",
-        "جرثقیل دار",
-        "جانبو",
-        "میکسر",
-      ],
-    },
-  ];
+  // var carriers = [
+  //   {
+  //     icon: "/traily.png",
+  //     name: "تریلی",
+  //     active: 120,
+  //     id: 0,
+  //     children: [
+  //       "کفی",
+  //       "بغلدار",
+  //       "کانتینردار",
+  //       "کمپرسی",
+  //       "ترانزیت",
+  //       "یخچال دار",
+  //       "تیغه دار(کانتینر بر)",
+  //       "تانکر مخزن دار",
+  //     ],
+  //   },
+  //   {
+  //     icon: "/tak.png",
+  //     name: "تک",
+  //     active: 82,
+  //     id: 1,
+  //     children: ["اطاقدار", "کمپرسی", "مسقف", "یخچال دار", "تانکر مخزن دار"],
+  //   },
+  //   {
+  //     icon: "/joft.png",
+  //     name: "جفت",
+  //     active: 49,
+  //     id: 2,
+  //     children: ["اطاق دار", "کمپرسی", "مسقف", "تانکر مخزن دار", "یخچال دار"],
+  //   },
+  //   {
+  //     icon: "/khavar.png",
+  //     name: "خاور و کامیونت",
+  //     active: 396,
+  //     id: 3,
+  //     children: [
+  //       "اطاقدار",
+  //       "کمپرسی",
+  //       "مسقف",
+  //       "یخچال دار",
+  //       "تانکر مخزن دار",
+  //       "911",
+  //     ],
+  //   },
+  //   {
+  //     icon: "/neisan.png",
+  //     name: "وانت و نیسان",
+  //     active: 325,
+  //     id: 4,
+  //     children: [
+  //       "پراید وانت",
+  //       "پیکان وانت ",
+  //       "نیسان",
+  //       "آریسان",
+  //       "نیسان یخچالی",
+  //     ],
+  //   },
+  //   {
+  //     icon: "/others.png",
+  //     name: "سایر ناوگان ها",
+  //     active: null,
+  //     id: 5,
+  //     children: [
+  //       "تانکر مخزن دار",
+  //       "بوژی",
+  //       "کمرشکن",
+  //       "بونکر",
+  //       "جرثقیل دار",
+  //       "جانبو",
+  //       "میکسر",
+  //     ],
+  //   },
+  // ];
   function closeDialog() {
     close();
   }
@@ -128,13 +136,13 @@ function SetCarrier({ title, close, select }: any) {
             </p>
           </div>
           <div className="flex flex-wrap items-stretch p-2">
-            {carriers.map((item, i) => (
+            {carriers.map((item:any, i:any) => (
               <div className="basis-1/3 my-2 cursor-pointer" key={i}>
                 <CarrierType
                   icon={item.icon}
                   name={item.name}
                   active={item.active}
-                  id={item.id}
+                  id={item._id}
                   selectItem={(id: any) => selectCarrierType(id)}
                 ></CarrierType>
               </div>
