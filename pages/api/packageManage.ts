@@ -5,6 +5,7 @@ import { cargoOwners } from "@/models/cargoOwners";
 import { wallet } from "@/models/wallet";
 import axios from "axios";
 import { cargo } from "@/models/cargo";
+import { Gateways } from "@/models/gateways";
 
 export default async function handler(req: any, res: any) {
     await mongooseConnect();
@@ -28,10 +29,11 @@ export default async function handler(req: any, res: any) {
         if(data.payAmount){
             const user = await cargoOwners.findOne({_id: data.userID})
             // console.log('user', user)
-            var code = '942ab142-ed88-4412-8c9f-ab8658074bcf'
-            if(user){
+            // var code = '942ab142-ed88-4412-8c9f-ab8658074bcf'
+            let code = await Gateways.find({})
+            if(user && code){
               const result = await axios.post('https://api.zarinpal.com/pg/v4/payment/request.json', {
-                "merchant_id": code,
+                "merchant_id": code[0].asanbarcogateway,
                 "amount": data.payAmount*10,
                 "callback_url": "https://asanbar.iran.liara.run/newCargo/fallback",
                 "description": "Transaction description.",
