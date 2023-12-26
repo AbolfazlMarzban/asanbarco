@@ -12,8 +12,9 @@ function CargoList() {
   (async ()=>{
     try{  
      let userID = localStorage.getItem('userID') 
-   const result = await axios.get(`/api/cargoManage?userID=${userID}`)
+     const result = await axios.get(`/api/cargoManage?userID=${userID}`)
     if(result){
+      // let reqs;
       // if(result.data.length > 0 ){
       //   result.data.forEach(async (item: any)=> {
       //     var data = await axios.get(`/api/requestsManage?id=${item._id}`)
@@ -25,7 +26,7 @@ function CargoList() {
       //   console.log('reqs', reqs)
 
       // }
-      // console.log('result', result)
+      console.log('result', result)
       setCargos(result.data)
     }
   } catch(error){

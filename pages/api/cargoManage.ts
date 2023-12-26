@@ -29,10 +29,14 @@ if(method == "POST"){
 if(method == "GET"){
     const userID = req.query.userID
     if(userID){
-        const result = await cargo.find({userRegID: userID})
+        let result:any = await cargo.find({userRegID: userID})
         if(result){
             res.json(result)
         }
     }
+}
+
+function getReqs(){
+
 }
 }
