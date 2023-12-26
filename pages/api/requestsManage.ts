@@ -11,7 +11,7 @@ export default async function handler(req: any, res: any) {
     const { method } = req;
     if(method == "GET"){
         const id = req.query.id
-        const result = await cargoRequests.findOne({cargoId: id})
+        const result = await cargoRequests.find({cargoId: id})
         if(result){
             res.json(result)
         }

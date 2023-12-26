@@ -12,20 +12,26 @@ function CargoList() {
   (async ()=>{
     try{  
      let userID = localStorage.getItem('userID') 
-     const result = await axios.get(`/api/cargoManage?userID=${userID}`)
+     let result = await axios.get(`/api/cargoManage?userID=${userID}`)
     if(result){
-      // let reqs;
-      // if(result.data.length > 0 ){
-      //   result.data.forEach(async (item: any)=> {
-      //     var data = await axios.get(`/api/requestsManage?id=${item._id}`)
-      //     if(data){
-      //       console.log('data', data)
-      //       reqs.push(data.data)
-      //     }
-      //   })
-      //   console.log('reqs', reqs)
+      if(result.data.length > 0 ){
+        // result.data.forEach(async (item: any)=> {
+        //   var data = await axios.get(`/api/requestsManage?id=${item._id}`)
+        //   if(data){
+        //     console.log('data', data)
+        //     reqs.push(data.data)
+        //   }
+        // })
+        // console.log('reqs', reqs)
+        for(var i=0; i < result.data.length; i++){
+          var data = await axios.get(`/api/requestsManage?id=${result.data[i]._id}`)
+          // console.log('data', data)
+          if(data){
+            result.data[i].requests = data.data
+          }
+        }
 
-      // }
+      }
       console.log('result', result)
       setCargos(result.data)
     }
@@ -41,7 +47,7 @@ function CargoList() {
           <div className="w-full min-h-full flex flex-col items-center bg-mybg pt-32 px-3">
             {cargos.map((cargo:any) => (
               <Link href={'/myCargo/' + cargo._id} key={cargo._id} className="w-full">
-                <CargoBox data={cargo}></CargoBox>
+                <CargoBox data={cargo} calls={cargo.requests.length}></CargoBox>
               </Link>
             ))}
           </div>
