@@ -5,7 +5,8 @@ import { useState } from 'react';
 function ReverseAccordion({
     title,
     detail,
-    children
+    children,
+    actived
 }:any) {
     const [activeElement, setActiveElement] = useState("");
     const handleClick = (value: string) => {
@@ -37,7 +38,10 @@ function ReverseAccordion({
                   `text-primary dark:!text-primary-400 dark:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]`
                 } group relative flex flex-col w-full items-center rounded-t-[15px] border-0  px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none`}
                 type="button"
-                onClick={() => handleClick("element1")}
+                onClick={() =>{
+                  actived(true)
+                  handleClick("element1")
+                }}
                 aria-expanded="true"
                 aria-controls="collapseOne"
               >
