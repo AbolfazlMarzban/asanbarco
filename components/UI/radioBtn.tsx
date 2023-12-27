@@ -23,7 +23,7 @@ function RadioBtn({ title, btns , exportValue, exportFee, fee, children, timePic
         <label htmlFor="" className="text-sm mb-2">
           {title}
         </label>
-        <div className="flex justify-start gap-4 items-center mt-2">
+        <div className="flex justify-between gap-4 items-center mt-2">
 
           {btns.map((item: any, i:any) => (
             <div className="flex items-center" key={i}>

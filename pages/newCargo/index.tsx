@@ -12,16 +12,15 @@ import CargoType from "@/components/newCargo/cargoType";
 import WeightType from "@/components/newCargo/weightType";
 import LoadingTime from "@/components/newCargo/loadingTime";
 import Inputbox from "@/components/UI/inputbox";
-import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
-import DatePicker from '@hassanmojab/react-modern-calendar-datepicker';
-import axios from "axios"
+import "@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css";
+import DatePicker from "@hassanmojab/react-modern-calendar-datepicker";
+import axios from "axios";
 import { useRouter } from "next/router";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function NewCargo() {
-  const router = useRouter()
+  const router = useRouter();
   const [showOrigin, setShowOrigin] = useState(false);
   const [showDest, setShowDest] = useState(false);
 
@@ -36,20 +35,20 @@ function NewCargo() {
 
   const [showWeight, setShowWeight] = useState(false);
   const [weight, setWeight] = useState("");
-  const [feeType, setFeeType] = useState('')
-  const [fee, setFee] = useState('')
-  const [barnameh, setBarnameh] = useState(false)
+  const [feeType, setFeeType] = useState("");
+  const [fee, setFee] = useState("");
+  const [barnameh, setBarnameh] = useState(false);
 
   const [showLoadingTime, setShowLoadingTime] = useState(false);
   const [loadingTime, setLoadingTime] = useState("");
 
   const [showDischargeTime, setShowDischargeTime] = useState(false);
   const [dischargeTime, setDischargeTime] = useState("");
-  const [loadingDate, setLoadingDate] = useState('')
+  const [loadingDate, setLoadingDate] = useState("");
   const [phone, setPhone] = useState("");
-  const [comment, setComment] = useState('')
+  const [comment, setComment] = useState("");
 
-  const [selectedDay, setSelectedDay] : any = useState(null);
+  const [selectedDay, setSelectedDay]: any = useState(null);
 
   function selectCarrier(value: any) {
     setCarrier(value);
@@ -59,61 +58,61 @@ function NewCargo() {
     arr.splice(i, 1);
     setCarrier(arr);
   }
-  async function registerCargo(){
-    try{
-      var userID= localStorage.getItem('userID')
+  async function registerCargo() {
+    try {
+      var userID = localStorage.getItem("userID");
       let data = {
-        "origin": origin,
-        "dest": dest,
-        "carrier": carrier,
-        "cargoType": cargoType,
-        "barnameh": barnameh,
-        "feeType": feeType,
-        "fee": fee,
-        "weight": weight,
-        "loadingTime": loadingTime,
-        "dischargeTime": dischargeTime,
-        "phone": phone,
-        "loadingDate": loadingDate,
-        "selectedDay": selectedDay,
-        "comment": comment,
-        "userRegID": userID,
-        "regType": "normal"
-      }
-      const result = await axios.post('/api/cargoManage', data)
-      if(result){
-        console.log('result', result)
-        toast("بار شما با موفقیت به سامانه افزوده شد!")
-        router.push('/myCargo')
+        origin: origin,
+        dest: dest,
+        carrier: carrier,
+        cargoType: cargoType,
+        barnameh: barnameh,
+        feeType: feeType,
+        fee: fee,
+        weight: weight,
+        loadingTime: loadingTime,
+        dischargeTime: dischargeTime,
+        phone: phone,
+        loadingDate: loadingDate,
+        selectedDay: selectedDay,
+        comment: comment,
+        userRegID: userID,
+        regType: "normal",
+      };
+      const result = await axios.post("/api/cargoManage", data);
+      if (result) {
+        console.log("result", result);
+        toast("بار شما با موفقیت به سامانه افزوده شد!");
+        router.push("/myCargo");
       } else {
-        toast("دوباره تلاش کنید")
+        toast("دوباره تلاش کنید");
       }
-    } catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   }
-  function specialRegisterCargo(){
-    var userID= localStorage.getItem('userID')
-    let data:any = {
-      "origin": origin,
-      "dest": dest,
-      "carrier": carrier,
-      "cargoType": cargoType,
-      "barnameh": barnameh,
-      "feeType": feeType,
-      "fee": fee,
-      "weight": weight,
-      "loadingTime": loadingTime,
-      "dischargeTime": dischargeTime,
-      "phone": phone,
-      "loadingDate": loadingDate,
-      "selectedDay": selectedDay,
-      "comment": comment,
-      "userRegID": userID,
-      "regType": "special"
-    }
-    localStorage.setItem('cargoData', JSON.stringify(data))
-    router.push('/newCargo/specialOffer')
+  function specialRegisterCargo() {
+    var userID = localStorage.getItem("userID");
+    let data: any = {
+      origin: origin,
+      dest: dest,
+      carrier: carrier,
+      cargoType: cargoType,
+      barnameh: barnameh,
+      feeType: feeType,
+      fee: fee,
+      weight: weight,
+      loadingTime: loadingTime,
+      dischargeTime: dischargeTime,
+      phone: phone,
+      loadingDate: loadingDate,
+      selectedDay: selectedDay,
+      comment: comment,
+      userRegID: userID,
+      regType: "special",
+    };
+    localStorage.setItem("cargoData", JSON.stringify(data));
+    router.push("/newCargo/specialOffer");
   }
   return (
     <div className="bg-[#f1f5f8] h-screen">
@@ -218,7 +217,11 @@ function NewCargo() {
               </svg>
             }
           ></DialogBtn>
-          <Checkbox title={"صدور بارنامه از طرف آسان بار"} value={barnameh} exportValue={(value:any)=>setBarnameh(value)} />
+          <Checkbox
+            title={"صدور بارنامه از طرف آسان بار"}
+            value={barnameh}
+            exportValue={(value: any) => setBarnameh(value)}
+          />
           <DialogBtn
             title={"نوع ناوگان و بارگیر"}
             open={() => setShowCarrier(true)}
@@ -245,10 +248,10 @@ function NewCargo() {
           <RadioBtn
             title={"کرایه موردنظر شما:"}
             btns={["توافقی", "سرویسی", "تنی"]}
-            exportValue={(value:any)=>setFeeType(value)}
-            exportFee={(value:any) => setFee(value)}
+            exportValue={(value: any) => setFeeType(value)}
+            exportFee={(value: any) => setFee(value)}
           >
-            {origin && dest && carrier && fee.length> 0 && (
+            {origin && dest && carrier && fee.length > 0 && (
               <div className="flex flex-col">
                 <div className="flex items-center">
                   <span className="min-w-max ml-2">
@@ -284,7 +287,7 @@ function NewCargo() {
                     </p>
                   </div>
                   <span className="text-xs text-slate-400">
-                    به ازای هر {feeType == 'سرویسی' ? 'سرویس' : 'تن'}
+                    به ازای هر {feeType == "سرویسی" ? "سرویس" : "تن"}
                   </span>
                 </div>
               </div>
@@ -384,7 +387,7 @@ function NewCargo() {
               }
             ></DialogBtn>
             <Inputbox
-            exportValue={(value:any)=>setPhone(value)}
+              exportValue={(value: any) => setPhone(value)}
               title={"شماره اعلام کننده بار"}
               value={phone}
               secondIcon={
@@ -405,25 +408,21 @@ function NewCargo() {
               }
             ></Inputbox>
             <RadioBtn
-              exportValue={(value:any)=>setLoadingDate(value)}
+              exportValue={(value: any) => setLoadingDate(value)}
               title={"تاریخ بارگیری"}
               btns={["بار امروز", "بار فردا", "بار همه روزه"]}
               timePicker={
                 <>
                   <div className="flex justify-between mt-2 items-center">
-                    {selectedDay ? 
-                    (
+                    {selectedDay ? (
                       <span className="text-xs text-slate-400">
-                          از امروز تا تاریخ
+                        از امروز تا تاریخ
                       </span>
-                    ) 
-                    : 
-                    (
-                    <span className="text-xs text-slate-400">
-                      هنوز تاریخی انتخاب نشده
-                    </span>
-                    ) 
-                  }
+                    ) : (
+                      <span className="text-xs text-slate-400">
+                        هنوز تاریخی انتخاب نشده
+                      </span>
+                    )}
                     <DatePicker
                       value={selectedDay}
                       onChange={setSelectedDay}
@@ -437,40 +436,45 @@ function NewCargo() {
             <Textbox
               title={"توضیحات (اختیاری)"}
               value={comment}
-              exportValue={(value:any)=>setComment(value)}
+              exportValue={(value: any) => setComment(value)}
               placeholder={
                 "در این قسمت میتوانید به ابعاد، بار، ارزش بار و یا هر نوع اطلاعات دیگر بپردازید"
               }
             ></Textbox>
           </Accordion>
-     
-            {(origin && dest) && (
-                        <div className="w-full flex justify-center align-center bg-[#f1f5f8] p-4">
 
-                     <Link href={'/newCargo/specialOffer'}> 
-                     <button className="flex gap-2 px-3 py-2 bg-orange-400 text-white rounded-xl mx-2" onClick={()=>specialRegisterCargo()}>
-                       <svg
-                         xmlns="http://www.w3.org/2000/svg"
-                         fill="none"
-                         viewBox="0 0 24 24"
-                         strokeWidth="1.5"
-                         stroke="currentColor"
-                         className="w-6 h-6"
-                       >
-                         <path
-                           strokeLinecap="round"
-                           strokeLinejoin="round"
-                           d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                         />
-                       </svg>
-                       <span>ثبت بار ویژه</span>
-                     </button>
-                     </Link>
-            <button className="flex gap-2 px-3 py-2 bg-teal-400 text-white rounded-xl mx-2" onClick={()=>registerCargo()}>
-              <span>ثبت بار عادی</span>
-            </button>
-          </div>
-            )}
+          {origin && dest && (
+            <div className="w-full flex justify-center align-center bg-[#f1f5f8] p-4">
+              <Link href={"/newCargo/specialOffer"}>
+                <button
+                  className="flex gap-2 px-3 py-2 bg-orange-400 text-white rounded-xl mx-2"
+                  onClick={() => specialRegisterCargo()}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
+                    />
+                  </svg>
+                  <span>ثبت بار ویژه</span>
+                </button>
+              </Link>
+              <button
+                className="flex gap-2 px-3 py-2 bg-teal-400 text-white rounded-xl mx-2"
+                onClick={() => registerCargo()}
+              >
+                <span>ثبت بار عادی</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
       {showOrigin && (

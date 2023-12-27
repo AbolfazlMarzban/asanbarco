@@ -72,7 +72,7 @@ function Header() {
         </Link>
       </div>
 
-      <div className="text-sm font-medium text-center text-gray-500 border-b-2 border-gray-200 dark:text-gray-400 dark:border-gray-700 overflow-y-hidden">
+      <div className="text-sm font-medium text-center text-gray-500 border-b-2 border-gray-200 dark:text-gray-400 dark:border-gray-700 overflow-y-hidden bg-white">
         <ul className="flex bg-white -mb-px w-max">
           {menu.map((item, i) => (
             <li className="mr-2" key={i}>
