@@ -37,7 +37,6 @@ function SetCarrier({ title, close, select }: any) {
     close();
   }
   const showIcon = (item:any)=>{
-    console.log('item', item.name)
     switch(item.name){
       case 'تریلی':
         return '/traily.png'
