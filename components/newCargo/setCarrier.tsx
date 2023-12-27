@@ -7,32 +7,57 @@ import axios from "axios";
 function SetCarrier({ title, close, select }: any) {
   const [carrierType, setCarrierType]: any = useState(null);
   const [carrierChildren, setcarrierChildren] = useState([]);
-  const [carriers, setCarriers]: any = useState([])
-  useEffect(()=>{
-    (async()=>{
-      const vehicles = await axios.get('/api/vehicleManage')
-      setCarriers(vehicles.data)
-    })()
-  }, [])
+  const [carriers, setCarriers]: any = useState([]);
+  useEffect(() => {
+    (async () => {
+      const vehicles = await axios.get("/api/vehicleManage");
+      setCarriers(vehicles.data);
+    })();
+  }, []);
   function selectCarrierType(id: any) {
-    var cari: any = carriers.find((item:any) => item._id == id);
+    var cari: any = carriers.find((item: any) => item._id == id);
     setCarrierType(cari);
   }
   function selectChildren(ev: any, child: any) {
     if (ev.target.checked) {
-      var parent = carriers.find((item:any) => item.children.includes(child))?.name 
+      var parent = carriers.find((item: any) =>
+        item.children.includes(child)
+      )?.name;
       let item = {
         parent: parent,
-        child: child
-      }
-      var arr:any = carrierChildren
-      arr.push(item)
-      setcarrierChildren(arr)
+        child: child,
+      };
+      var arr: any = carrierChildren;
+      arr.push(item);
+      setcarrierChildren(arr);
     }
   }
-  function saveAndSelect(){
-    select(carrierChildren)
-    close()
+  function saveAndSelect() {
+    select(carrierChildren);
+    close();
+  }
+  const showIcon = (item:any)=>{
+    console.log('item', item.name)
+    switch(item.name){
+      case 'تریلی':
+        return '/traily.png'
+      break;
+      case 'جفت':
+        return '/joft.png'
+      break;
+      case 'تک':
+        return '/tak.png'
+      break;
+      case 'خاور و کامیونت':
+        return '/khavar.png'
+      break;
+      case 'وانت و نیسان':
+        return '/neisan.png'
+      break;
+      case 'سایر ناوگان ها':
+        return '/others.png'
+      break;
+    }
   }
   // var carriers = [
   //   {
@@ -136,10 +161,10 @@ function SetCarrier({ title, close, select }: any) {
             </p>
           </div>
           <div className="flex flex-wrap items-stretch p-2">
-            {carriers.map((item:any, i:any) => (
+            {carriers.map((item: any, i: any) => (
               <div className="basis-1/3 my-2 cursor-pointer" key={i}>
                 <CarrierType
-                  icon={item.icon}
+                  icon={showIcon(item)}
                   name={item.name}
                   active={item.active}
                   id={item._id}
@@ -161,9 +186,7 @@ function SetCarrier({ title, close, select }: any) {
                     name=""
                     id=""
                     className="ml-2"
-                    onChange={(ev: any) =>
-                      selectChildren(ev, child)
-                    }
+                    onChange={(ev: any) => selectChildren(ev, child)}
                   />
                   <label htmlFor="">{child}</label>
                 </div>
@@ -173,7 +196,10 @@ function SetCarrier({ title, close, select }: any) {
           </div>
           {carrierType && (
             <div className="flex justify-center items-center mt-5">
-              <button className="w-full px-4 py-2 bg-green-300 text-white rounded-lg" onClick={()=>saveAndSelect()}>
+              <button
+                className="w-full px-4 py-2 bg-green-300 text-white rounded-lg"
+                onClick={() => saveAndSelect()}
+              >
                 ثبت و ادامه
               </button>
             </div>
