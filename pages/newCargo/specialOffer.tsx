@@ -135,11 +135,15 @@ function SpecialOffer() {
             </li>
             <li className="my-2">
               <TaskAltIcon className="text-myblue ml-2"></TaskAltIcon>
-              <span className="text-sm">نمایش فاصله حدودی رانندگان تا مبدأ بارهای شما</span>
+              <span className="text-sm">
+                نمایش فاصله حدودی رانندگان تا مبدأ بارهای شما
+              </span>
             </li>
             <li className="my-2">
               <TaskAltIcon className="text-myblue ml-2"></TaskAltIcon>
-              <span className="text-sm">اضافه شدن لوگو و عکس اختصاصی شما به بارها</span>
+              <span className="text-sm">
+                اضافه شدن لوگو و عکس اختصاصی شما به بارها
+              </span>
             </li>
           </ul>
         </div>
@@ -149,19 +153,19 @@ function SpecialOffer() {
           }
           secondIcon={
             <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="w-6 h-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 19.5L8.25 12l7.5-7.5"
-            />
-          </svg>
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
           }
           title={"کد تخفیف"}
           exportValue={(value: any) => setOffode(value)}
@@ -173,7 +177,9 @@ function SpecialOffer() {
             title={
               <div className="flex justify-between w-full">
                 <div className="flex flex-col justify-center items-start">
-                  <label htmlFor="" className="text-sm">مبلغ قابل پرداخت:</label>
+                  <label htmlFor="" className="text-sm">
+                    مبلغ قابل پرداخت:
+                  </label>
                   <span className="text-xs text-slate-400">
                     {Math.round(1.09 * payAmount).toLocaleString("en-us")} تومان
                   </span>
@@ -188,6 +194,22 @@ function SpecialOffer() {
             }
           >
             <div className="flex flex-col pt-3 px-4 gap-2  border-t-2">
+              <span className="rotate-[180deg] w-full fill-[#212529]  dark:fill-white h-5 w-5 flex justify-center shrink-0 fill-[#336dec] transition-transform duration-200 ease-in-out motion-reduce:transition-none dark:fill-blue-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
+                </svg>
+              </span>
               <span className="text-center text-sm text-emerald-400">
                 پرداختی های شما:
               </span>
@@ -204,7 +226,9 @@ function SpecialOffer() {
 
               <div className="flex justify-between my-2">
                 <span className="text-slate-400 text-sm">ارزش افزوده</span>
-                <span className="text-black text-sm">{0.09 * payAmount} تومان</span>
+                <span className="text-black text-sm">
+                  {0.09 * payAmount} تومان
+                </span>
               </div>
               <div className="flex justify-between my-2">
                 <span className="text-slate-400 text-sm">کسر از کیف پول</span>
