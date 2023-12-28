@@ -4,114 +4,114 @@ import Link from "next/link";
 import Image from "next/image";
 import placeholder from "@/public/man.png";
 import Inputbox from "@/components/UI/inputbox";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 import DatePicker from "@hassanmojab/react-modern-calendar-datepicker";
-import '@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css';
+import "@hassanmojab/react-modern-calendar-datepicker/lib/DatePicker.css";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function index() { 
-  const [editPN, setEditPN] = useState(false)
-  const [fullName,setFullName] = useState('')
-  const [nationalNumber, setNationalNumber] = useState('')
-  const [businessName, setBusinessName] = useState('')
-  const [birthDate, setBirthDate] : any = useState(null)
-  const [selectedDay, setSelectedDay] : any = useState(null);
+function index() {
+  const [editPN, setEditPN] = useState(false);
+  const [fullName, setFullName] = useState("");
+  const [nationalNumber, setNationalNumber] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [birthDate, setBirthDate]: any = useState(null);
+  const [selectedDay, setSelectedDay]: any = useState(null);
 
-  const [bankCard, setBankCard] = useState('')
-  const [userID, setUserID] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [profilePic, setProfilePic] = useState(null)
-  const [profilePicUrl, setProfilePicUrl] = useState('')
-  const [nationalCardPic, setNationalCardPic] = useState(null)
-  const [nationalCardPicUrl, setNationalCardPicUrl] = useState('')
-  const [logo, setLogo] = useState(null)
-  const [logoUrl, setLogoUrl] = useState('')
+  const [bankCard, setBankCard] = useState("");
+  const [userID, setUserID] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
+  const [profilePicUrl, setProfilePicUrl] = useState("");
+  const [nationalCardPic, setNationalCardPic] = useState(null);
+  const [nationalCardPicUrl, setNationalCardPicUrl] = useState("");
+  const [logo, setLogo] = useState(null);
+  const [logoUrl, setLogoUrl] = useState("");
 
-  useEffect(()=>{
-    (async ()=>{
-      var id = localStorage.getItem('userID')
-      if(id){
-        setUserID(id)
-        const result = await axios.get(`/api/userManage?id=${id}`)
-        console.log('result', result)
-        setPhoneNumber(result.data.phoneNumber)
-        setFullName(result.data.name)
-        setNationalNumber(result.data.nationalNumber)
-        setSelectedDay(result.data.birthDate)
-        setBusinessName(result.data.businessName)
-        setBankCard(result.data.bankCard)
-        setProfilePicUrl(result.data.profilePic)
-        setLogoUrl(result.data.logoPic)
-        setNationalCardPicUrl(result.data.nationalCardPic)
+  useEffect(() => {
+    (async () => {
+      var id = localStorage.getItem("userID");
+      if (id) {
+        setUserID(id);
+        const result = await axios.get(`/api/userManage?id=${id}`);
+        console.log("result", result);
+        setPhoneNumber(result.data.phoneNumber);
+        setFullName(result.data.name);
+        setNationalNumber(result.data.nationalNumber);
+        setSelectedDay(result.data.birthDate);
+        setBusinessName(result.data.businessName);
+        setBankCard(result.data.bankCard);
+        setProfilePicUrl(result.data.profilePic);
+        setLogoUrl(result.data.logoPic);
+        setNationalCardPicUrl(result.data.nationalCardPic);
       }
-    })()
-  }, [])
-  function getNationalCard(ev:any){
-    setNationalCardPic(ev.target.files[0])
-    var url = URL.createObjectURL(ev.target.files[0])
-    setNationalCardPicUrl(url)
+    })();
+  }, []);
+  function getNationalCard(ev: any) {
+    setNationalCardPic(ev.target.files[0]);
+    var url = URL.createObjectURL(ev.target.files[0]);
+    setNationalCardPicUrl(url);
   }
-  function getLogo(ev:any){
-    setLogo(ev.target.files[0])
-    var url = URL.createObjectURL(ev.target.files[0])
-    setLogoUrl(url)
+  function getLogo(ev: any) {
+    setLogo(ev.target.files[0]);
+    var url = URL.createObjectURL(ev.target.files[0]);
+    setLogoUrl(url);
   }
-  function getProfilePic(ev:any){
-    setProfilePic(ev.target.files[0])
-    var url = URL.createObjectURL(ev.target.files[0])
-    setProfilePicUrl(url)  
+  function getProfilePic(ev: any) {
+    setProfilePic(ev.target.files[0]);
+    var url = URL.createObjectURL(ev.target.files[0]);
+    setProfilePicUrl(url);
   }
-  async function submit(){
+  async function submit() {
     let profileAddress;
     let nationalAddress;
-    let logoAddress
-    if(profilePic){
-      const fileBody = new FormData()
-      fileBody.append("image", profilePic)
-      const path =  await axios.post('/api/upload', fileBody)
-      profileAddress = path.data
+    let logoAddress;
+    if (profilePic) {
+      const fileBody = new FormData();
+      fileBody.append("image", profilePic);
+      const path = await axios.post("/api/upload", fileBody);
+      profileAddress = path.data;
     }
-    if(nationalCardPic){
-      const fileBody = new FormData()
-      fileBody.append("image", nationalCardPic)
-      const path =  await axios.post('/api/upload', fileBody)
-      nationalAddress = path.data
+    if (nationalCardPic) {
+      const fileBody = new FormData();
+      fileBody.append("image", nationalCardPic);
+      const path = await axios.post("/api/upload", fileBody);
+      nationalAddress = path.data;
     }
-    if(logo){
-      const fileBody = new FormData()
-      fileBody.append("image", logo)
-      const path =  await axios.post('/api/upload', fileBody)
-      console.log('address', path.data)
-      logoAddress = path.data
+    if (logo) {
+      const fileBody = new FormData();
+      fileBody.append("image", logo);
+      const path = await axios.post("/api/upload", fileBody);
+      console.log("address", path.data);
+      logoAddress = path.data;
     }
-    let data : any = {
-      "fullName": fullName,
-      "phoneNumber": phoneNumber,
-      "nationalNumber": nationalNumber,
-      "businessName": businessName,
-      "birthDate": selectedDay,
-      "bankCard": bankCard,
-      "userID": userID
-      }
-      if(logo){
-        data["logoAddress"] = logoAddress 
-      }
-      if(profileAddress){
-        data["profileAddress"] = profileAddress
-      }
-      if(nationalAddress){
-        data["nationalAddress"] = nationalAddress
-      }
-      // console.log('data', data)
-      const result = await axios.post('/api/userManage', data)
-      console.log('result', result)
-      if(result.data){
-        toast('ذخیره اطلاعات با موفقیت انجام شد')
-      } else {
-        toast('ذخیره با مشکل مواجه شد با پشتیبانی تماس بگیرید')
-      }
+    let data: any = {
+      fullName: fullName,
+      phoneNumber: phoneNumber,
+      nationalNumber: nationalNumber,
+      businessName: businessName,
+      birthDate: selectedDay,
+      bankCard: bankCard,
+      userID: userID,
+    };
+    if (logo) {
+      data["logoAddress"] = logoAddress;
+    }
+    if (profileAddress) {
+      data["profileAddress"] = profileAddress;
+    }
+    if (nationalAddress) {
+      data["nationalAddress"] = nationalAddress;
+    }
+    // console.log('data', data)
+    const result = await axios.post("/api/userManage", data);
+    console.log("result", result);
+    if (result.data) {
+      toast("ذخیره اطلاعات با موفقیت انجام شد");
+    } else {
+      toast("ذخیره با مشکل مواجه شد با پشتیبانی تماس بگیرید");
+    }
   }
   return (
     <div className="w-full h-screen">
@@ -138,18 +138,23 @@ function index() {
       </div>
       <div className="flex flex-col items-center ">
         <div className="w-16 h-16 rounded-full border-2 mt-6 relative">
-          {profilePicUrl ? 
-          (
-            <Image src={profilePicUrl} alt="" layout="fill" objectFit="cover" className="rounded-full"></Image>
-          )
-            : 
-            (
-              <Image src={placeholder} alt=""></Image>
-            )
-        }
+          {profilePicUrl ? (
+            <Image
+              src={profilePicUrl}
+              alt=""
+              layout="fill"
+              objectFit="cover"
+              className="rounded-full"
+            ></Image>
+          ) : (
+            <Image src={placeholder} alt=""></Image>
+          )}
         </div>
         <div className="w-1/2 flex items-center justify-between gap-4">
-          <div className="flex border border-myblue rounded-lg p-2 text-myblue gap-2 cursor-pointer" onClick={()=> document.getElementById('profilePic')?.click()}>
+          <div
+            className="flex border border-myblue rounded-lg p-2 text-myblue gap-2 cursor-pointer"
+            onClick={() => document.getElementById("profilePic")?.click()}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -171,10 +176,16 @@ function index() {
             </svg>
             <span>تغییر عکس پروفایل</span>
           </div>
-          <input id="profilePic" type="file" accept="[.png, .jpg, .jepg]" hidden  onChange={(ev)=>getProfilePic(ev)}/>
+          <input
+            id="profilePic"
+            type="file"
+            accept="[.png, .jpg, .jepg]"
+            hidden
+            onChange={(ev) => getProfilePic(ev)}
+          />
           <div className="flex border border-myblue rounded-lg p-2 text-myblue gap-2">
             <svg
-              onClick={()=>setEditPN(true)}
+              onClick={() => setEditPN(true)}
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -188,17 +199,15 @@ function index() {
                 d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
               />
             </svg>
-            {editPN ? 
-              (
-                <input type="tel" value={phoneNumber} onChange={(ev)=>setPhoneNumber(ev.target.value)} />
-                )
-              :
-              (
-                <span style={{direction: "ltr"}}>{phoneNumber}</span>
-                
-              )  
-          }
-
+            {editPN ? (
+              <input
+                type="tel"
+                value={phoneNumber}
+                onChange={(ev) => setPhoneNumber(ev.target.value)}
+              />
+            ) : (
+              <span style={{ direction: "ltr" }}>{phoneNumber}</span>
+            )}
           </div>
         </div>
         <hr className="w-full m-3"></hr>
@@ -206,19 +215,34 @@ function index() {
           <label htmlFor="" className="text-md">
             نام و نام خانوادگی
           </label>
-          <input type="text" value={fullName} onChange={(ev)=>setFullName(ev.target.value)} className="border p-2 rounded-xl mt-2 w-64" />
+          <input
+            type="text"
+            value={fullName}
+            onChange={(ev) => setFullName(ev.target.value)}
+            className="border p-2 rounded-xl mt-2 w-64"
+          />
         </div>
         <div className="flex flex-col items-start my-1">
           <label htmlFor="" className="text-md">
             کد ملی
           </label>
-          <input type="text" value={nationalNumber} onChange={(ev)=>setNationalNumber(ev.target.value)} className="border p-2 rounded-xl mt-2 w-64" />
+          <input
+            type="text"
+            value={nationalNumber}
+            onChange={(ev) => setNationalNumber(ev.target.value)}
+            className="border p-2 rounded-xl mt-2 w-64"
+          />
         </div>
         <div className="flex flex-col items-start my-1">
           <label htmlFor="" className="text-md">
             نام شرکت حمل و نقل
           </label>
-          <input type="text" value={businessName} onChange={(ev)=>setBusinessName(ev.target.value)} className="border p-2 rounded-xl mt-2 w-64" />
+          <input
+            type="text"
+            value={businessName}
+            onChange={(ev) => setBusinessName(ev.target.value)}
+            className="border p-2 rounded-xl mt-2 w-64"
+          />
         </div>
         <div className="flex flex-col items-start my-1">
           <label htmlFor="" className="text-md">
@@ -226,17 +250,22 @@ function index() {
           </label>
           {/* <input type="text" className="border p-2 rounded-xl mt-2 w-64" /> */}
           <DatePicker
-                      value={selectedDay}
-                      onChange={setSelectedDay}
-                      shouldHighlightWeekends
-                      locale="fa"
-                    />
+            value={selectedDay}
+            onChange={setSelectedDay}
+            shouldHighlightWeekends
+            locale="fa"
+          />
         </div>
         <div className="flex flex-col items-start my-1">
           <label htmlFor="" className="text-md">
             شماره کارت بانکی
           </label>
-          <input type="text" value={bankCard} onChange={(ev)=>setBankCard(ev.target.value)} className="border p-2 rounded-xl mt-2 w-64" />
+          <input
+            type="text"
+            value={bankCard}
+            onChange={(ev) => setBankCard(ev.target.value)}
+            className="border p-2 rounded-xl mt-2 w-64"
+          />
         </div>
         <div className="flex flex-col my-1 w-72">
           <div className="flex justify-start items-center ">
@@ -244,29 +273,35 @@ function index() {
             {/* <span className="text-green-600 text-sm">تغییر تصویر کارت ملی</span> */}
           </div>
           <div className="w-full h-32 border-2 border-dashed mt-2 rounded-lg flex justify-center items-center relative">
-            {nationalCardPicUrl.length > 0 ?
-              (
-                // <Image src={nationalCardPicUrl} alt={''} width={32} ></Image>
-                <img src={nationalCardPicUrl} alt="" className="w-full h-32 rounded-lg" />
-              )
-              : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+            {nationalCardPicUrl ? (
+              // <Image src={nationalCardPicUrl} alt={''} width={32} ></Image>
+              <img
+                src={nationalCardPicUrl}
+                alt=""
+                className="w-full h-32 rounded-lg"
               />
-            </svg>
-              )  
-          }
-            <input type="file" accept="[.png, .jpg, .jepg]" className="w-full h-full opacity-0 absolute" onChange={(ev)=>getNationalCard(ev)} />
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                />
+              </svg>
+            )}
+            <input
+              type="file"
+              accept="[.png, .jpg, .jepg]"
+              className="w-full h-full opacity-0 absolute"
+              onChange={(ev) => getNationalCard(ev)}
+            />
           </div>
         </div>
 
@@ -276,34 +311,38 @@ function index() {
             {/* <span className="text-green-600 text-sm">تغییر لوگوی اختصاصی</span> */}
           </div>
           <div className="w-full h-32 border-2 border-dashed mt-2 rounded-lg flex justify-center items-center relative">
-            {logoUrl.length > 0 ?
-            (
+            {logoUrl ? (
               <img src={logoUrl} alt="" className="w-full h-32 rounded-lg" />
-            )
-            :
-            (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-              />
-            </svg>
-            )  
-          }
-            <input type="file" accept="[.png, .jpg, .jepg]" className="w-full h-full opacity-0 absolute" onChange={(ev)=>getLogo(ev)}/>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                />
+              </svg>
+            )}
+            <input
+              type="file"
+              accept="[.png, .jpg, .jepg]"
+              className="w-full h-full opacity-0 absolute"
+              onChange={(ev) => getLogo(ev)}
+            />
           </div>
         </div>
 
-        <button className="w-72 border border-green-600 p-2 rounded-lg text-green-600 my-3" onClick={()=>submit()}>
-            ثبت مشخصات
+        <button
+          className="w-72 border border-green-600 p-2 rounded-lg text-green-600 my-3"
+          onClick={() => submit()}
+        >
+          ثبت مشخصات
         </button>
       </div>
       <ToastContainer />
