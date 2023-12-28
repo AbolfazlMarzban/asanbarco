@@ -33,3 +33,10 @@ body {
     font-family: vazir !important;
     direction: rtl;
 }
+
+.dashed-2 {
+  border: none;
+  height: 1px;
+  background: #000;
+  background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
+}

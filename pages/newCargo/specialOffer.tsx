@@ -259,7 +259,7 @@ function SpecialOffer() {
                   تومان
                 </span>
               </div>
-              <hr />
+              <hr className="dashed-2" />
               <div className="flex justify-between mt-2">
                 <span className="text-slate-400 text-sm">مبلغ قابل پرداخت</span>
                 <span className="text-emerald-300 text-sm">

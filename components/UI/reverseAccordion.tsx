@@ -15,15 +15,21 @@ function ReverseAccordion({ title, detail, children, actived, clicked }: any) {
       <div id="accordionExample">
         <div className="rounded-t-lg ">
           <span className="text-xs text-slate-400">{detail}</span>
-          {clicked ? (
+          {/* {clicked ? (
             <>{activeElement == "element1" && <div>{children}</div>}</>
+          ) : (
+            <></>
+          )} */}
+
+              {clicked ? (
+            <><div>{children}</div></>
           ) : (
             <></>
           )}
           <h2 className="mb-0" id="headingOne">
             <button
               className={`${
-                activeElement === "element1" &&
+                clicked &&
                 `text-primary dark:!text-primary-400 dark:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]`
               } group relative flex flex-col w-full items-center rounded-t-[15px] border-0  px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none`}
               type="button"
@@ -36,12 +42,12 @@ function ReverseAccordion({ title, detail, children, actived, clicked }: any) {
             >
               <span
                 className={`${
-                  activeElement === "element1"
+                  clicked
                     ? `rotate-[-180deg] -mr-1`
                     : `rotate-[180deg] fill-[#212529]  dark:fill-white`
                 } h-5 w-5 text-center shrink-0 fill-[#336dec] transition-transform duration-200 ease-in-out motion-reduce:transition-none dark:fill-blue-300`}
               >
-                {activeElement && clicked ? (
+                {clicked ? (
                   <></>
                 ) : (
                   <>
