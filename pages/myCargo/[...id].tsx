@@ -284,7 +284,7 @@ async function editCargo() {
             <Dialog title={"لغو بار"} close={() => setCancelCargo(false)}>
               <div className="flex flex-col px-3 py-2">
                 <span>آیا برای لغو بار مطمئن هستید؟</span>
-                <div className="flex gap-3 mx-3 my-2">
+                <div className="flex gap-3 mx-3 mt-10">
                   <button
                     className="bg-slate-300 rounded-md w-1/2 p-3"
                     onClick={() => setCancelCargo(false)}
