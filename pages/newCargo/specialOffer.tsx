@@ -17,7 +17,7 @@ function SpecialOffer() {
   const [cargoData, setCargoData] = useState({});
   const [total, setTotal] = useState(0);
   const [getFromWallet, setGetFromWallet] = useState(false);
-  const [acclikced, setAcclicked] = useState(false)
+  const [acclikced, setAcclicked] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -175,39 +175,46 @@ function SpecialOffer() {
       {subscription.length > 0 && (
         <div className="absolute bottom-0 bg-white w-full">
           <ReverseAccordion
-          actived={(value:any)=>setAcclicked(!acclikced)}
+            actived={(value: any) => setAcclicked(true)}
+            clicked={acclikced}
             title={
-              <>   
-              {acclikced ? (
-                <>
-                
-                </>
-              )
-                :
-                (
+              <>
+                {acclikced ? (
+                  <>
+                    <button
+                      className="bg-emerald-300 text-white rounded-lg px-10 w-full p-3"
+                      onClick={() => buyPackage()}
+                    >
+                      خرید پکیج
+                    </button>
+                  </>
+                ) : (
                   <div className="flex justify-between w-full">
-                  <div className="flex flex-col justify-center items-start">
-                    <label htmlFor="" className="text-sm">
-                      مبلغ قابل پرداخت:
-                    </label>
-                    <span className="text-xs text-slate-400">
-                      {Math.round(1.09 * payAmount).toLocaleString("en-us")} تومان
-                    </span>
+                    <div className="flex flex-col justify-center items-start">
+                      <label htmlFor="" className="text-sm">
+                        مبلغ قابل پرداخت:
+                      </label>
+                      <span className="text-xs text-slate-400">
+                        {Math.round(1.09 * payAmount).toLocaleString("en-us")}{" "}
+                        تومان
+                      </span>
+                    </div>
+                    <button
+                      className="bg-emerald-300 text-white rounded-lg px-10"
+                      onClick={() => buyPackage()}
+                    >
+                      خرید پکیج
+                    </button>
                   </div>
-                  <button
-                    className="bg-emerald-300 text-white rounded-lg px-10"
-                    onClick={() => buyPackage()}
-                  >
-                    خرید پکیج
-                  </button>
-                </div>
-                )
-            }
+                )}
               </>
             }
           >
             <div className="flex flex-col pt-3 px-4 gap-2  border-t-2">
-              <span className="rotate-[180deg] w-full fill-[#212529]  dark:fill-white h-5 w-5 flex justify-center shrink-0 fill-[#336dec] transition-transform duration-200 ease-in-out motion-reduce:transition-none dark:fill-blue-300">
+              <span
+                className="cursor-pointer w-full fill-[#212529]  dark:fill-white h-5 w-5 flex justify-center shrink-0 fill-[#336dec] transition-transform duration-200 ease-in-out motion-reduce:transition-none dark:fill-blue-300"
+                onClick={() => setAcclicked(false)}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
