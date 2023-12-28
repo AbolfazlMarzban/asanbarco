@@ -21,10 +21,10 @@ function ReqBox() {
       </div>
       <div className="flex flex-col w-full px-3">
             <div className="flex justify-between items-center w-full">
-                <label htmlFor="" className="font-bold">درخواست راننده</label>
+                <label htmlFor="" className="mb-2">درخواست راننده</label>
                 <span className="text-slate-400 text-xs">2 دقیقه پیش</span>
             </div>
-            <p className="text-slate-600">راننده درخواست حمل بار شما را دارد. همین حالا با او تماس بگیرید</p>
+            <p className="text-slate-600 text-sm ">راننده درخواست حمل بار شما را دارد. همین حالا با او تماس بگیرید</p>
       </div>
     </div>
   );

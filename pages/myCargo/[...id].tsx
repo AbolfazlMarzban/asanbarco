@@ -163,7 +163,7 @@ async function editCargo() {
           <h2>بار</h2>
         </div>
       </div>
-      <div className="bg-white flex gap-5 p-4 m-4">
+      <div className="bg-white flex gap-5 p-4 m-4 rounded-md">
         <button
           onClick={() => setDisplay("cargo")}
           className={`${
@@ -192,32 +192,44 @@ async function editCargo() {
                 <div className=" mx-4 bg-white border-[1px] rounded-md  ">
                   <div className="small_details grid grid-cols-2 justify-items-stretch ">
                     <div className="border-b-[1px] border-l-[1px] border-slate-100  px-2 py-3">
-                      <h3 className="text-gray-400 text-sm">شماره بار</h3>
+                      <h3 className="text-gray-400 text-xs pb-2">شماره بار</h3>
+                      <span className="font-bold text-sm">
                       {data._id}
+                      </span>
                     </div>
                     <div className="border-b-[1px]  border-slate-100 px-2 py-3 ">
-                      <h3 className="text-gray-400 text-sm pb-2">مسافت کل</h3>
+                      <h3 className="text-gray-400 text-xs pb-2">مسافت کل</h3>
+                      <span className="font-bold text-sm">
                       95 کیلومتر
+                      </span>
                     </div>
                     <div className="border-b-[1px] border-l-[1px] border-slate-100 px-2 py-3 ">
-                      <h3 className="text-gray-400 text-sm pb-2">بارگیری</h3>
+                      <h3 className="text-gray-400 text-xs pb-2">بارگیری</h3>
+                      <span className="font-bold text-sm">
                       {data.loadingDate[0]}
+                      </span>
                     </div>
                     <div className="border-b-[1px]  border-slate-100  px-2 py-3">
-                      <h3 className="text-gray-400 text-sm pb-2">ناوگان</h3>
+                      <h3 className="text-gray-400 text-xs pb-2">ناوگان</h3>
+                      <span className="font-bold text-sm">
                       {data.carrier.map((item: any, i: any) => (
                         <>
                           {item.parent},{item.child} |
                         </>
                       ))}
+                      </span>
                     </div>
                     <div className="border-b-[1px] border-l-[1px] border-slate-100 px-2 py-3 ">
-                      <h3 className="text-gray-400 text-sm ">نوع بار</h3>
+                      <h3 className="text-gray-400 text-xs ">نوع بار</h3>
+                      <span className="font-bold text-sm">
                       {data.cargoType}
+                      </span>
                     </div>
                     <div className="border-b-[1px]  border-slate-100  px-2 py-3">
-                      <h3 className="text-gray-400 text-sm ">وزن</h3>
+                      <h3 className="text-gray-400 text-xs ">وزن</h3>
+                      <span className="font-bold text-sm">
                       {data.weightType}
+                      </span>
                     </div>
                   </div>
                 </div>
