@@ -21,8 +21,10 @@ function ReverseAccordion({ title, detail, children, actived, clicked }: any) {
             <></>
           )} */}
 
-              {clicked ? (
-            <><div>{children}</div></>
+          {clicked ? (
+            <>
+              <div>{children}</div>
+            </>
           ) : (
             <></>
           )}
