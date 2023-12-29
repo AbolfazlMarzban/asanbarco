@@ -12,15 +12,15 @@ function Accardion({ title, detail, children }: any) {
     }
   };
   return (
-    <div>
+    <div className="w-full">
       <div id="accordionExample">
-        <div className="rounded-t-lg ">
+        <div className="rounded-lg w-full">
           <h2 className="mb-0" id="headingOne">
             <button
               className={`${
                 activeElement === "element1" &&
                 `text-primary dark:!text-primary-400 dark:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]`
-              } group relative flex w-full items-center rounded-t-[15px] border-0  px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none`}
+              } bg-white group relative flex w-full items-center rounded-[15px] border-0  px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none`}
               type="button"
               onClick={() => handleClick("element1")}
               aria-expanded="true"

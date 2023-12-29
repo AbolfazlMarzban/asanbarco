@@ -85,8 +85,8 @@ function index() {
             <span>خوش آمدگویی</span>
           </div>
         </div>
-        <div className="flex flex-col items-start mt-3">
-            <label htmlFor="">سوالات متداول:</label>
+        <div className="flex flex-col items-start mt-3 w-full">
+            <label htmlFor="" className="mb-3">سوالات متداول:</label>
             <Accardion
             title={'چگونه مبدأ و مقصد بارگیری را تعیین کنم؟'} 
             ></Accardion>
