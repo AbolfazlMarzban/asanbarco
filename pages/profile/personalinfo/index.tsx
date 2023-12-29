@@ -136,7 +136,7 @@ function index() {
           <h2>مشخصات شخصی</h2>
         </div>
       </div>
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center pb-3">
         <div className="w-16 h-16 rounded-full border-2 mt-6 relative">
           {profilePicUrl ? (
             <Image
@@ -150,7 +150,7 @@ function index() {
             <Image src={placeholder} alt=""></Image>
           )}
         </div>
-        <div className="w-1/2 flex items-center justify-between gap-4">
+        <div className="max-w-1/2 mt-3 flex items-center justify-center gap-4">
           <div
             className="flex border border-myblue rounded-lg p-2 text-myblue gap-2 cursor-pointer"
             onClick={() => document.getElementById("profilePic")?.click()}
