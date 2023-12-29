@@ -6,7 +6,7 @@ function Faq({ title, answer }: any) {
   return (
     <div className="bg-white flex flex-col my-2">
       <div
-        className="border border-teal-300 flex justify-between p-3"
+        className="border border-2 border-teal-300 flex justify-between p-3"
         onClick={() => setDisplay(!display)}
       >
         <label htmlFor="" className={ display ? `text-teal-300 font-bold` : ``}>
