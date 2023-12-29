@@ -42,9 +42,9 @@ function index() {
         const result = await axios.patch("/api/supportManage", data);
         if (result.data) {
           toast("پیام شما با موفقیت ارسال شد");
-          setTimeout(()=>{
-            location.reload()
-          }, 3000)
+          setTimeout(() => {
+            location.reload();
+          }, 3000);
         } else {
           toast("ارسال موفقیت آمیز نبود، دوباره تلاش کنید");
         }
@@ -52,9 +52,9 @@ function index() {
         const result = await axios.post("/api/supportManage", data);
         if (result.data) {
           toast("پیام شما با موفقیت ارسال شد");
-          setTimeout(()=>{
-            location.reload()
-          }, 3000)
+          setTimeout(() => {
+            location.reload();
+          }, 3000);
         } else {
           toast("ارسال موفقیت آمیز نبود، دوباره تلاش کنید");
         }
@@ -104,8 +104,8 @@ function index() {
         </button>
         <button
           onClick={() => {
-            setDisplay("list")
-            setMessageID(null)
+            setDisplay("list");
+            setMessageID(null);
           }}
           className={`${
             display == "list" ? `bg-myblue text-white` : `bg-white text-myblue`
@@ -131,9 +131,10 @@ function index() {
               value={relatedUnit}
             ></Select>
           </div>
-          <hr className="my-6 mx-3"></hr>
-          <div className="m-3 pb-3">
+          <hr className="my-6 mx-3 w-full flex flex-col"></hr>
+          <div className="m-3 pb-5">
             {itemMessages.map((item: any) => (
+              <div className="w-full">
               <p
                 className={`${
                   item.type == "Q" ? "bg-slate-200" : "bg-lime-100"
@@ -141,6 +142,7 @@ function index() {
               >
                 {item.text}
               </p>
+              </div>
             ))}
             <Textbox
               title={"متن پیام:"}
