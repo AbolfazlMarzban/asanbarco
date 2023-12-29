@@ -14,8 +14,8 @@ function index() {
         if(id){
           setUserID(id)
         }
-        const result = await axios.get(`/api/scoreManage?userID=${userID}`)
-        console.log('score result', result)
+        const result = await axios.get(`/api/scoreManage?userID=${id}`)
+        // console.log('score result', result)
         let total = 0
         if(result.data.length > 0){
           for(var i=0; i < result.data.length; i++){
