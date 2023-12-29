@@ -6,10 +6,12 @@ function Faq({ title, answer }: any) {
   return (
     <div className="bg-white flex flex-col my-2">
       <div
-        className="border border-green-600 flex justify-between p-3"
+        className="border border-teal-300 flex justify-between p-3"
         onClick={() => setDisplay(!display)}
       >
-        <label htmlFor="" className="text-green-600">{title}</label>
+        <label htmlFor="" className={ display ? `text-teal-300 font-bold` : ``}>
+          {title}
+        </label>
         {display ? (
           <>
             <svg
@@ -18,7 +20,7 @@ function Faq({ title, answer }: any) {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              className="w-6 h-6 text-green-600"
+              className="w-6 h-6 text-teal-300 font-bold"
             >
               <path
                 stroke-linecap="round"
@@ -35,7 +37,7 @@ function Faq({ title, answer }: any) {
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              className="w-6 h-6 text-green-600"
+              className="w-6 h-6"
             >
               <path
                 stroke-linecap="round"

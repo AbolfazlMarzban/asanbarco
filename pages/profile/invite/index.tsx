@@ -26,9 +26,9 @@ function index() {
         </div>
       </div>
       <div className="flex flex-col h-3/4 justify-between items-center mt-6 mx-3">
-        <div className="text-center">
-            <p className="text-xl">با دعوت از دوستان خود 10 امتیاز هدیه بگیرید</p>
-            <p className="text-slate-600 text-sm">لینک دعوت یا کد معرفی خود را برای دوستانتان ارسال کنید و به ازای هر ثبت نام موفق و ثبت بار توسط دوستان خود در آسان بار 
+        <div className="text-center px-6">
+            <p className="text-xl font-bold">با دعوت از دوستان خود 10 امتیاز هدیه بگیرید</p>
+            <p className="text-slate-600 text-sm mt-4">لینک دعوت یا کد معرفی خود را برای دوستانتان ارسال کنید و به ازای هر ثبت نام موفق و ثبت بار توسط دوستان خود در آسان بار 
                 10 امتیاز هدیه دریافت کنید
             </p>
         </div>

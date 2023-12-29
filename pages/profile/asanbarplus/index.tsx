@@ -28,7 +28,7 @@ function index() {
         <HistoryIcon></HistoryIcon>
       </div>
       <div className="flex flex-col  mt-4 mx-3">
-        <h3>با آسان بار پلاس سریعتر به راننده برس!</h3>
+        <h3 className="text-xl font-bold">با آسان بار پلاس سریعتر به راننده برس!</h3>
         <span className="mt-3">
           با فعال کردن آسان بار پلاس بارهات بهتر دیده میشن و سریعتر میتونی به
           راننده برسی.
