@@ -47,8 +47,8 @@ function index() {
           </div>
           <span className="text-red-600">10 امتیاز</span>
         </div>
-        <div className="w-full flex gap-3 p-3 items-center">
-          <div className="w-1/2 flex flex-col justify-center items-center border border-green-600 rounded-lg p-3">
+        <div className="w-full flex gap-3 py-3 items-center">
+          <div className="w-1/2 flex flex-col justify-center items-center border border-green-600 rounded-lg p-3 bg-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -66,7 +66,7 @@ function index() {
             <span className="text-green-600">15 امتیاز</span>
             <span>تأیید درخواست رانندگان</span>
           </div>
-          <div className="w-1/2 flex flex-col justify-center items-center border border-myblue rounded-lg p-3">
+          <div className="w-1/2 flex flex-col justify-center items-center border border-myblue rounded-lg p-3 bg-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

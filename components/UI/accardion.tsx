@@ -1,15 +1,9 @@
-import React from 'react';
+import React from "react";
 import { useState } from "react";
 
-function Accardion(
-    {
-        title,
-        detail,
-        children
-    }: any
-) {
-    const [activeElement, setActiveElement] = useState("");
-      
+function Accardion({ title, detail, children }: any) {
+  const [activeElement, setActiveElement] = useState("");
+
   const handleClick = (value: string) => {
     if (value === activeElement) {
       setActiveElement("");
@@ -17,8 +11,8 @@ function Accardion(
       setActiveElement(value);
     }
   };
-    return (
-        <div>
+  return (
+    <div>
       <div id="accordionExample">
         <div className="rounded-t-lg ">
           <h2 className="mb-0" id="headingOne">
@@ -57,22 +51,12 @@ function Accardion(
               </span>
             </button>
           </h2>
-          <span className='text-xs text-slate-400'>
-              {detail}
-              </span>
-                {(activeElement == "element1") && 
-                (
-                    <div>
-                        {children}
-                    </div>
-                )
-                
-                }
- 
+          <span className="text-xs text-slate-400">{detail}</span>
+          {activeElement == "element1" && <div>{children}</div>}
         </div>
       </div>
     </div>
-    );
+  );
 }
 
 export default Accardion;
