@@ -84,7 +84,7 @@ function index() {
           </div>
           <div className="w-1/2 flex flex-col items-center justify-center">
             <span>موجودی کیف پول شما:</span>
-            <span>{total} تومان</span>
+            <span className="mt-5">{total} تومان</span>
           </div>
         </div>
         <div className="bg-cyan-100 rounded-xl flex gap-5 p-2 m-4 w-full">
@@ -131,7 +131,7 @@ function index() {
             </div>
             <label htmlFor="">مبالغ دلخواه:</label>
             <div className="flex items-stretch w-full gap-2 mt-2">
-              <div className="w-1/4 bg-green-200 text-green-600 text-center flex justify-center items-center p-2 rounded-xl">
+              <div className="w-1/4 bg-green-200 text-green-600 text-center flex justify-center items-center p-2 rounded-md">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -148,9 +148,9 @@ function index() {
                 </svg>
               </div>
               <div className="w-1/2">
-                <input type="number" className="w-full border-2 border-teal-600 rounded-xl text-center h-full" value={payAmount} onChange={(ev)=>setPayAmount(ev.target.value)} />
+                <input type="number" className="w-full border-2 border-teal-600 rounded-md text-center h-full" value={payAmount} onChange={(ev)=>setPayAmount(ev.target.value)} />
               </div>
-              <div className="w-1/4 bg-red-200 text-red-600 text-center flex justify-center items-center p-2 rounded-xl">
+              <div className="w-1/4 bg-red-200 text-red-600 text-center flex justify-center items-center p-2 rounded-md">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
