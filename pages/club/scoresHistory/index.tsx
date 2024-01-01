@@ -13,7 +13,7 @@ function index() {
         if(id){
           setUserID(id)
         }
-        const result = await axios.get(`/api/scoreManage?userID=${userID}`)
+        const result = await axios.get(`/api/scoreManage?userID=${id}`)
         console.log('score result', result)
         setScoreItems(result.data)
       }catch(err){
