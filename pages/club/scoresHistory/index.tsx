@@ -69,7 +69,7 @@ function index() {
               <>    
               {scoreItems.length > 0 ? (
                 <>  
-                {scoreItems.map((item:any)=> {
+                {scoreItems.map((item:any)=> (
                   <>
                 <div className="flex justify-between items-center" key={item._id}>
                   <div className="flex flex-col justify-start">
@@ -83,7 +83,7 @@ function index() {
                 </div>
                 <hr className="mt-2"></hr>
                 </>
-                })}
+                ))}
                 </>
               )
                 :
