@@ -2,8 +2,24 @@ import Link from "next/link";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LanguageIcon from "@mui/icons-material/Language";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function index() {
+  const [aboutText, setAboutText] = useState('')
+  const [telegram, setTelegram] = useState('')
+  const [instagram, setInstagram] = useState('')
+  useEffect(()=>{
+    (async()=>{
+      const result = await axios.get('/api/aboutManage')
+      console.log('result', result)
+      setAboutText(result.data['abouts'][0].aboutasanbarco)
+      if(result.data['socials'].length > 0){
+        setTelegram(result.data['socials'][0].asanbarcotelegram)
+        setInstagram(result.data['socials'][0].asanbarcoinstagram)
+      }
+    })()
+  },[])
   return (
     <div className="w-full h-screen bg-mybg">
       <div className="bg-myblue text-white py-5 px-2 flex justify-between w-full">
@@ -32,12 +48,17 @@ function index() {
         <h3 className="text-myblue text-xl font-bold">آسان بار</h3>
         <span className="mt-3 text-slate-300">نسخه 1.0.0</span>
         <div className="flex items-center justify-center gap-4 mt-3">
+          <Link href={telegram}>
           <TelegramIcon fontSize="large"></TelegramIcon>
+          </Link>
+          <Link href={instagram}>
           <InstagramIcon fontSize="large"></InstagramIcon>
+          </Link>
           <LanguageIcon fontSize="large"></LanguageIcon>
         </div>
         <p className="max-w-1/2 w-full mt-4 px-3">
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
+          {aboutText}
+          {/* لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده
           از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
           سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای
           متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
@@ -46,7 +67,7 @@ function index() {
           خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید
           داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به
           پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی
-          سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+          سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد. */}
         </p>
       </div>
     </div>
