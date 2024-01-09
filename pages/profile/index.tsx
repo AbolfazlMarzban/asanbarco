@@ -5,45 +5,47 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
-import placeholder from "@/public/man.png"
+import placeholder from "@/public/man.png";
+import { useRouter } from "next/router";
 
 function index() {
-  const [userID, setUserID] = useState(null)
-  const [score, setScore] = useState(0)
-  const [wallet, setWallet] = useState(0)
-  const [profilePic, setProfilePic] = useState('')
-  const [phoneNumber, setPhonenumber] = useState('')
-  useEffect(()=>{
-    (async()=>{
-      const id : any = localStorage.getItem('userID')
-      if(id){
-        setUserID(id)
-        const score = await axios.get(`/api/scoreManage?userID=${id}`)
+  const [userID, setUserID] = useState(null);
+  const [score, setScore] = useState(0);
+  const [wallet, setWallet] = useState(0);
+  const [profilePic, setProfilePic] = useState("");
+  const [phoneNumber, setPhonenumber] = useState("");
+  let router = useRouter()
+
+  useEffect(() => {
+    (async () => {
+      const id: any = localStorage.getItem("userID");
+      if (id) {
+        setUserID(id);
+        const score = await axios.get(`/api/scoreManage?userID=${id}`);
         // console.log('score', score)
-        if(score){
-          let total = 0
-          score.data.forEach((item:any)=> total += item.score)
-          setScore(total)
+        if (score) {
+          let total = 0;
+          score.data.forEach((item: any) => (total += item.score));
+          setScore(total);
         }
-        const wallet = await axios.get(`/api/wallet?userID=${id}`)
+        const wallet = await axios.get(`/api/wallet?userID=${id}`);
         // console.log('wallet', wallet)
-        if(wallet){
-          let total = 0
-          wallet.data.forEach((item:any)=> total += item.amount)
-          setWallet(total)
+        if (wallet) {
+          let total = 0;
+          wallet.data.forEach((item: any) => (total += item.amount));
+          setWallet(total);
         }
 
-        const user = await axios.get(`/api/userManage?id=${id}`)
-        if(user.data.profilePic && user.data.profilePic.length > 0){
-          setProfilePic(user.data.profilePic)
+        const user = await axios.get(`/api/userManage?id=${id}`);
+        if (user.data.profilePic && user.data.profilePic.length > 0) {
+          setProfilePic(user.data.profilePic);
         }
-        if(user.data.phoneNumber){
-          setPhonenumber(user.data.phoneNumber)
+        if (user.data.phoneNumber) {
+          setPhonenumber(user.data.phoneNumber);
         }
       }
-
-    })()
-  }, [])
+    })();
+  }, []);
   const menuItems = [
     {
       icon: (
@@ -251,20 +253,27 @@ function index() {
       link: "/profile/about",
     },
   ];
+  function exitUser(){
+    localStorage.removeItem('userID')
+    router.push('/')
+  }
   return (
     <div className="w-full h-screen">
       <div className="h-full bg-myblue">
         <div className="flex flex-col items-center py-6 ">
           <div className="w-16 h-16 rounded-full border-2 ">
-          {profilePic ? 
-          (
-            <Image src={profilePic} alt="" layout="fill" objectFit="cover" className="rounded-full"></Image>
-          )
-            : 
-            (
+            {profilePic ? (
+              <Image
+                src={profilePic}
+                alt=""
+                layout="fill"
+                objectFit="cover"
+                className="rounded-full"
+              ></Image>
+            ) : (
               <Image src={placeholder} alt=""></Image>
-            )
-        }          </div>
+            )}{" "}
+          </div>
           <div className="w-8 bg-green-300 mt-2 pa-3 rounded-lg flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -300,7 +309,9 @@ function index() {
                   d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3"
                 />
               </svg>
-              <span className="text-xs text-white mt-1">موجودی: {wallet} تومان</span>
+              <span className="text-xs text-white mt-1">
+                موجودی: {wallet} تومان
+              </span>
             </div>
             <div className="flex flex-col items-center mx-5">
               <svg
@@ -323,32 +334,67 @@ function index() {
         </div>
         <div className="bg-white h-3/4 rounded-t-xl flex flex-col p-4">
           {menuItems.map((item, i) => (
-            <Link href={item.link}>
-              <div
-                className="w-full flex justify-between items-center my-2"
-                key={i}
-              >
-                <div className="flex items-center gap-5">
-                  {item.icon}
-                  <span>{item.name}</span>
-                </div>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-4 h-4"
+            <>
+              <Link href={item.link}>
+                <div
+                  className="w-full flex justify-between items-center my-2"
+                  key={i}
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M15.75 19.5L8.25 12l7.5-7.5"
-                  />
-                </svg>
-              </div>
-            </Link>
+                  <div className="flex items-center gap-5">
+                    {item.icon}
+                    <span>{item.name}</span>
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.75 19.5L8.25 12l7.5-7.5"
+                    />
+                  </svg>
+                </div>
+              </Link>
+            </>
           ))}
+          <div className="w-full flex justify-between items-center my-2 cursor-pointer" onClick={()=>exitUser()}>
+            <div className="flex items-center gap-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 text-myblue"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+                />
+              </svg>
+              <span>خروج</span>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+          </div>
         </div>
       </div>
       <Navbar></Navbar>
