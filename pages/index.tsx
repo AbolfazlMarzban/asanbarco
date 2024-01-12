@@ -53,7 +53,7 @@ export default function Home() {
   //   console.log('user', user)
 
   // })
-  useLayoutEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 3000);
