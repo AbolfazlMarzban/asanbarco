@@ -10,7 +10,7 @@ function Layout({children}: any){
             const user = localStorage.getItem('userID')
             if(user){
                 const result = await axios.post('/api/checkuser', {'user': user})
-                console.log('result', result.data)
+                // console.log('result', result.data)
                 if(result.data.length > 0){
                     if(router.pathname == "/"){
                         router.push("/myCargo")
