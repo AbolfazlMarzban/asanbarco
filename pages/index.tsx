@@ -34,6 +34,7 @@ export default function Home() {
         const res = await axios.post('/api/auth', {data: otpValue, phoneNumber: phoneNumber})
         console.log('res', res)
         if(res.data){
+          localStorage.removeItem('userID')
           localStorage.setItem('userID', res.data._id)
           router.push("/myCargo")
         } else {
